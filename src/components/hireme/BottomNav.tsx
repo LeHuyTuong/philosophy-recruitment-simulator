@@ -1,7 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-
 interface BottomNavProps {
   onNavigate: (page: string) => void;
   currentPage: string;

@@ -1,12 +1,29 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { QRCodeSVG } from 'qrcode.react';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
+
+const QRCodeSVG = dynamic(
+  () => import('qrcode.react').then((mod) => mod.QRCodeSVG as any),
+  { ssr: false }
+);
 
 interface LandingProps {
   onStart: () => void;
   onNavigate: (page: string) => void;
+}
+
+function QRPlaceholder() {
+  return (
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" fill="#f9fafb" />
+      <rect x="20" y="20" width="60" height="60" rx="8" fill="#e5e7eb" />
+      <rect x="120" y="20" width="60" height="60" rx="8" fill="#e5e7eb" />
+      <rect x="20" y="120" width="60" height="60" rx="8" fill="#e5e7eb" />
+      <rect x="120" y="120" width="60" height="60" rx="8" fill="#e5e7eb" />
+    </svg>
+  );
 }
 
 export default function Landing({ onStart, onNavigate }: LandingProps) {
@@ -43,12 +60,8 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="inline-block p-4 bg-white rounded-2xl shadow-lg border border-gray-100 mb-8"
         >
-          <div suppressHydrationWarning>
-            <QRCodeSVG
-              value="https://hireme-simulator.vercel.app"
-              size={200}
-              level="M"
-            />
+          <div className="w-[200px] h-[200px] flex items-center justify-center bg-gray-50 rounded-lg">
+            <QRCodeSVG value="https://hireme-simulator.vercel.app" size={200} level="M" fallback={<QRPlaceholder />} />
           </div>
           <p className="text-xs text-gray-400 mt-2">Quét mã để tham gia</p>
         </motion.div>
