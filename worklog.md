@@ -72,3 +72,28 @@ Stage Summary:
 - All Vietnamese text as specified
 - Mobile-first responsive design
 - ESLint passes with zero errors
+
+---
+Task ID: 5
+Agent: Main
+Task: Refactor candidate files into SOLID structure
+
+Work Log:
+- Read and analyzed existing 3000+ line /src/lib/candidates.ts monolith
+- Transformed 6 industry files (it, marketing, accounting, business, design, education) into proper modules:
+  - Added `import type { Candidate } from './types'` at top of each
+  - Renamed array declarations to `export const candidates: Candidate[]`
+  - Removed trailing lines (industry separators, candidatePool export) from accounting, business, design, education files
+- Created /src/lib/candidates/index.ts barrel file:
+  - Imports all 6 industry modules
+  - Exports `candidatePool` as `Record<Industry, Candidate[]>`
+  - Re-exports `Candidate`, `Industry`, `industryList` from types.ts
+- Deleted old /src/lib/candidates.ts (the monolith)
+- Verified all existing imports in page.tsx and API routes still resolve correctly (via barrel)
+- Ran `bun run lint` — zero errors
+
+Stage Summary:
+- SOLID module structure: types.ts + 6 industry files + index.ts
+- All 120 candidates preserved with exact data integrity
+- No breaking changes: `candidatePool`, `Candidate`, `Industry` imports work from `@/lib/candidates`
+- ESLint passes cleanly

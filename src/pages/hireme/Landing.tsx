@@ -43,7 +43,13 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="inline-block p-4 bg-white rounded-2xl shadow-lg border border-gray-100 mb-8"
         >
-          <QRCodeSVG value={typeof window !== 'undefined' ? window.location.href : ''} size={200} level="M" />
+          <div suppressHydrationWarning>
+            <QRCodeSVG
+              value="https://hireme-simulator.vercel.app"
+              size={200}
+              level="M"
+            />
+          </div>
           <p className="text-xs text-gray-400 mt-2">Quét mã để tham gia</p>
         </motion.div>
 

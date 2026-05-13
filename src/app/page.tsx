@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useSession } from '@/hooks/useSession';
 import { api } from '@/lib/api';
 import { candidatePool, type Candidate } from '@/lib/candidates';
@@ -122,31 +121,26 @@ export default function Home() {
     switch (currentPage) {
       case 'landing':
         return <Landing onStart={handleStart} onNavigate={navigate} />;
-      
       case 'industry':
         return <IndustrySelector onSelectIndustry={handleSelectIndustry} onNavigate={navigate} />;
-      
       case 'round1':
         if (!sessionId || !industry) {
           navigate('industry');
           return null;
         }
         return <Round1_CV sessionId={sessionId} industry={industry} onComplete={handleRound1Complete} />;
-      
       case 'round2':
         if (round1Candidates.length === 0) {
           navigate('round1');
           return null;
         }
         return <Round2_Interview candidates={round1Candidates} onComplete={handleRound2Complete} />;
-      
       case 'round3':
         if (!sessionId) {
           navigate('landing');
           return null;
         }
         return <Round3_Task sessionId={sessionId} onComplete={handleRound3Complete} />;
-      
       case 'reveal':
         if (!round3Results) {
           navigate('round3');
@@ -161,40 +155,24 @@ export default function Home() {
             onNavigate={navigate}
           />
         );
-      
       case 'schools':
         return <Schools />;
-      
       case 'criteria':
         return <Criteria criteriaProfile={criteriaProfile} onNavigate={navigate} />;
-      
       case 'dashboard':
         return <Dashboard />;
-      
       case 'final-poll':
         return <FinalPoll onNavigate={navigate} />;
-      
       case 'ai-usage':
         return <AIUsage />;
-      
       default:
         return <Landing onStart={handleStart} onNavigate={navigate} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentPage}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          {renderPage()}
-        </motion.div>
-      </AnimatePresence>
+    <div className="min-h-screen bg-white" suppressHydrationWarning>
+      {renderPage()}
       <BottomNav onNavigate={navigate} currentPage={currentPage} />
     </div>
   );
