@@ -97,3 +97,34 @@ Stage Summary:
 - All 120 candidates preserved with exact data integrity
 - No breaking changes: `candidatePool`, `Candidate`, `Industry` imports work from `@/lib/candidates`
 - ESLint passes cleanly
+
+---
+Task ID: 6
+Agent: Main
+Task: Fix deployment failure — production build error
+
+Work Log:
+- Comprehensive audit of entire project (all 10 page components, 4 shared components, 7 API routes, hooks, lib files)
+- Ran `bun run lint` — zero errors
+- Dev server returned 200, all API routes functional
+- Ran `npx next build` — **CRITICAL ERROR FOUND**:
+  ```
+  TypeError: Cannot read properties of undefined (reading 'filter')
+  Error occurred prerendering page "/hireme/Reveal"
+  ```
+- **Root cause**: Files in `src/pages/hireme/` were being treated as Pages Router pages by Next.js.
+  Next.js auto-discovers the `pages/` directory and tries to prerender all components as routes,
+  but these are client components that expect props (e.g., `criteriaProfile`, `successCount`, etc.).
+- **Fix**: Moved all 11 files from `src/pages/hireme/` to `src/views/hireme/`
+- Updated imports in `src/app/page.tsx` from `@/pages/hireme/*` to `@/views/hireme/*`
+- Removed empty `src/pages/` directory
+- Re-ran `npx next build` — **BUILD SUCCESS** ✅
+- All routes compile: `/` (static), all API routes (dynamic)
+- Dev server restarts and returns 200, all APIs functional
+- ESLint passes cleanly
+
+Stage Summary:
+- Build failure was caused by Next.js interpreting `src/pages/` as Pages Router directory
+- Moving to `src/views/` resolved the prerendering conflict
+- Production build now completes successfully
+- App is fully deployable

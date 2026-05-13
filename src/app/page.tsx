@@ -5,17 +5,17 @@ import { useSession } from '@/hooks/useSession';
 import { api } from '@/lib/api';
 import { candidatePool, type Candidate } from '@/lib/candidates';
 import BottomNav from '@/components/hireme/BottomNav';
-import Landing from '@/pages/hireme/Landing';
-import IndustrySelector from '@/pages/hireme/IndustrySelector';
-import Round1_CV from '@/pages/hireme/Round1_CV';
-import Round2_Interview from '@/pages/hireme/Round2_Interview';
-import Round3_Task from '@/pages/hireme/Round3_Task';
-import Reveal from '@/pages/hireme/Reveal';
-import Schools from '@/pages/hireme/Schools';
-import Criteria from '@/pages/hireme/Criteria';
-import Dashboard from '@/pages/hireme/Dashboard';
-import FinalPoll from '@/pages/hireme/FinalPoll';
-import AIUsage from '@/pages/hireme/AIUsage';
+import Landing from '@/views/hireme/Landing';
+import IndustrySelector from '@/views/hireme/IndustrySelector';
+import Round1_CV from '@/views/hireme/Round1_CV';
+import Round2_Interview from '@/views/hireme/Round2_Interview';
+import Round3_Task from '@/views/hireme/Round3_Task';
+import Reveal from '@/views/hireme/Reveal';
+import Schools from '@/views/hireme/Schools';
+import Criteria from '@/views/hireme/Criteria';
+import Dashboard from '@/views/hireme/Dashboard';
+import FinalPoll from '@/views/hireme/FinalPoll';
+import AIUsage from '@/views/hireme/AIUsage';
 
 interface Round1Candidate {
   id: string;
