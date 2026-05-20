@@ -1,6 +1,13 @@
 // HireMe Simulator — Presenter Mode Scripts
 // Each screen maps to a presentation guide with philosophy connection and talk track.
 
+export interface AudienceNarration {
+  title: string;
+  headline: string;
+  philosophyLink: string;
+  transition: string;
+}
+
 export interface ScreenScript {
   title: string;
   purpose: string;
@@ -8,6 +15,7 @@ export interface ScreenScript {
   talkTrack: string;
   productValue: string;
   transition: string;
+  audienceNarration: AudienceNarration;
 }
 
 export const presentationScripts: Record<string, ScreenScript> = {
@@ -23,6 +31,14 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp kéo triết học ra khỏi lý thuyết khô, đưa người học vào một vấn đề đời sống gần gũi. Thay vì mở bài bằng định nghĩa, app mở bằng cảm xúc và tò mò.",
     transition:
       "Sau khi đặt vấn đề, app cho người chơi chọn ngành để thấy cùng một nguyên lý sẽ biểu hiện khác nhau trong từng lĩnh vực.",
+    audienceNarration: {
+      title: "Màn mở đầu",
+      headline: "Học giỏi chưa chắc thành công.",
+      philosophyLink:
+        "Theo lý luận nhận thức, tri thức chỉ có giá trị khi được kiểm nghiệm trong thực tiễn.",
+      transition:
+        "Bắt đầu trải nghiệm để xem khác biệt giữa biết và làm được.",
+    },
   },
 
   industry: {
@@ -37,6 +53,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Thiết kế này giúp app có khả năng mở rộng đa ngành, không chỉ dùng cho một tình huống. Người học thấy triết học không trừu tượng mà biểu hiện cụ thể trong từng nghề.",
     transition:
       "Sau khi chọn ngành, người chơi bắt đầu vòng nhận thức đầu tiên: nhìn vào CV — nhận thức cảm tính.",
+    audienceNarration: {
+      title: "Chọn ngành nghề",
+      headline:
+        "Cùng một nguyên lý, biểu hiện khác nhau trong từng nghề.",
+      philosophyLink:
+        "Cái chung — Cái riêng: thực tiễn kiểm nghiệm năng lực, nhưng tiêu chuẩn khác nhau theo ngành.",
+      transition:
+        "Chọn ngành để bắt đầu quá trình nhận thức tuyển dụng.",
+    },
   },
 
   round1: {
@@ -51,6 +76,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này buộc người chơi ra quyết định trong điều kiện thông tin chưa đầy đủ, giống tuyển dụng thật. Giáo dục trải nghiệm có giá trị vì người học tự mình trải qua thay vì chỉ nghe giảng.",
     transition:
       "Để hiểu sâu hơn, app chuyển sang vòng phỏng vấn — nhận thức lý tính, nơi người chơi đánh giá cách ứng viên tư duy và xử lý vấn đề.",
+    audienceNarration: {
+      title: "Giai đoạn 1 — Nhận thức cảm tính",
+      headline:
+        "CV và GPA là hiện tượng, năng lực thật là bản chất cần kiểm nghiệm.",
+      philosophyLink:
+        "Nhận thức cảm tính: tiếp xúc dữ kiện bên ngoài nhưng chưa đủ để kết luận bản chất.",
+      transition:
+        "Tiếp tục phỏng vấn để đi sâu hơn vào bản chất ứng viên.",
+    },
   },
 
   round2: {
@@ -65,6 +99,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp người học hiểu rằng phỏng vấn là cần thiết nhưng không phải tiêu chuẩn cuối cùng. Nó bổ sung nhận thức cảm tính chứ không thay thế thực tiễn.",
     transition:
       "Để kiểm nghiệm lời nói, app cần một vòng thực hành — thử việc.",
+    audienceNarration: {
+      title: "Giai đoạn 2 — Nhận thức lý tính",
+      headline:
+        "Nói giỏi chưa chắc làm giỏi. Khả năng cần trở thành hiện thực.",
+      philosophyLink:
+        "Khả năng — Hiện thực: phỏng vấn thể hiện khả năng, thử việc mới kiểm nghiệm hiện thực.",
+      transition:
+        "Chuyển sang vòng thử việc để kiểm nghiệm bằng thực tiễn.",
+    },
   },
 
   round3: {
@@ -79,6 +122,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này tạo khoảnh khắc 'wow' cho người chơi. Họ tự mình trải nghiệm quá trình thực tiễn kiểm nghiệm nhận thức, thay vì chỉ đọc trong giáo trình.",
     transition:
       "Sau khi có dữ liệu từ cả ba vòng, app tổng hợp và chẩn đoán tư duy tuyển chọn của người chơi.",
+    audienceNarration: {
+      title: "Giai đoạn 3 — Thực tiễn kiểm nghiệm",
+      headline:
+        "Thực tiễn là tiêu chuẩn của chân lý. Kết quả thử việc nói lên tất cả.",
+      philosophyLink:
+        "Feuerbach luận đề 2: vấn đề không chỉ là giải thích thế giới mà là cải tạo thế giới bằng thực tiễn.",
+      transition:
+        "Xem kết quả tổng hợp để nhận ra bản chất tuyển chọn của bạn.",
+    },
   },
 
   reveal: {
@@ -93,6 +145,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này tạo khoảnh khắc phản tư sâu sắc: người chơi nhìn lại tiêu chí tuyển chọn ban đầu của mình và so sánh với kết quả thực tế.",
     transition:
       "Để hiểu sâu hơn, app tiếp tục so sánh cách đánh giá trong học đường và nghề nghiệp.",
+    audienceNarration: {
+      title: "Kết quả — Bản chất bộc lộ",
+      headline:
+        "Bản chất không lộ ngay từ hiện tượng, mà dần bộc lộ qua thực tiễn.",
+      philosophyLink:
+        "Quá trình nhận thức: trực quan sinh động → tư duy trừu tượng → thực tiễn.",
+      transition:
+        "So sánh tiêu chí học đường và nghề nghiệp ở phần tiếp theo.",
+    },
   },
 
   criteria: {
@@ -107,6 +168,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp sinh viên hiểu khoảng cách giữa việc học tốt và làm việc tốt, chuẩn bị tâm lý cho bước chuyển giao từ trường học sang doanh nghiệp.",
     transition:
       "Sau phần cá nhân, app mở rộng ra dữ liệu lớp để xem xu hướng lựa chọn của nhiều người chơi.",
+    audienceNarration: {
+      title: "Đúng — Đủ — Hiệu quả",
+      headline:
+        "Học đường đánh giá đúng và đủ. Nghề nghiệp còn cần hiệu quả.",
+      philosophyLink:
+        "Phép biện chứng: nhận thức đúng là cần thiết, nhưng tri thức phải tạo ra giá trị thực tế.",
+      transition:
+        "Xem dữ liệu tổng hợp cả lớp ở Dashboard.",
+    },
   },
 
   dashboard: {
@@ -121,6 +191,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp sản phẩm có giá trị giáo dục thật: hỗ trợ giảng viên quan sát tư duy của lớp và tạo thảo luận sâu hơn.",
     transition:
       "Cuối cùng, app cho người học nhìn lại toàn bộ trải nghiệm như một quá trình nhận thức biện chứng.",
+    audienceNarration: {
+      title: "Dashboard lớp",
+      headline:
+        "Từ nhiều cái riêng, rút ra xu hướng chung.",
+      philosophyLink:
+        "Cái chung trong cái riêng: dashboard tổng hợp dữ liệu cá nhân thành xu hướng lớp.",
+      transition:
+        "Xem xét lại toàn bộ trải nghiệm dưới góc nhìn triết học.",
+    },
   },
 
   schools: {
@@ -135,6 +214,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này biến kiến thức lịch sử triết học thành tình huống dễ hiểu trong tuyển dụng, giúp người học ghi nhớ tự nhiên.",
     transition:
       "Từ đó, người học quay lại câu hỏi ban đầu: học giỏi có chắc thành công không? Câu trả lời là: học giỏi là điều kiện cần, chưa phải điều kiện đủ.",
+    audienceNarration: {
+      title: "Các trường phái nhận thức",
+      headline:
+        "Mỗi trường phái triết học dẫn đến một cách tuyển dụng khác nhau.",
+      philosophyLink:
+        "Duy vật biện chứng: xem xét nhiều mặt, kiểm nghiệm bằng thực tiễn — chính là cách app vận hành.",
+      transition:
+        "Quay lại câu hỏi: học giỏi có chắc thành công không?",
+    },
   },
 
   "final-poll": {
@@ -149,6 +237,15 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này đo lường hiệu quả giáo dục của sản phẩm. Nếu phần lớn người chơi chọn 'kết hợp học + thực hành', app đã thành công trong việc truyền đạt triết học.",
     transition:
       "Cảm ơn người chơi đã tham gia. Có thể tham khảo thêm phần AI Usage để hiểu quá trình phát triển.",
+    audienceNarration: {
+      title: "Khảo sát cuối kỳ",
+      headline:
+        "Nhận thức đúng phải dẫn đến hành động đúng.",
+      philosophyLink:
+        "Marx: các nhà triết học chỉ giải thích thế giới, song vấn đề là cải tạo thế giới.",
+      transition:
+        "Cảm ơn bạn đã trải nghiệm HireMe Simulator!",
+    },
   },
 
   "ai-usage": {
@@ -163,5 +260,14 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Phần này thể hiện tính liêm chính và chuyên nghiệp của nhóm, đồng thời minh họa rằng sử dụng công nghệ không mâu thuẫn với tư duy độc lập.",
     transition:
       "Đó là toàn bộ trải nghiệm HireMe Simulator. Cảm ơn thầy cô và các bạn đã lắng nghe.",
+    audienceNarration: {
+      title: "Minh bạch sử dụng AI",
+      headline:
+        "AI là công cụ, tư duy con người là quyết định.",
+      philosophyLink:
+        "Công cụ tăng năng suất nhưng không thay thế tư duy chủ quan của chủ thể.",
+      transition:
+        "Đó là toàn bộ trải nghiệm HireMe Simulator. Cảm ơn!",
+    },
   },
 };

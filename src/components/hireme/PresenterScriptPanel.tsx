@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, ChevronUp, BookOpen, Brain, MessageSquare, Lightbulb, ArrowRight } from 'lucide-react';
+import { X, ChevronDown, BookOpen, Brain, MessageSquare, Lightbulb, ArrowRight } from 'lucide-react';
 import { type ScreenScript } from '@/data/presentationScripts';
 
 interface PresenterScriptPanelProps {
   script: ScreenScript | undefined;
   isOpen: boolean;
   onClose: () => void;
-  screenKey: string;
 }
 
 interface SectionProps {
@@ -59,7 +58,7 @@ function Section({ id, icon, label, content, defaultOpen = false, accentColor = 
   );
 }
 
-export default function PresenterScriptPanel({ script, isOpen, onClose, screenKey }: PresenterScriptPanelProps) {
+export default function PresenterScriptPanel({ script, isOpen, onClose }: PresenterScriptPanelProps) {
   if (!script) return null;
 
   const sections: SectionProps[] = [
@@ -138,7 +137,7 @@ export default function PresenterScriptPanel({ script, isOpen, onClose, screenKe
             <div className="flex items-center justify-between px-4 py-2 border-b border-gray-100 flex-shrink-0">
               <div>
                 <h3 className="text-sm font-bold text-gray-800">{script.title}</h3>
-                <p className="text-[10px] text-gray-400 uppercase tracking-wider">Presenter Script</p>
+                <p className="text-[10px] text-gray-400 uppercase tracking-wider">Ghi chú thuyết trình</p>
               </div>
               <button
                 onClick={onClose}
@@ -180,13 +179,13 @@ export default function PresenterScriptPanel({ script, isOpen, onClose, screenKe
                   <h2 className="text-sm font-bold text-gray-800">{script.title}</h2>
                 </div>
                 <p className="text-[10px] text-gray-400 uppercase tracking-wider ml-7">
-                  Presenter Script
+                  Ghi chú thuyết trình
                 </p>
               </div>
               <button
                 onClick={onClose}
                 className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors cursor-pointer"
-                title="Đóng (Esc)"
+                title="Đóng (N)"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -203,7 +202,7 @@ export default function PresenterScriptPanel({ script, isOpen, onClose, screenKe
           {/* Footer hint */}
           <div className="flex-shrink-0 border-t border-gray-100 px-5 py-2.5">
             <p className="text-[10px] text-gray-400 text-center">
-              Nhấn <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[10px] font-mono">P</kbd> để tắt · <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[10px] font-mono">Esc</kbd> để đóng panel
+              Nhấn <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[10px] font-mono">N</kbd> để đóng · <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[10px] font-mono">Esc</kbd> để đóng hoặc tắt
             </p>
           </div>
         </motion.aside>

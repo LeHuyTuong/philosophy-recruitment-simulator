@@ -197,3 +197,50 @@ Stage Summary:
 - ESLint: 0 errors
 - Production build: SUCCESS (7.5s)
 - Validation script prevents future regressions
+
+---
+Task ID: 9
+Agent: Main
+Task: Refactor Presenter Mode into 2-layer architecture (Audience Overlay + Private Notes)
+
+Work Log:
+- Read and analyzed all existing Presenter Mode files (4 files + page.tsx)
+- Updated `/src/data/presentationScripts.ts`:
+  - Added `AudienceNarration` interface: { title, headline, philosophyLink, transition }
+  - Added `audienceNarration` field to all 11 screen scripts
+  - Content derived from existing long-form scripts, shortened for audience display (3-4 lines)
+- Refactored `/src/hooks/usePresenterMode.ts`:
+  - Separated state into: isPresentationMode, isNotesPanelOpen, isAudienceOverlayVisible
+  - URL param support: ?present=1 auto-enables presentation mode (priority over localStorage)
+  - Keyboard shortcuts: P (toggle mode), N (toggle notes, only when mode on), Esc (close notes first, then close mode)
+  - Notes panel no longer auto-opens when presentation mode turns on
+  - Uses useRef + useEffect pattern for keyboard handler to read latest state
+  - Removed old localStorage key `hireme_presenter_mode_panel`, only persists mode state
+- Created `/src/components/hireme/AudienceNarrationOverlay.tsx`:
+  - Desktop: floating card at bottom center (max-w-xl), above BottomNav
+  - Mobile: compact bottom card, above BottomNav
+  - Shows: badge "Presentation", title, headline, philosophy link (with amber icon), transition (with arrow)
+  - "Ẩn" button to collapse, "Ghi chú" button to open notes panel
+  - Hidden state shows small floating "Hiện nội dung" button
+  - framer-motion animations for show/hide
+- Updated `/src/components/hireme/PresenterModeToggle.tsx`:
+  - Off state: "Bật thuyết trình" button with Mic icon (was "Presenter Mode")
+  - On state: Two buttons — "Ghi chú" (with BookOpen icon, N shortcut) + "Đang thuyết trình" (with Mic icon, P shortcut)
+  - Notes button shows active state when panel is open
+- Updated `/src/components/hireme/PresenterScriptPanel.tsx`:
+  - Removed `screenKey` prop (unused)
+  - Renamed "Presenter Script" → "Ghi chú thuyết trình"
+  - Updated keyboard shortcut hints (N to close, Esc to close or turn off)
+  - Structure and functionality unchanged (still private speaker notes)
+- Updated `/src/app/page.tsx`:
+  - Integrated AudienceNarrationOverlay into layout
+  - PresenterScriptPanel only renders when isNotesPanelOpen=true (not when mode is on)
+  - PresenterModeToggle passes new separated props
+  - No layout shift — notes panel only opens explicitly
+
+Stage Summary:
+- 1 new file: AudienceNarrationOverlay.tsx
+- 4 files modified: presentationScripts.ts, usePresenterMode.ts, PresenterModeToggle.tsx, PresenterScriptPanel.tsx, page.tsx
+- ESLint: 0 errors
+- Dev server: returns 200 (both normal and ?present=1)
+- Architecture: Audience Overlay (visible by default when mode on) + Notes Panel (opened manually with N key or Ghi chú button)

@@ -8,6 +8,7 @@ import { candidatePool, type Candidate } from '@/lib/candidates';
 import { presentationScripts } from '@/data/presentationScripts';
 import BottomNav from '@/components/hireme/BottomNav';
 import PresenterModeToggle from '@/components/hireme/PresenterModeToggle';
+import AudienceNarrationOverlay from '@/components/hireme/AudienceNarrationOverlay';
 import PresenterScriptPanel from '@/components/hireme/PresenterScriptPanel';
 import Landing from '@/views/hireme/Landing';
 import IndustrySelector from '@/views/hireme/IndustrySelector';
@@ -50,7 +51,16 @@ interface TrialCandidate {
 
 export default function Home() {
   const { sessionId, industry, createSession, setIndustry, resetSession } = useSession();
-  const { isPresenterMode, isPanelOpen, togglePresenterMode, togglePanel, closePanel } = usePresenterMode();
+  const {
+    isPresentationMode,
+    isNotesPanelOpen,
+    isAudienceOverlayVisible,
+    togglePresentationMode,
+    openNotesPanel,
+    closeNotesPanel,
+    toggleAudienceOverlay,
+    closePresentationMode,
+  } = usePresenterMode();
   const [currentPage, setCurrentPage] = useState('landing');
   const [round1Candidates, setRound1Candidates] = useState<Round1Candidate[]>([]);
   const [round3Results, setRound3Results] = useState<{ candidates: TrialCandidate[]; successCount: number } | null>(null);
@@ -181,18 +191,33 @@ export default function Home() {
     <div className="min-h-screen bg-white" suppressHydrationWarning>
       {renderPage()}
       <BottomNav onNavigate={navigate} currentPage={currentPage} />
+
+      {/* Presenter Mode Controls */}
       <PresenterModeToggle
-        isPresenterMode={isPresenterMode}
-        onToggle={togglePresenterMode}
-        onTogglePanel={togglePanel}
-        isPanelOpen={isPanelOpen}
+        isPresentationMode={isPresentationMode}
+        isNotesPanelOpen={isNotesPanelOpen}
+        onTogglePresentation={togglePresentationMode}
+        onOpenNotes={openNotesPanel}
+        onCloseNotes={closeNotesPanel}
       />
-      {isPresenterMode && (
+
+      {/* Audience Narration Overlay — visible on product for audience */}
+      {isPresentationMode && (
+        <AudienceNarrationOverlay
+          narration={currentScript?.audienceNarration}
+          isPresentationMode={isPresentationMode}
+          isVisible={isAudienceOverlayVisible}
+          onToggleOverlay={toggleAudienceOverlay}
+          onOpenNotes={openNotesPanel}
+        />
+      )}
+
+      {/* Presenter Script Panel — private speaker notes, only when explicitly opened */}
+      {isPresentationMode && (
         <PresenterScriptPanel
           script={currentScript}
-          isOpen={isPanelOpen}
-          onClose={closePanel}
-          screenKey={currentPage}
+          isOpen={isNotesPanelOpen}
+          onClose={closeNotesPanel}
         />
       )}
     </div>
