@@ -47,7 +47,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Client yêu cầu rebrand trong 1 tuần cho event launch. Em quyết định preserve core elements (color palette, mascot) mà chỉ refresh typography và layout. Em làm 3 moodboard trong 1 ngày, client chọn hướng. Em加班 3 đêm deliver full package: logo variation, social template, event backdrop. Event thành công, client extend hợp đồng 6 tháng."
+      text: "Client yêu cầu rebrand trong 1 tuần cho event launch. Em quyết định preserve core elements (color palette, mascot) mà chỉ refresh typography và layout. Em làm 3 moodboard trong 1 ngày, client chọn hướng. Em làm thêm 3 đêm deliver full package: logo variation, social template, event backdrop. Event thành công, client extend hợp đồng 6 tháng."
     }
   },
   {
@@ -243,7 +243,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Client cần booth event design trong 3 ngày mà brief chưa rõ. Em lập tức call client clarify 5 key questions: size, brand colors, key message, target audience, budget. Em design 2 concept trong 24h, client chọn 1. Em加班 2 đêm hoàn thành full set: backdrop, standee, namecard. Event thành công, client ký hợp đồng design quarterly."
+      text: "Client cần booth event design trong 3 ngày mà brief chưa rõ. Em lập tức call client clarify 5 key questions: size, brand colors, key message, target audience, budget. Em design 2 concept trong 24h, client chọn 1. Em làm thêm 2 đêm hoàn thành full set: backdrop, standee, namecard. Event thành công, client ký hợp đồng design quarterly."
     }
   },
   {
@@ -267,7 +267,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Em và copywriter bất đồng về visual hierarchy. Em đề xuất tạo 2 version: version A follow em (visual-first), version B follow copywriter (text-first). Em test với 10 user qua UsabilityHub, version A thắng ở first impression, version B thắng ở readability. Em combine best của cả hai: visual hero + structured text below. Cả hai đều happy."
+      text: "Em và copywriter bất đồng về visual hierarchy. Em đề xuất tạo 2 version: version A follow em (visual-first), version B follow copywriter (text-first). Em test với 10 user qua UsabilityHub, version A thắng ở first impression, version B thắng ở readability. Em combine best của cả hai: visual hero + structured text below. Cả hai đều hài lòng."
     }
   },
   {
@@ -339,7 +339,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ designer nên có creative freedom. Nếu client không hiểu art thì đó là vấn đề của họ. Em không thích thiết kế theo brief vì nó giới hạn sự sáng tạo. Design là nghệ thuật chứ không phải service."
+      text: "Em nghĩ designer nên có tự do sáng tạo. Nếu client không hiểu nghệ thuật thì đó là vấn đề của họ. Em không thích thiết kế theo brief vì nó giới hạn sự sáng tạo. Design là nghệ thuật chứ không phải dịch vụ."
     }
   },
 
@@ -463,7 +463,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự học design qua The Futur YouTube channel, bắt đầu từ typography fundamentals. Em practice mỗi ngày: design 1 poster/ngày trong 100 ngày liên tiếp, post lên Instagram. Người theo dõi反馈 giúp em improve nhanh hơn bất kỳ course nào. Sau đó em tham gia competition và đạt giải nhất, proof rằng self-taught có thể rival formal education."
+      text: "Em tự học design qua The Futur YouTube channel, bắt đầu từ typography cơ bản. Em thực hành mỗi ngày: design 1 poster/ngày trong 100 ngày liên tiếp, post lên Instagram. Người theo dõi phản hồi giúp em improve nhanh hơn bất kỳ course nào. Sau đó em tham gia competition và đạt giải nhất, chứng minh rằng self-taught có thể sánh ngang học chính quy."
     }
   },
   {
@@ -487,7 +487,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ nếu design của em tốt thì không cần phải thay đổi. Feedback từ người không phải designer không có giá trị. Em đã spend nhiều năm perfect skill của mình và không cần người khác dạy em cách design."
+      text: "Em nghĩ nếu design của em tốt thì không cần phải thay đổi. Feedback từ người không phải designer không có giá trị. Em đã dành nhiều năm hoàn thiện kỹ năng của mình và không cần người khác dạy em cách design."
     }
   }
 ];

@@ -23,7 +23,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Làm campaign Tết, team content và ads không đồng ý budget split. Em đề xuất A/B test: 70-30 trong tuần đầu, xem data rồi điều chỉnh. Content win ở CTR, ads win ở conversion. Cuối cùng chọn 50-50, cả hai đều hài vì có data minh chứng."
+      text: "Làm campaign Tết, nhóm content và quảng cáo không đồng ý về phân bổ ngân sách. Em đề xuất A/B test: 70-30 trong tuần đầu, xem dữ liệu rồi điều chỉnh. Content thắng ở CTR, quảng cáo thắng ở conversion. Cuối cùng chọn 50-50, cả hai đều hài vì có dữ liệu minh chứng."
     }
   },
   {
@@ -47,7 +47,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Sếp yêu cầu launch campaign trong 3 ngày mà KOL chưa confirm. Em lập tức lên danh sách 10 micro-influencer backup, đồng thời negotiate với KOL chính bằng deal profit-sharing thay vì fixed fee. Result: 8/10 đồng ý, campaign launch đúng giờ với reach gấp 2x kế hoạch."
+      text: "Sếp yêu cầu khởi chạy campaign trong 3 ngày mà KOL chưa xác nhận. Em lập tức lên danh sách 10 micro-influencer backup, đồng thời đàm phán với KOL chính bằng thỏa thuận chia lợi nhuận thay vì phí cố định. Kết quả: 8/10 đồng ý, campaign khởi chạy đúng giờ với reach gấp 2x kế hoạch."
     }
   },
   {
@@ -71,7 +71,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Khi TikTok Ads mới ra VN, em tự chạy experiment 500K/ngày trong 2 tuần, test 30 creatives khác nhau. Em phát hiện video dạng storytelling dài 30s perform tốt nhất ở demo 25-34. Em viết case study, present cho director, sau đó áp dụng cho 3 client lớn."
+      text: "Khi TikTok Ads mới ra Việt Nam, em tự chạy thử nghiệm 500K/ngày trong 2 tuần, kiểm tra 30 creatives khác nhau. Em phát hiện video dạng kể chuyện dài 30s hiệu quả tốt nhất ở nhóm đối tượng 25-34. Em viết bài nghiên cứu tình huống, trình bày cho giám đốc, sau đó áp dụng cho 3 khách hàng lớn."
     }
   },
   {
@@ -95,7 +95,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Designer và em bất đồng về visual content. Em đề xuất làm 2 version: 1 theo ý designer, 1 theo insight data audience thích gì. Đăng cả hai, track 48h. Version data-driven thắng 3x engagement. Từ đó designer tự nguyện hỏi em trước khi design."
+      text: "Nhà thiết kế và em bất đồng về hình ảnh content. Em đề xuất làm 2 phiên bản: 1 theo ý nhà thiết kế, 1 theo nhận định dữ liệu khán giả thích gì. Đăng cả hai, theo dõi 48h. Phiên bản dựa trên dữ liệu thắng 3x engagement. Từ đó nhà thiết kế tự nguyện hỏi em trước khi thiết kế."
     }
   },
 
@@ -121,7 +121,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em thường đọc sách marketing và theo dõi các blog chuyên ngành. Em nghĩ kiến thức nền tảng rất quan trọng để làm marketing. Em cũng thường tham gia các seminar và workshop về digital marketing ở trường."
+      text: "Em thường đọc sách marketing và theo dõi các blog chuyên ngành. Em nghĩ kiến thức nền tảng rất quan trọng để làm marketing. Em cũng thường tham gia các hội thảo và chuyên đề về marketing số ở trường."
     }
   },
   {
@@ -145,7 +145,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "shallow",
-      text: "Em sẽ lập kế hoạch chi tiết và phân công công việc rõ ràng. Em nghĩ planning là chìa khóa để đối mặt với deadline gấp. Nếu gặp vấn đề khó em sẽ tìm kiếm sự giúp đỡ từ đồng nghiệp hoặc mentor."
+      text: "Em sẽ lập kế hoạch chi tiết và phân công công việc rõ ràng. Em nghĩ lên kế hoạch là chìa khóa để đối mặt với thời hạn gấp. Nếu gặp vấn đề khó em sẽ tìm kiếm sự giúp đỡ từ đồng nghiệp hoặc người hướng dẫn."
     }
   },
   {
@@ -169,7 +169,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ trong team mọi người nên tôn trọng nhau và lắng nghe ý kiến. Xung đột là điều không tránh khỏi nhưng có thể giải quyết bằng giao tiếp tốt. Em luôn cố gắng giữ thái độ tích cực và chuyên nghiệp."
+      text: "Em nghĩ trong nhóm mọi người nên tôn trọng nhau và lắng nghe ý kiến. Xung đột là điều không tránh khỏi nhưng có thể giải quyết bằng giao tiếp tốt. Em luôn cố gắng giữ thái độ tích cực và chuyên nghiệp."
     }
   },
   {
@@ -193,7 +193,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "shallow",
-      text: "Em sẽ ưu tiên giải quyết vấn đề quan trọng nhất trước. Em thường dùng ma trận Eisenhower để sắp xếp công việc. Em tin rằng nếu phân tích tốt thì execution sẽ tự nhiên theo."
+      text: "Em sẽ ưu tiên giải quyết vấn đề quan trọng nhất trước. Em thường dùng ma trận Eisenhower để sắp xếp công việc. Em tin rằng nếu phân tích tốt thì triển khai sẽ tự nhiên theo."
     }
   },
   {
@@ -211,13 +211,13 @@ export const candidates: Candidate[] = [
       bullets: [
         "Học Facebook Ads trong 3 ngày, chạy được campaign đầu tiên",
         "Apply statistical knowledge vào phân tích A/B test chuẩn xác",
-        "Nghiên cứu深夜 competitive analysis cho 3 đối thủ chính"
+        "Nghiên cứu khuya competitive analysis cho 3 đối thủ chính"
       ]
     },
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em chưa biết chạy TikTok Ads nhưng được giao thử. Em dành 2 buổi tối học qua TikTok Academy, phân tích 50 ads đối thủ bằng TikTok Creative Center, rồi đề xuất format video dựa trên data trending. Tuần sau campaign launch, CPM thấp hơn industry average 40%."
+      text: "Em chưa biết chạy TikTok Ads nhưng được giao thử. Em dành 2 buổi tối học qua TikTok Academy, phân tích 50 quảng cáo đối thủ bằng TikTok Creative Center, rồi đề xuất định dạng video dựa trên dữ liệu thịnh hành. Tuần sau campaign khởi chạy, CPM thấp hơn trung bình ngành 40%."
     }
   },
 
@@ -243,7 +243,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Lần đó chạy mega sale 11/11, ad account bị disapproved lúc 0h. Em lập tức split budget sang Shopee Ads và TikTok Ads backup, đồng thời appeal Facebook qua chat support. 2h sau account được khôi phục. Tổng doanh thu ngày đó vẫn đạt 150% target vì em đa dạng channel."
+      text: "Lần đó chạy siêu sale 11/11, tài khoản quảng cáo bị từ chối lúc 0h. Em lập tức chuyển ngân sách sang Shopee Ads và TikTok Ads backup, đồng thời gửi yêu cầu khôi phục Facebook qua hỗ trợ trực tuyến. 2h sau tài khoản được khôi phục. Tổng doanh thu ngày đó vẫn đạt 150% mục tiêu vì em đa dạng kênh."
     }
   },
   {
@@ -267,7 +267,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Influencer hủy hợp đồng 2 ngày trước event. Em gọi điện negotiate, offer thêm benefit: feature trên 3 kênh social thay vì 1, và赠送 product sample set. Influencer đồng ý, và nhờ đó em build được mối quan hệ dài hạn. Em giờ luôn có backup list sẵn sàng."
+      text: "Influencer hủy hợp đồng 2 ngày trước event. Em gọi điện đàm phán, đề nghị thêm quyền lợi: được giới thiệu trên 3 kênh social thay vì 1, và tặng kèm bộ sản phẩm dùng thử. Influencer đồng ý, và nhờ đó em xây dựng được mối quan hệ dài hạn. Em giờ luôn có backup danh sách sẵn sàng."
     }
   },
   {
@@ -291,7 +291,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Khi short-form content lên ngôi, em tự test 10 format khác nhau trên kênh cá nhân: storytelling, POV, duet, react, tutorial. Format 'behind-the-scenes POV' win nhất với avg 50K views. Em apply ngay cho client FMCG và tăng brand awareness 45% trong quarter."
+      text: "Khi content dạng ngắn lên ngôi, em tự thử nghiệm 10 định dạng khác nhau trên kênh cá nhân: kể chuyện, POV, duet, react, hướng dẫn. Định dạng 'hậu trường POV' thắng nhất với trung bình 50K lượt xem. Em áp dụng ngay cho khách hàng FMCG và tăng brand awareness 45% trong quý."
     }
   },
   {
@@ -315,7 +315,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Sales và marketing không đồng ý về lead qualification criteria. Em đề xuất cả hai ngồi lại với 1 spreadsheet: sales list ra 10 lead real mà marketing cho là 'good', marketing list ra 10 criteria. Em overlap 2 list, tìm được 6 criteria chung. Bây giờ cả hai team đều đồng ý dùng scoring model chung."
+      text: "Nhóm bán hàng và marketing không đồng ý về tiêu chí đánh giá lead. Em đề xuất cả hai ngồi lại với 1 bảng tính: nhóm bán hàng liệt kê 10 lead thật mà marketing cho là 'tốt', marketing liệt kê 10 tiêu chí. Em so sánh 2 danh sách, tìm được 6 tiêu chí chung. Bây giờ cả hai nhóm đều đồng ý dùng mô hình chấm điểm chung."
     }
   },
   {
@@ -339,7 +339,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ nếu ý kiến em đúng thì nên坚持. Mọi người đôi khi không hiểu tầm nhìn dài hạn. Em không thích làm việc theo cách cũ chỉ vì 'vậy là an toàn'. Team cần người dám thay đổi chứ không phải người sheep."
+      text: "Em nghĩ nếu ý kiến em đúng thì nên kiên trì. Mọi người đôi khi không hiểu tầm nhìn dài hạn. Em không thích làm việc theo cách cũ chỉ vì 'vậy là an toàn'. Nhóm cần người dám thay đổi chứ không phải người dễ bảo."
     }
   },
 
@@ -389,7 +389,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em thường đọc các bài viết trên mạng và xem YouTube để học hỏi. Em nghĩ marketing là ngành cần cập nhật liên tục nên em sẽ cố gắng tự học mỗi ngày. Em cũng có theo dõi một số page marketing nổi tiếng."
+      text: "Em thường đọc các bài viết trên mạng và xem YouTube để học hỏi. Em nghĩ marketing là ngành cần cập nhật liên tục nên em sẽ cố gắng tự học mỗi ngày. Em cũng có theo dõi một số trang marketing nổi tiếng."
     }
   },
   {
@@ -463,7 +463,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự build TikTok từ 0: đầu tiên study 100 videos viral trong niche, phân tích hook, retention rate, và CTA. Em test 3 format/tuần, track bằng spreadsheet. Format 'unboxing + review chân thực' win nhất, em scale lên 10 videos/tuần. 4 tháng sau đạt 100K và nhận được 5 brand deal."
+      text: "Em tự xây dựng TikTok từ 0: đầu tiên nghiên cứu 100 video viral trong lĩnh vực, phân tích điểm thu hút, tỷ lệ giữ chân, và CTA. Em thử nghiệm 3 định dạng/tuần, theo dõi bằng bảng tính. Định dạng 'đập hộp + đánh giá chân thực' thắng nhất, em mở rộng lên 10 video/tuần. 4 tháng sau đạt 100K và nhận được 5 hợp đồng quảng cáo."
     }
   },
   {
@@ -487,7 +487,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ nếu em đúng về mặt data thì không cần phải thương lượng. Marketing là khoa học, không phải dân chủ. Nếu team không chịu nghe em thì đó là vấn đề của team chứ không phải của em."
+      text: "Em nghĩ nếu em đúng về mặt dữ liệu thì không cần phải thương lượng. Marketing là khoa học, không phải dân chủ. Nếu nhóm không chịu nghe em thì đó là vấn đề của nhóm chứ không phải của em."
     }
   }
 ];

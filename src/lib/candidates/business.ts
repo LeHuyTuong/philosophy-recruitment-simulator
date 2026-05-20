@@ -16,14 +16,14 @@ export const candidates: Candidate[] = [
       verdict: "Deal maker",
       bullets: [
         "Đóng 5 deal B2B trong tháng thử việc, trị giá 2 tỷ",
-        "Xây pipeline CRM chuẩn, follow-up rate 100%",
-        "Negotiate discount từ 30% xuống chỉ 15% cho khách hàng lớn"
+        "Xây pipeline CRM chuẩn, tỷ lệ follow-up đạt 100%",
+        "Đàm phán giảm giá từ 30% xuống chỉ 15% cho khách hàng lớn"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Em và sales lead tranh nhau territory khách hàng. Em đề xuất chia theo industry vertical thay vì geographic, vì em phân tích data CRM thấy có overlap 40%. Lead đồng ý sau khi em show dashboard. Result: cả hai đều tăng 20% pipeline vì không còn competing nhau."
+      text: "Em và sales lead tranh nhau khu vực khách hàng. Em đề xuất chia theo ngành dọc thay vì theo địa lý, vì em phân tích dữ liệu CRM thấy có trùng lặp 40%. Lead đồng ý sau khi em trình bày dashboard. Kết quả: cả hai đều tăng 20% pipeline vì không còn cạnh tranh nhau."
     }
   },
   {
@@ -39,15 +39,15 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Chuyên nghiệp",
       bullets: [
-        "Maintain 95% retention rate cho existing accounts",
-        "Upsell thành công cho 3 khách hàng từ basic sang premium",
-        "Presentation proposal cho board director thành công"
+        "Duy trì 95% retention rate cho các account hiện tại",
+        "Upsell thành công cho 3 khách hàng từ gói cơ bản sang premium",
+        "Trình bày đề xuất cho ban giám đốc thành công"
       ]
     },
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Client muốn discount 25% cho hợp đồng 1 tỷ mà em chỉ được quyền approve 15%. Em gọi meeting với manager, đề xuất counter-offer: giảm 10% giá + tặng 3 tháng support + training cho staff. Client agreed vì total value cao hơn. Em document deal structure để team reuse cho similar cases."
+      text: "Khách hàng muốn giảm giá 25% cho hợp đồng 1 tỷ mà em chỉ được quyền duyệt 15%. Em xin họp với quản lý, đề xuất đổi lại: giảm 10% giá + tặng 3 tháng hỗ trợ + đào tạo cho nhân viên. Khách hàng đồng ý vì tổng giá trị cao hơn. Em ghi chép cấu trúc deal để team tái sử dụng cho các trường hợp tương tự."
     }
   },
   {
@@ -57,21 +57,21 @@ export const candidates: Candidate[] = [
     internshipMonths: 10,
     projects: 4,
     skills: ["Business Development", "Market Entry", "Strategic Planning"],
-    note: "Intern tại Vingroup strategy team",
+    note: "Thực tập sinh tại Vingroup team chiến lược",
     quadrant: "Q1",
     outcome: "success",
     trialResult: {
       verdict: "Tư duy chiến lược",
       bullets: [
         "Phân tích market entry cho 2 tỉnh mới, đề xuất được phê duyệt",
-        "Build relationship với 15 distributor trong 1 tháng",
-        "Đào tạo được 3 sales rep mới về consultative selling"
+        "Xây dựng mối quan hệ với 15 nhà phân phối trong 1 tháng",
+        "Đào tạo được 3 sales rep mới về bán hàng tư vấn"
       ]
     },
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Khi công ty áp dụng SPIN selling, em chưa biết framework này. Em đọc book của Neil Rackham trong 3 ngày, identify 5 situation questions + 3 problem questions cho product của mình. Tuần sau apply vào pitch cho khách B2B, close deal 500 triệu. Em share play- book với cả team sales."
+      text: "Khi công ty áp dụng SPIN selling, em chưa biết mô hình này. Em đọc sách của Neil Rackham trong 3 ngày, xác định 5 câu hỏi tình huống + 3 câu hỏi vấn đề cho sản phẩm của mình. Tuần sau áp dụng vào pitch cho khách B2B, ký kết deal 500 triệu. Em chia sẻ kịch bản với cả team sales."
     }
   },
   {
@@ -87,15 +87,15 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Hiểu khách hàng",
       bullets: [
-        "Tăng revenue cửa hàng demo 60% trong 1 semester",
-        "Giảm customer complaint rate từ 5% xuống 0.5%",
-        "Setup loyalty program thu hút 200+ member mới"
+        "Tăng revenue cửa hàng demo 60% trong 1 học kỳ",
+        "Giảm tỷ lệ khiếu nại khách hàng từ 5% xuống 0.5%",
+        "Thiết lập chương trình khách hàng thân thiết thu hút 200+ thành viên mới"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Marketing chạy promo mà sales không được báo trước, khách đến hỏi em không biết. Em lập tức call marketing, yêu cầu gửi promo details trong group Zalo chung. Em cũng đề xuất tạo SOP: marketing gửi promo brief 48h trước launch cho sales. Sau đó không còn bị surprise nữa."
+      text: "Marketing chạy khuyến mãi mà sales không được báo trước, khách đến hỏi em không biết. Em lập tức gọi marketing, yêu cầu gửi chi tiết khuyến mãi trong group Zalo chung. Em cũng đề xuất tạo quy trình chuẩn: marketing gửi bản tóm tắt khuyến mãi 48h trước phát động cho sales. Sau đó không còn bị bất ngờ nữa."
     }
   },
 
@@ -107,21 +107,21 @@ export const candidates: Candidate[] = [
     internshipMonths: 0,
     projects: 0,
     skills: ["Business Strategy", "Case Interview", "Theory"],
-    note: "Giỏi giải case nhưng chưa close deal nào",
+    note: "Giỏi giải case nhưng chưa ký kết deal nào",
     quadrant: "Q2",
     outcome: "fail",
     trialResult: {
       verdict: "Thiếu thực chiến",
       bullets: [
-        "Phân tích case rất tốt nhưng không biết approach khách hàng thật",
+        "Phân tích case rất tốt nhưng không biết tiếp cận khách hàng thật",
         "Chưa có kinh nghiệm cold calling hay negotiation",
-        "Elastic khi bị khách hàng từ chối"
+        "Mất bình tĩnh khi bị khách hàng từ chối"
       ]
     },
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em thường đọc sách về kinh doanh và strategy. Em nghĩ kiến thức nền tảng rất quan trọng để làm sales. Em cũng hay tham gia các cuộc thi case competition để rèn luyện tư duy phân tích."
+      text: "Em thường đọc sách về kinh doanh và chiến lược. Em nghĩ kiến thức nền tảng rất quan trọng để làm sales. Em cũng hay tham gia các cuộc thi giải case để rèn luyện tư duy phân tích."
     }
   },
   {
@@ -137,9 +137,9 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Cần kinh nghiệm",
       bullets: [
-        "Report chi tiết nhưng không có actionable recommendations",
-        "Không tự tin khi talk trực tiếp với khách hàng",
-        "Mất quá nhiều thời gian phân tích mà quên execution"
+        "Báo cáo chi tiết nhưng không có đề xuất khả thi",
+        "Không tự tin khi nói chuyện trực tiếp với khách hàng",
+        "Mất quá nhiều thời gian phân tích mà quên thực thi"
       ]
     },
     interviewAnswer: {
@@ -161,15 +161,15 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Chưa đáp ứng",
       bullets: [
-        "Nói chuyện rất hay nhưng không convert được thành sale",
-        "Chưa biết xử lý objection khi khách hàng chê giá",
-        "Thiếu kỹ năng thực tế như viết proposal hay contract"
+        "Nói chuyện rất hay nhưng không chuyển đổi được thành sale",
+        "Chưa biết xử lý phản đối khi khách hàng chê giá",
+        "Thiếu kỹ năng thực tế như viết đề xuất hay hợp đồng"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ leader cần lắng nghe nhân viên và đưa ra quyết định công bằng. Xung đột là cơ hội để cải thiện quy trình. Em luôn cố gắng giữ thái độ tích cực và khuyến khích mọi người cùng phát triển."
+      text: "Em nghĩ trưởng nhóm cần lắng nghe nhân viên và đưa ra quyết định công bằng. Xung đột là cơ hội để cải thiện quy trình. Em luôn cố gắng giữ thái độ tích cực và khuyến khích mọi người cùng phát triển."
     }
   },
   {
@@ -187,13 +187,13 @@ export const candidates: Candidate[] = [
       bullets: [
         "Khá ngại giao tiếp, không mở được cuộc trò chuyện với khách",
         "Nói lắp khi bị hỏi câu hỏi bất ngờ",
-        "Phù hợp làm research hơn sales"
+        "Phù hợp làm nghiên cứu hơn sales"
       ]
     },
     interviewAnswer: {
       question: 2,
       style: "shallow",
-      text: "Em sẽ chuẩn bị kỹ trước khi gặp khách hàng. Em nghĩ cần research thật kỹ về khách hàng và sản phẩm để tự tin hơn. Em sẽ nỗ lực cải thiện kỹ năng giao tiếp của mình."
+      text: "Em sẽ chuẩn bị kỹ trước khi gặp khách hàng. Em nghĩ cần nghiên cứu thật kỹ về khách hàng và sản phẩm để tự tin hơn. Em sẽ nỗ lực cải thiện kỹ năng giao tiếp của mình."
     }
   },
   {
@@ -209,15 +209,15 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Tiềm năng sale star",
       bullets: [
-        "Học product knowledge trong 2 ngày, demo cho client ngay",
-        "Apply framework consultative selling sau 1 tuần observe senior",
-        "Close first deal trị giá 300 triệu trong tháng đầu thử việc"
+        "Học kiến thức sản phẩm trong 2 ngày, demo cho khách hàng ngay",
+        "Áp dụng mô hình bán hàng tư vấn sau 1 tuần quan sát senior",
+        "Ký kết deal đầu tiên trị giá 300 triệu trong tháng đầu thử việc"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Em mới vào team, bị senior territory conflict. Em đề xuất mình cover SME segment còn senior cover enterprise. Em prove khả năng bằng cách research 50 SME trong area, qualify 15 hot lead, close 3 deal trong 2 tuần. Senior impressed và voluntary share enterprise leads cho em."
+      text: "Em mới vào team, bị senior tranh khu vực. Em đề xuất mình phụ trách phân khúc SME còn senior phụ trách enterprise. Em chứng minh khả năng bằng cách nghiên cứu 50 SME trong khu vực, đánh giá 15 khách hàng tiềm năng, ký kết 3 deal trong 2 tuần. Senior ấn tượng và tự nguyện chia sẻ enterprise leads cho em."
     }
   },
 
@@ -229,21 +229,21 @@ export const candidates: Candidate[] = [
     internshipMonths: 18,
     projects: 5,
     skills: ["Real Sales", "Pipeline Management", "Closing"],
-    note: "Top performer 1.5 năm tại công ty B2B",
+    note: "Nhân viên xuất sắc 1.5 năm tại công ty B2B",
     quadrant: "Q3",
     outcome: "success",
     trialResult: {
       verdict: "Sinh ra để bán",
       bullets: [
         "Đạt 150% quota trong quý đầu tiên thử việc",
-        "Build pipeline 2 tỷ từ cold calling 200 số/ngày",
-        "Convert rate 12% (industry average: 5%)"
+        "Xây dựng pipeline 2 tỷ từ cold calling 200 số/ngày",
+        "Tỷ lệ chuyển đổi 12% (trung bình ngành: 5%)"
       ]
     },
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Deadline close quarter, 3 deal pending. Em rank theo probability: deal A 80%, B 50%, C 30%. Em focus 70% thời gian cho A, negotiate payment term trực tiếp với CFO client. Deal close. Đối B, em tạo urgency bằng limited-time offer. Deal close. Deal C em push sang quarter sau nhưng lock commitment. Kết quả: vượt target 20%."
+      text: "Deadline close quarter, 3 deal pending. Em xếp theo xác suất: deal A 80%, B 50%, C 30%. Em tập trung 70% thời gian cho A, đàm phán điều khoản thanh toán trực tiếp với CFO khách hàng. Deal close. Đối B, em tạo sự cấp bách bằng ưu đãi có thời hạn. Deal close. Deal C em đẩy sang quarter sau nhưng chốt cam kết. Kết quả: vượt target 20%."
     }
   },
   {
@@ -253,21 +253,21 @@ export const candidates: Candidate[] = [
     internshipMonths: 12,
     projects: 4,
     skills: ["Inside Sales", "Cold Calling", "CRM HubSpot"],
-    note: "Part-time sales 3 semester cuối",
+    note: "Sales part-time 3 học kỳ cuối",
     quadrant: "Q3",
     outcome: "success",
     trialResult: {
       verdict: "Kiên trì hiệu quả",
       bullets: [
-        "Make 500+ calls/tháng, consistently hit target",
-        "Reduce average sales cycle từ 45 ngày xuống 28 ngày",
-        "Train được 4 new hire về objection handling"
+        "Thực hiện 500+ calls/tháng, liên tục đạt target",
+        "Giảm chu kỳ sales trung bình từ 45 ngày xuống 28 ngày",
+        "Đào tạo được 4 nhân viên mới về xử lý phản đối"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Em và marketing conflict về lead quality. Em đề xuất meeting hàng tuần: marketing show campaign plan, em show lead conversion data. Em phát hiện campaign X generate leads có convert rate 3x cao hơn. Marketing focus resource vào đó, cả hai đều win. Em setup shared dashboard để cả team track."
+      text: "Em và marketing xung đột về chất lượng lead. Em đề xuất họp hàng tuần: marketing trình bày kế hoạch chiến dịch, em trình bày dữ liệu chuyển đổi lead. Em phát hiện chiến dịch X tạo ra leads có tỷ lệ chuyển đổi 3x cao hơn. Marketing tập trung nguồn lực vào đó, cả hai đều thắng. Em thiết lập dashboard chung để cả team theo dõi."
     }
   },
   {
@@ -284,14 +284,14 @@ export const candidates: Candidate[] = [
       verdict: "Kết nối tốt",
       bullets: [
         "Mở rộng distribution từ 3 lên 15 tỉnh trong 1 năm",
-        "Build relationship với 50+ pharmacy owner",
-        "Revenue territory tăng 200% YoY"
+        "Xây dựng mối quan hệ với 50+ chủ nhà thuốc",
+        "Revenue khu vực tăng 200% YoY"
       ]
     },
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Công ty chuyển sang bán online, em chưa biết e-commerce. Em dành 1 tuần học Shopee seller center, Lazada university, rồi đăng ký bán thử sản phẩm sample. Em học được cách optimize listing, chạy promotion. Tuần sau em propose hybrid model: online + offline cho territory. Director approve, revenue tăng thêm 40%."
+      text: "Công ty chuyển sang bán online, em chưa biết thương mại điện tử. Em dành 1 tuần học trung tâm người bán Shopee, Lazada university, rồi đăng ký bán thử sản phẩm mẫu. Em học được cách tối ưu hóa danh mục, chạy khuyến mãi. Tuần sau em đề xuất mô hình kết hợp: online + offline cho khu vực. Giám đốc phê duyệt, revenue tăng thêm 40%."
     }
   },
   {
@@ -307,15 +307,15 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Deal closer",
       bullets: [
-        "Close deal 5 tỷ với tập đoàn sản xuất sau 3 tháng跟进",
-        "Negotiate multi-year contract với payment terms favorable",
-        "Coordinate với legal, tech, finance để deliver giải pháp toàn diện"
+        "Ký kết deal 5 tỷ với tập đoàn sản xuất sau 3 tháng theo sát",
+        "Đàm phán hợp đồng nhiều năm với điều khoản thanh toán có lợi",
+        "Phối hợp với legal, tech, finance để cung cấp giải pháp toàn diện"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Pre-sales engineer và em tranh solution cho client. Em đề xuất let client decide: present cả 2 solution, demo cả 2, cho client test 2 tuần. Client chọn solution B của pre-sales vì phù hợp budget hơn. Em accept và learn từ pre-sales. Sau đó em và pre-sales tạo standardized proposal template cho cả team."
+      text: "Pre-sales engineer và em tranh giải pháp cho khách hàng. Em đề xuất để khách hàng quyết định: trình bày cả 2 giải pháp, demo cả 2, cho khách hàng dùng thử 2 tuần. Khách hàng chọn giải pháp B của pre-sales vì phù hợp ngân sách hơn. Em chấp nhận và học hỏi từ pre-sales. Sau đó em và pre-sales tạo biểu mẫu đề xuất tiêu chuẩn cho cả team."
     }
   },
   {
@@ -331,7 +331,7 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Burning bridges",
       bullets: [
-        "Đạt KPI cá nhân nhưng hay steal leads từ đồng nghiệp",
+        "Đạt KPI cá nhân nhưng hay chôm leads từ đồng nghiệp",
         "Nói xấu sales khác trước mặt khách để mình win",
         "Team morale giảm sút khi làm việc cùng"
       ]
@@ -339,7 +339,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "shallow",
-      text: "Em nghĩ trong sales quan trọng nhất là kết quả. Nếu deadline gấp thì phải làm mọi cách để close deal. Em không quan tâm quá nhiều đến quy trình nếu nó làm chậm tiến độ. Kết quả mới là thứ sếp quan tâm."
+      text: "Em nghĩ trong sales quan trọng nhất là kết quả. Nếu deadline gấp thì phải làm mọi cách để ký kết deal. Em không quan tâm quá nhiều đến quy trình nếu nó làm chậm tiến độ. Kết quả mới là thứ sếp quan tâm."
     }
   },
 
@@ -358,7 +358,7 @@ export const candidates: Candidate[] = [
       verdict: "Chưa đáp ứng",
       bullets: [
         "Rất ngại tiếp xúc với khách hàng",
-        "Chưa biết basic sales process hay objection handling",
+        "Chưa biết quy trình sales cơ bản hay xử lý phản đối",
         "Thiếu động lực và sự tự tin"
       ]
     },
@@ -382,7 +382,7 @@ export const candidates: Candidate[] = [
       verdict: "Cải thiện nhiều",
       bullets: [
         "Giao tiếp thân thiện nhưng chưa có kỹ năng sales",
-        "Không hiểu về product, không demo được",
+        "Không hiểu về sản phẩm, không demo được",
         "Dễ bị khách hàng dắt mũi"
       ]
     },
@@ -463,7 +463,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự build business online từ zero: đầu tiên study 50 shop thành công nhất trên Shopee, phân tích pricing strategy và listing format. Em apply với sản phẩm của mình, optimize dần qua 30 ngày: thay đổi title keyword, main image, và bundle deal. Tháng thứ 3 đạt GMV 100tr. Em scale lên 3 sản phẩm và đạt 500tr/năm."
+      text: "Em tự xây dựng kinh doanh online từ con số 0: đầu tiên nghiên cứu 50 shop thành công nhất trên Shopee, phân tích chiến lược định giá và định dạng danh mục. Em áp dụng với sản phẩm của mình, tối ưu hóa dần qua 30 ngày: thay đổi từ khóa tiêu đề, hình ảnh chính, và gói combo. Tháng thứ 3 đạt GMV 100tr. Em mở rộng lên 3 sản phẩm và đạt 500tr/năm."
     }
   },
   {
@@ -473,21 +473,21 @@ export const candidates: Candidate[] = [
     internshipMonths: 8,
     projects: 3,
     skills: ["Sales", "Smart", "High Performer"],
-    note: "Sale giỏi nhưng burning bridges với mọi công ty",
+    note: "Sale giỏi nhưng đốt cầu nối với mọi công ty",
     quadrant: "WILD",
     outcome: "fail",
     trialResult: {
       verdict: "Toxic performer",
       bullets: [
         "Kỹ năng sales rất tốt nhưng từng bị 3 công ty cho nghỉ vì thái độ",
-        "Hay tranh công với đồng nghiệp và tạo conflict không cần thiết",
-        "Badmouth ex-employer trong phỏng vấn"
+        "Hay tranh công với đồng nghiệp và tạo xung đột không cần thiết",
+        "Nói xấu công ty cũ trong phỏng vấn"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ nếu performance tốt thì những thứ khác không quan trọng. Em không thích lãng phí thời gian cho politics công sở. Nếu team không theo kịp em thì đó là vấn đề của team. Em đến đây để đóng deal, không phải để làm bạn."
+      text: "Em nghĩ nếu hiệu suất tốt thì những thứ khác không quan trọng. Em không thích lãng phí thời gian cho chính trị công sở. Nếu team không theo kịp em thì đó là vấn đề của team. Em đến đây để đóng deal, không phải để làm bạn."
     }
   }
 ];

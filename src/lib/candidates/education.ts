@@ -23,7 +23,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Làm giáo viên, em và giáo viên Toán bất đồng về cách chấm bài. Em đề xuất: cả hai cùng chấm 10 bài chung, so sánh kết quả, thống nhất rubric chi tiết. Em tạo Google Sheet với 5 criteria chấm, mỗi criterion 0-2 điểm. Sau khi thống nhất, cả hai chấm consistent hơn 90%. Em share rubric template cho toàn bộ tổ bộ môn."
+      text: "Làm giáo viên, em và giáo viên Toán bất đồng về cách chấm bài. Em đề xuất: cả hai cùng chấm 10 bài chung, so sánh kết quả, thống nhất tiêu chí đánh giá chi tiết. Em tạo Google Sheet với 5 tiêu chí chấm, mỗi tiêu chí 0-2 điểm. Sau khi thống nhất, cả hai chấm nhất quán hơn 90%. Em chia sẻ mẫu tiêu chí đánh giá cho toàn bộ tổ bộ môn."
     }
   },
   {
@@ -47,7 +47,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Ngày thứ 3 thực tập, giáo viên chủ nhiệm ốm, em được giao dạy thay cả ngày. Em chưa chuẩn bị bài. Em nhanh chóng review giáo án của giáo viên, tìm activity backup trên TeachersPayTeachers, adjust cho phù hợp level học sinh. Em dạy 4 tiết liên tục, cuối ngày học sinh nói 'cô dạy vui hơn bình thường'. Em note lại kinh nghiệm cho lần sau."
+      text: "Ngày thứ 3 thực tập, giáo viên chủ nhiệm ốm, em được giao dạy thay cả ngày. Em chưa chuẩn bị bài. Em nhanh chóng xem lại giáo án của giáo viên, tìm hoạt động dự phòng trên TeachersPayTeachers, điều chỉnh cho phù hợp trình độ học sinh. Em dạy 4 tiết liên tục, cuối ngày học sinh nói 'cô dạy vui hơn bình thường'. Em ghi chú lại kinh nghiệm cho lần sau."
     }
   },
   {
@@ -71,7 +71,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tìm hiểu về differentiated instruction qua course trên Coursera. Em apply ngay vào lớp: chia nhóm 3 level, mỗi level bài tập khác nhau nhưng cùng learning objective. Em dùng checklist để track progress từng nhóm. Sau 1 tháng, học sinh yếu tăng 15 điểm trung bình, học sinh giỏi không bị chán vì có extension activities."
+      text: "Em tìm hiểu về dạy học phân hóa qua khóa học trên Coursera. Em áp dụng ngay vào lớp: chia nhóm 3 trình độ, mỗi trình độ bài tập khác nhau nhưng cùng mục tiêu học tập. Em dùng danh sách kiểm tra để theo dõi tiến độ từng nhóm. Sau 1 tháng, học sinh yếu tăng 15 điểm trung bình, học sinh giỏi không bị chán vì có hoạt động mở rộng."
     }
   },
   {
@@ -95,7 +95,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Em và giáo viên bộ môn khác tranh nhau thời gian hoạt động ngoại khóa. Em đề xuất merge: giáo viên Toán dạy phần tính toán filter, em dạy phần thuyết trình và viết report. Result: học sinh học được cả 2 skill, tiết kiệm thời gian, và dự án đạt giải nhì cấp tỉnh. Sau đó trường adopt model này cho all STEM projects."
+      text: "Em và giáo viên bộ môn khác tranh nhau thời gian hoạt động ngoại khóa. Em đề xuất gộp: giáo viên Toán dạy phần tính toán bộ lọc, em dạy phần thuyết trình và viết báo cáo. Kết quả: học sinh học được cả 2 kỹ năng, tiết kiệm thời gian, và dự án đạt giải nhì cấp tỉnh. Sau đó trường áp dụng mô hình này cho tất cả dự án STEM."
     }
   },
 
@@ -169,7 +169,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "shallow",
-      text: "Em nghĩ trong môi trường giáo dục cần sự tôn trọng và hợp tác. Giáo viên cần làm gương cho học sinh. Em luôn cố gắng giữ thái độ chuyên nghiệp và patience khi làm việc."
+      text: "Em nghĩ trong môi trường giáo dục cần sự tôn trọng và hợp tác. Giáo viên cần làm gương cho học sinh. Em luôn cố gắng giữ thái độ chuyên nghiệp và kiên nhẫn khi làm việc."
     }
   },
   {
@@ -217,7 +217,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em chưa biết dùng Nearpod nhưng thấy giáo viên khác dùng hiệu quả. Em dành 1 buổi tối học qua Nearpod Academy, tạo 1 interactive lesson cho lớp 6. Sáng hôm sau thử teaching, học sinh phản hồi 'cô dạy vui nhất từ đầu năm đến giờ'. Em note lại 5 tips và share cho toàn bộ tổ bộ môn trong weekly meeting."
+      text: "Em chưa biết dùng Nearpod nhưng thấy giáo viên khác dùng hiệu quả. Em dành 1 buổi tối học qua Nearpod Academy, tạo 1 bài giảng tương tác cho lớp 6. Sáng hôm sau thử dạy, học sinh phản hồi 'cô dạy vui nhất từ đầu năm đến giờ'. Em ghi chú lại 5 mẹo và chia sẻ cho toàn bộ tổ bộ môn trong buổi họp hàng tuần."
     }
   },
 
@@ -243,7 +243,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "concrete",
-      text: "Trung tâm giao em lớp học sinh cá biệt mà giáo viên khác từ chối. Em dành tuần đầu tiên quan sát, tìm ra nguyên nhân: 3 bạn disrupt vì bài quá dễ, 5 bạn không跟上 vì bài quá khó. Em chia lớp thành 3 group, assign peer tutoring. Sau 1 tháng, cả lớp đạt minimum 7 điểm, không còn học sinh disrupt. Phụ huynh gửi email cảm ơn."
+      text: "Trung tâm giao cho em lớp học sinh cá biệt mà giáo viên khác từ chối. Em dành tuần đầu tiên để quan sát và tìm nguyên nhân: 3 bạn thường xuyên gây mất trật tự vì bài quá dễ, còn 5 bạn không theo kịp vì bài quá khó. Em chia lớp thành 3 nhóm theo trình độ và phân công các bạn khá hơn hỗ trợ các bạn yếu hơn. Sau 1 tháng, cả lớp đạt tối thiểu 7 điểm, tình trạng mất trật tự giảm rõ rệt, và phụ huynh gửi email cảm ơn."
     }
   },
   {
@@ -267,7 +267,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Hai phụ huynh bất đồng vì con họ bị kỷ luật trong lớp. Em mời cả hai đến trường, present evidence (video học sinh đánh bạn, rule đã được thông báo đầu năm). Em cũng acknowledge cảm xúc của phụ huynh. Cuối cùng cả hai đồng ý và cảm ơn em vì xử lý công bằng. Em note lại quy trình handle parent complaint cho trường."
+      text: "Hai phụ huynh bất đồng vì con họ bị kỷ luật trong lớp. Em mời cả hai đến trường, trình bày bằng chứng (video học sinh đánh bạn, quy định đã được thông báo đầu năm). Em cũng thấu hiểu cảm xúc của phụ huynh. Cuối cùng cả hai đồng ý và cảm ơn em vì xử lý công bằng. Em ghi chú lại quy trình xử lý khiếu nại của phụ huynh cho trường."
     }
   },
   {
@@ -291,7 +291,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Trường áp dụng Reggio Emilia approach mới, em chưa biết. Em dành 2 tuần cuối tuần tham quan 3 preschool áp dụng method này, observe teacher interaction với trẻ. Em adapt 5 activities phù hợp context trường mình: light table exploration, nature walk journal, loose parts play. Trẻ phản hồi rất tích cực, em share experience trong school PD session."
+      text: "Trường áp dụng phương pháp Reggio Emilia mới, em chưa biết. Em dành 2 tuần cuối tuần tham quan 3 trường mầm non áp dụng phương pháp này, quan sát tương tác của giáo viên với trẻ. Em chuyển đổi 5 hoạt động phù hợp bối cảnh trường mình: khám phá bàn ánh sáng, nhật ký đi dạo thiên nhiên, chơi với vật liệu tự do. Trẻ phản hồi rất tích cực, em chia sẻ kinh nghiệm trong buổi đào tạo chuyên môn của trường."
     }
   },
   {
@@ -315,7 +315,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Học sinh không chịu làm bài tập em giao. Em không phạt mà tìm hiểu nguyên nhân: bạn ấy đang stress vì parents divorce. Em adjust workload, add 1-on-1 check-in mỗi tuần, và connect bạn với school counselor. Sau 1 tháng, bạn ấy stabilize và catch up được. Em learn rằng teacher need to see the whole child, not just academic performance."
+      text: "Học sinh không chịu làm bài tập em giao. Em không phạt mà tìm hiểu nguyên nhân: bạn ấy đang căng thẳng vì cha mẹ ly hôn. Em điều chỉnh lượng bài tập, tạo thêm trao đổi riêng 1-1 mỗi tuần, và kết nối bạn với chuyên viên tư vấn tâm lý học đường. Sau 1 tháng, bạn ấy ổn định và theo kịp được. Em học được rằng giáo viên cần nhìn nhận học sinh toàn diện, không chỉ kết quả học tập."
     }
   },
   {
@@ -389,7 +389,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em sẽ tự học qua các khóa học online và xin前辈 hướng dẫn. Em nghĩ giáo viên cần luôn cập nhật kiến thức. Em sẽ nỗ lực cải thiện bản thân mỗi ngày."
+      text: "Em sẽ tự học qua các khóa học online và xin giáo viên có kinh nghiệm hướng dẫn. Em nghĩ giáo viên cần luôn cập nhật kiến thức. Em sẽ nỗ lực cải thiện bản thân mỗi ngày."
     }
   },
   {
@@ -463,7 +463,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự build YouTube channel dạy Toán: đầu tiên study 50 edu-tuber thành công nhất, phân tích video format, hook, pacing. Em test 3 format: board teaching, animation, real-life application. Format 'board + storytelling' win nhất. Em cũng tự learn DaVinci Resolve để edit. 8 tháng sau đạt 50K subs, nhiều học sinh comment 'em hiểu bài lần đầu nhờ cô'."
+      text: "Em tự xây dựng kênh YouTube dạy Toán: đầu tiên nghiên cứu 50 giáo dục viên trên YouTube thành công nhất, phân tích định dạng video, điểm thu hút, nhịp độ. Em thử nghiệm 3 định dạng: dạy trên bảng, hoạt hình, ứng dụng thực tế. Định dạng 'bảng + kể chuyện' hiệu quả nhất. Em cũng tự học DaVinci Resolve để dựng. 8 tháng sau đạt 50K người đăng ký, nhiều học sinh bình luận 'em hiểu bài lần đầu nhờ cô'."
     }
   },
   {

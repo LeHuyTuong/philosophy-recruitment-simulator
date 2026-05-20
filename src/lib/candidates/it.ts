@@ -16,14 +16,14 @@ export const candidates: Candidate[] = [
       verdict: "Vượt kỳ vọng",
       bullets: [
         "Hoàn thành task React+Node đúng deadline, code clean, có viết test",
-        "Proactively refactor lại module cũ giảm 30% response time",
+        "Chủ động refactor lại module cũ giảm 30% response time",
         "Hợp tác tốt với team, chịu nhận task khó khi teammate ốm"
       ]
     },
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Lần đó 2 bạn frontend tranh nhau kiến trúc component, em đứng ra đề nghị họ vẽ各自 prototype rồi cả team vote. Em dùng Confluence ghi lại quyết định để sau không ai cãi lại. Kết quả cả hai đều OK với hướng đi chung."
+      text: "Lần đó 2 bạn frontend tranh nhau kiến trúc component, em đề nghị mỗi người vẽ prototype rồi cả team vote. Em dùng Confluence ghi lại quyết định để sau không ai cãi lại. Kết quả cả hai đều đồng ý với hướng đi chung."
     }
   },
   {
@@ -71,7 +71,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự học Spring WebFlux qua video Baeldung rồi áp dụng ngay vào project chat real-time của CLB. Đầu tiên code lỗi nhiều, nhưng em debug từng bài rồi blog lại урок learnt trên Medium. Sau đó hướng dẫn 3 bạn junior khác cùng dùng reactive programming."
+      text: "Em tự học Spring WebFlux qua video Baeldung rồi áp dụng ngay vào project chat real-time của CLB. Đầu tiên code lỗi nhiều, nhưng em debug từng bài rồi blog lại bài học kinh nghiệm trên Medium. Sau đó hướng dẫn 3 bạn junior khác cùng dùng reactive programming."
     }
   },
   {
@@ -89,7 +89,7 @@ export const candidates: Candidate[] = [
       bullets: [
         "Giao diện responsive pixel-perfect theo design Figma",
         "Tối ưu accessibility đạt Lighthouse score 95+",
-        "Làm việc tốt với designer, đề xuất改进 UX flow"
+        "Làm việc tốt với designer, đề xuất cải tiến UX flow"
       ]
     },
     interviewAnswer: {
@@ -121,7 +121,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 2,
       style: "shallow",
-      text: "Em sẽ phân tích vấn đề thành các phần nhỏ rồi giải quyết từng cái một. Em nghĩ planning là rất quan trọng nên sẽ dành thời gian thiết kế giải pháp trước khi code. Em luôn cố gắng hoàn thành đúng deadline."
+      text: "Em sẽ phân tích vấn đề thành các phần nhỏ rồi giải quyết từng cái một. Em nghĩ lên kế hoạch là rất quan trọng nên sẽ dành thời gian thiết kế giải pháp trước khi code. Em luôn cố gắng hoàn thành đúng deadline."
     }
   },
   {
@@ -145,7 +145,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em thường đọc sách và xem video để học thêm kiến thức mới. Em think rằng việc tự học là rất quan trọng trong ngành IT vì công nghệ thay đổi liên tục. Em luôn cố gắng cập nhật kiến thức mỗi ngày."
+      text: "Em thường đọc sách và xem video để học thêm kiến thức mới. Em cho rằng việc tự học là rất quan trọng trong ngành IT vì công nghệ thay đổi liên tục. Em luôn cố gắng cập nhật kiến thức mỗi ngày."
     }
   },
   {
@@ -185,7 +185,7 @@ export const candidates: Candidate[] = [
     trialResult: {
       verdict: "Chưa đáp ứng",
       bullets: [
-        "Hiểu sâu về OS nhưng không apply được vào project web",
+        "Hiểu sâu về OS nhưng không áp dụng được vào project web",
         "Giao tiếp mờ nhạt, khó hiểu ý trong daily standup",
         "Từ chối nhận task không nằm trong comfort zone"
       ]
@@ -217,7 +217,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em được giao task machine learning nhưng chưa biết PyTorch. Em đọc docs 2 buổi tối, làm theo tutorial MNIST rồi adapt vào data thật của công ty. Tuần sau đã train được model đạt yêu cầu. Em note lại bước đi trong Notion để team khác reference."
+      text: "Em được giao task machine learning nhưng chưa biết PyTorch. Em đọc docs 2 buổi tối, làm theo tutorial MNIST rồi adapt vào data thật của công ty. Tuần sau đã train được model đạt yêu cầu. Em ghi chú lại bước đi trong Notion để team khác tham khảo."
     }
   },
 
@@ -315,7 +315,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 1,
       style: "concrete",
-      text: "Lần đó dev không đồng ý bug em report, nói 'expected behavior'. Em quay video reproduce bug, thêm screenshot log, và so sánh với requirement document. Dev xem lại rồi承认 là bug thật. Từ đó em tạo template bug report chuẩn cho cả team QA dùng."
+      text: "Lần đó dev không đồng ý bug em report, nói 'expected behavior'. Em quay video reproduce bug, thêm screenshot log, và so sánh với requirement document. Dev xem lại rồi thừa nhận là bug thật. Từ đó em tạo template bug report chuẩn cho cả team QA dùng."
     }
   },
   {
@@ -437,7 +437,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "shallow",
-      text: "Em thường tự tìm hiểu qua YouTube và Google. Em think rằng trong thời đại này ai cũng có thể tự học được nếu có ý chí. Em đang cố gắng học thêm lập trình cơ bản qua các course miễn phí."
+      text: "Em thường tự tìm hiểu qua YouTube và Google. Em cho rằng trong thời đại này ai cũng có thể tự học được nếu có ý chí. Em đang cố gắng học thêm lập trình cơ bản qua các course miễn phí."
     }
   },
 
@@ -463,7 +463,7 @@ export const candidates: Candidate[] = [
     interviewAnswer: {
       question: 3,
       style: "concrete",
-      text: "Em tự học Rust qua 'The Rust Book' rồi viết CLI tool manage task cho cá nhân. Khi thấy полезно em open-source lên GitHub. Có contributor từ 5 nước khác fork và contribute lại. Em học được code review skill từ community, nhiều hơn cả thực tập ở công ty nhỏ."
+      text: "Em tự học Rust qua 'The Rust Book' rồi viết CLI tool manage task cho cá nhân. Khi thấy nó hữu ích em open-source lên GitHub. Có contributor từ 5 nước khác fork và contribute lại. Em học được code review skill từ community, nhiều hơn cả thực tập ở công ty nhỏ."
     }
   },
   {

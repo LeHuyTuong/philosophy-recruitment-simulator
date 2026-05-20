@@ -163,3 +163,37 @@ Stage Summary:
 - All 10 screens mapped to presentation scripts
 - Presenter Mode is completely additive — does not affect existing game flow
 - Keyboard shortcuts: P (toggle), Esc (close panel)
+
+---
+Task ID: 8
+Agent: Main
+Task: Fix mixed-language content (CJK/Cyrillic) across all candidate data
+
+Work Log:
+- Ran Unicode scan across entire src/ directory for CJK, Hiragana, Katakana, Hangul, Cyrillic characters
+- Found 30+ occurrences of foreign characters mixed into Vietnamese text across 5 industry files
+- Also found old monolith `src/lib/candidates.ts` had been recreated by sandbox (same issues)
+- Deleted `src/lib/candidates.ts` (old monolith) — all data is in `src/lib/candidates/*.ts`
+- Fixed 5 industry candidate data files via subagents:
+  - `it.ts`: 5 CJK/Russian fixes + 7 English→Vietnamese fixes
+  - `design.ts`: 3 CJK fixes + 8 English→Vietnamese fixes
+  - `education.ts`: 2 CJK fixes + 12 English→Vietnamese fixes
+  - `marketing.ts`: 3 CJK fixes + 16 English→Vietnamese fixes
+  - `business.ts`: 1 CJK fix + ~57 English→Vietnamese fixes
+- Created `/scripts/check-vietnamese-content.js` — validation script that scans for foreign characters
+- Added npm scripts: `check:content` and `validate`
+- Added `scripts/` to ESLint ignores in `eslint.config.mjs`
+
+Key fixes:
+- 跟上 → theo kịp | 加班 → làm thêm | 坚持 → kiên trì | 跟进 → theo sát
+- 赠送 → tặng kèm | 反馈 → phản hồi | 前辈 → giáo viên có kinh nghiệm
+- урок → bài học kinh nghiệm | полезно → nó hữu ích | 各自 → mỗi người
+- 承认 → thừa nhận | 改进 → cải tiến | 深夜 → khuya
+- assign peer tutoring → phân công các bạn khá hơn hỗ trợ các bạn yếu hơn
+- minimum 7 điểm → tối thiểu 7 điểm
+
+Stage Summary:
+- 94 files scanned, 0 foreign characters remaining
+- ESLint: 0 errors
+- Production build: SUCCESS (7.5s)
+- Validation script prevents future regressions
