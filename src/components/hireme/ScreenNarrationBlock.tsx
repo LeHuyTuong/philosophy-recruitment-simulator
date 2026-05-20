@@ -17,17 +17,11 @@ export default function ScreenNarrationBlock({
   return (
     <div className="w-full max-w-3xl mx-auto mb-5">
       <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200/80 rounded-xl p-4 md:p-5">
-        {/* Header: badge + title + optional notes button */}
+        {/* Header: title + optional notes button */}
         <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 rounded-md">
-              <BookOpen className="w-3 h-3" />
-              Gợi ý thuyết trình
-            </span>
-            <span className="text-xs font-semibold text-gray-700">
-              {narration.title}
-            </span>
-          </div>
+          <span className="text-xs font-semibold text-gray-700">
+            {narration.title}
+          </span>
           {onOpenNotes && (
             <button
               onClick={onOpenNotes}
