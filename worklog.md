@@ -128,3 +128,38 @@ Stage Summary:
 - Moving to `src/views/` resolved the prerendering conflict
 - Production build now completes successfully
 - App is fully deployable
+
+---
+Task ID: 7
+Agent: Main
+Task: Add Presenter Mode feature for classroom presentations
+
+Work Log:
+- Created `/src/data/presentationScripts.ts` with 10 screen scripts (landing, industry, round1, round2, round3, reveal, criteria, dashboard, schools, final-poll, ai-usage)
+- Each script has: title, purpose, philosophy, talkTrack, productValue, transition
+- Created `/src/hooks/usePresenterMode.ts` with state management and keyboard shortcuts (P to toggle, Esc to close)
+- Persists presenter mode on/off state in localStorage
+- Created `/src/components/hireme/PresenterModeToggle.tsx` — floating toggle button at top-right corner
+  - Shows "🎤 Presenter Mode" when off, "🎤 Script đang bật" when on
+  - Displays keyboard shortcut hint (P)
+- Created `/src/components/hireme/PresenterScriptPanel.tsx` — presentation script display
+  - Desktop (md+): 400px fixed side panel on the right with spring animation
+  - Mobile: draggable bottom sheet with drag-to-dismiss
+  - 5 collapsible sections: Mục đích, Liên hệ triết học, Script thuyết trình, Giá trị sản phẩm, Câu chuyển tiếp
+  - Each section has icon, color-coded accent, and expand/collapse animation
+- Integrated into `/src/app/page.tsx`:
+  - Added usePresenterMode hook
+  - Added PresenterModeToggle + PresenterScriptPanel alongside existing BottomNav
+  - Passes currentScreenKey to match script data
+  - Does NOT affect any existing game state or navigation
+- Fixed ESLint error (react-hooks/set-state-in-effect) by using lazy initializer instead of setState in useEffect
+- ESLint passes with zero errors
+- Production build succeeds (next build compiled in 7.6s)
+- Dev server returns 200, all features functional
+
+Stage Summary:
+- 4 new files created: presentationScripts.ts, usePresenterMode.ts, PresenterModeToggle.tsx, PresenterScriptPanel.tsx
+- 1 file modified: src/app/page.tsx (added imports + toggle + panel)
+- All 10 screens mapped to presentation scripts
+- Presenter Mode is completely additive — does not affect existing game flow
+- Keyboard shortcuts: P (toggle), Esc (close panel)

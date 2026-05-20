@@ -2,9 +2,13 @@
 
 import { useState, useCallback } from 'react';
 import { useSession } from '@/hooks/useSession';
+import { usePresenterMode } from '@/hooks/usePresenterMode';
 import { api } from '@/lib/api';
 import { candidatePool, type Candidate } from '@/lib/candidates';
+import { presentationScripts } from '@/data/presentationScripts';
 import BottomNav from '@/components/hireme/BottomNav';
+import PresenterModeToggle from '@/components/hireme/PresenterModeToggle';
+import PresenterScriptPanel from '@/components/hireme/PresenterScriptPanel';
 import Landing from '@/views/hireme/Landing';
 import IndustrySelector from '@/views/hireme/IndustrySelector';
 import Round1_CV from '@/views/hireme/Round1_CV';
@@ -46,6 +50,7 @@ interface TrialCandidate {
 
 export default function Home() {
   const { sessionId, industry, createSession, setIndustry, resetSession } = useSession();
+  const { isPresenterMode, isPanelOpen, togglePresenterMode, togglePanel, closePanel } = usePresenterMode();
   const [currentPage, setCurrentPage] = useState('landing');
   const [round1Candidates, setRound1Candidates] = useState<Round1Candidate[]>([]);
   const [round3Results, setRound3Results] = useState<{ candidates: TrialCandidate[]; successCount: number } | null>(null);
@@ -170,10 +175,26 @@ export default function Home() {
     }
   };
 
+  const currentScript = presentationScripts[currentPage];
+
   return (
     <div className="min-h-screen bg-white" suppressHydrationWarning>
       {renderPage()}
       <BottomNav onNavigate={navigate} currentPage={currentPage} />
+      <PresenterModeToggle
+        isPresenterMode={isPresenterMode}
+        onToggle={togglePresenterMode}
+        onTogglePanel={togglePanel}
+        isPanelOpen={isPanelOpen}
+      />
+      {isPresenterMode && (
+        <PresenterScriptPanel
+          script={currentScript}
+          isOpen={isPanelOpen}
+          onClose={closePanel}
+          screenKey={currentPage}
+        />
+      )}
     </div>
   );
 }

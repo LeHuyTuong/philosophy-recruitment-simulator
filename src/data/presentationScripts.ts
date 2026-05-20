@@ -1,0 +1,167 @@
+// HireMe Simulator — Presenter Mode Scripts
+// Each screen maps to a presentation guide with philosophy connection and talk track.
+
+export interface ScreenScript {
+  title: string;
+  purpose: string;
+  philosophy: string;
+  talkTrack: string;
+  productValue: string;
+  transition: string;
+}
+
+export const presentationScripts: Record<string, ScreenScript> = {
+  landing: {
+    title: "Màn mở đầu",
+    purpose:
+      "Đặt vấn đề trung tâm: Học giỏi có chắc thành công không? Kéo người học vào một câu hỏi quen thuộc trước khi bước vào thí nghiệm.",
+    philosophy:
+      'Liên hệ lý luận nhận thức (Chương 2.3). Niềm tin ban đầu "học giỏi = thành công" là một nhận thức cảm tính cần được kiểm nghiệm bằng thực tiễn.',
+    talkTrack:
+      "Ở màn hình đầu tiên, nhóm em đặt ra một niềm tin rất phổ biến: nhiều sinh viên cho rằng cứ học giỏi thì chắc chắn thành công. Nhưng trong môi trường doanh nghiệp, thành công không chỉ phụ thuộc vào điểm số mà còn phụ thuộc vào khả năng vận dụng kiến thức, xử lý tình huống và tạo ra kết quả thật. Vì vậy, app này biến một câu hỏi triết học thành một thí nghiệm tuyển dụng tương tác.",
+    productValue:
+      "Màn này giúp kéo triết học ra khỏi lý thuyết khô, đưa người học vào một vấn đề đời sống gần gũi. Thay vì mở bài bằng định nghĩa, app mở bằng cảm xúc và tò mò.",
+    transition:
+      "Sau khi đặt vấn đề, app cho người chơi chọn ngành để thấy cùng một nguyên lý sẽ biểu hiện khác nhau trong từng lĩnh vực.",
+  },
+
+  industry: {
+    title: "Màn chọn ngành",
+    purpose:
+      "Cho thấy cùng một nguyên lý triết học có thể biểu hiện khác nhau trong từng ngành nghề cụ thể.",
+    philosophy:
+      "Cặp phạm trù Cái chung – Cái riêng (Chương 2.2.2). Cái chung: thực tiễn kiểm nghiệm năng lực. Cái riêng: tiêu chuẩn thực tiễn khác nhau theo từng ngành.",
+    talkTrack:
+      "Màn này thể hiện rằng thực tiễn không giống nhau trong mọi ngành. Với IT, thực tiễn là code chạy được và deploy được. Với Marketing, thực tiễn là campaign có conversion thật. Với Kế toán, thực tiễn là báo cáo đúng và audit pass. Tuy biểu hiện khác nhau, tất cả đều có điểm chung: năng lực thật phải được kiểm nghiệm bằng kết quả thực tế.",
+    productValue:
+      "Thiết kế này giúp app có khả năng mở rộng đa ngành, không chỉ dùng cho một tình huống. Người học thấy triết học không trừu tượng mà biểu hiện cụ thể trong từng nghề.",
+    transition:
+      "Sau khi chọn ngành, người chơi bắt đầu vòng nhận thức đầu tiên: nhìn vào CV — nhận thức cảm tính.",
+  },
+
+  round1: {
+    title: "Giai đoạn 1 · Nhận thức cảm tính",
+    purpose:
+      "Cho người chơi tiếp xúc với dữ kiện ban đầu: GPA, thực tập, dự án, kỹ năng. Buộc ra quyết định trong điều kiện thông tin chưa đầy đủ.",
+    philosophy:
+      "Liên hội nhận thức cảm tính và cặp phạm trù Bản chất – Hiện tượng (Chương 2.2.2, 2.3). CV, GPA, bằng cấp là hiện tượng; năng lực nghề nghiệp thật là bản chất cần kiểm nghiệm qua thực tiễn.",
+    talkTrack:
+      "Ở vòng CV, người chơi chỉ nhìn thấy các dấu hiệu bên ngoài như GPA, số tháng thực tập, số dự án và kỹ năng. Những yếu tố này có giá trị, nhưng chưa đủ để kết luận bản chất năng lực. Nếu chỉ chọn người có GPA cao nhất, người chơi có thể đang nhầm hiện tượng với bản chất — một sai lầm phổ biến trong tuyển dụng thật.",
+    productValue:
+      "Màn này buộc người chơi ra quyết định trong điều kiện thông tin chưa đầy đủ, giống tuyển dụng thật. Giáo dục trải nghiệm có giá trị vì người học tự mình trải qua thay vì chỉ nghe giảng.",
+    transition:
+      "Để hiểu sâu hơn, app chuyển sang vòng phỏng vấn — nhận thức lý tính, nơi người chơi đánh giá cách ứng viên tư duy và xử lý vấn đề.",
+  },
+
+  round2: {
+    title: "Giai đoạn 2 · Nhận thức lý tính",
+    purpose:
+      "Cho người chơi phân tích câu trả lời, lập luận và khả năng xử lý tình huống của ứng viên.",
+    philosophy:
+      "Liên hội nhận thức lý tính (Chương 2.3) và cặp phạm trù Khả năng – Hiện thực (Chương 2.2.2). Lời nói trong phỏng vấn thể hiện khả năng, chưa phải hiện thực.",
+    talkTrack:
+      "Ở vòng phỏng vấn, người chơi không còn chỉ nhìn vào CV mà bắt đầu phân tích câu trả lời của ứng viên. Đây là bước nhận thức lý tính — đi từ hiện tượng bên ngoài vào bản chất bên trong. Tuy nhiên, phỏng vấn vẫn chỉ là lời nói. Một người nói tốt chưa chắc làm tốt. Vì vậy, khả năng cần được chuyển hóa thành hiện thực thông qua hoạt động thực tế.",
+    productValue:
+      "Màn này giúp người học hiểu rằng phỏng vấn là cần thiết nhưng không phải tiêu chuẩn cuối cùng. Nó bổ sung nhận thức cảm tính chứ không thay thế thực tiễn.",
+    transition:
+      "Để kiểm nghiệm lời nói, app cần một vòng thực hành — thử việc.",
+  },
+
+  round3: {
+    title: "Giai đoạn 3 · Thực tiễn kiểm nghiệm",
+    purpose:
+      "Cho kết quả thử việc, bộc lộ năng lực thật của ứng viên. Đây là màn bùng nổ — người chơi thấy tiêu chí ban đầu của mình có đúng hay không.",
+    philosophy:
+      "Thực tiễn là tiêu chuẩn của chân lý (Luận cương về Feuerbach, luận đề 2). Năng lực chỉ được xác nhận khi được kiểm nghiệm bằng hoạt động thực tế. Bản chất dần bộc lộ qua quá trình thực tiễn.",
+    talkTrack:
+      "Đây là màn quan trọng nhất của app. Ứng viên không chỉ nói mình làm được, mà phải trải qua thử việc thật. Kết quả ở vòng này cho thấy khả năng có trở thành hiện thực hay không. Một người GPA 3.8 nhưng không có kinh nghiệm thực tế có thể không pass. Một người GPA 3.2 nhưng có thực hành phong phú có thể thành công. Điều này không phủ nhận giá trị GPA — GPA là tín hiệu quan trọng — nhưng nó chưa đủ.",
+    productValue:
+      "Màn này tạo khoảnh khắc 'wow' cho người chơi. Họ tự mình trải nghiệm quá trình thực tiễn kiểm nghiệm nhận thức, thay vì chỉ đọc trong giáo trình.",
+    transition:
+      "Sau khi có dữ liệu từ cả ba vòng, app tổng hợp và chẩn đoán tư duy tuyển chọn của người chơi.",
+  },
+
+  reveal: {
+    title: "Kết quả · Bản chất bộc lộ",
+    purpose:
+      "Tổng hợp toàn bộ dữ kiện và chẩn đoán tiêu chí tuyển chọn của người chơi: họ ưu tiên GPA, kinh nghiệm, hay cân bằng?",
+    philosophy:
+      "Bản chất không lộ ra ngay từ hiện tượng ban đầu, mà dần bộc lộ qua quá trình thực tiễn (Cặp phạm trù Bản chất – Hiện tượng). Quá trình nhận thức đi từ trực quan sinh động → tư duy trừu tượng → thực tiễn.",
+    talkTrack:
+      "Ở màn kết quả, app không kết luận học giỏi là vô dụng. Ngược lại, học giỏi là một lợi thế. Nhưng GPA chỉ là một tín hiệu ban đầu. Người có khả năng thành công cao hơn là người kết hợp được nền tảng học thuật, kinh nghiệm thực tế, tư duy giải quyết vấn đề và khả năng tạo kết quả thật. Đây chính là phép biện chứng: lý luận phải đi đôi với thực tiễn.",
+    productValue:
+      "Màn này tạo khoảnh khắc phản tư sâu sắc: người chơi nhìn lại tiêu chí tuyển chọn ban đầu của mình và so sánh với kết quả thực tế.",
+    transition:
+      "Để hiểu sâu hơn, app tiếp tục so sánh cách đánh giá trong học đường và nghề nghiệp.",
+  },
+
+  criteria: {
+    title: "Đúng – Đủ – Hiệu quả",
+    purpose:
+      "So sánh tiêu chí đánh giá trong học đường và môi trường nghề nghiệp. Giúp người học hiểu khoảng cách giữa hai hệ thống.",
+    philosophy:
+      "Nhận thức đúng và đủ là cần thiết, nhưng trong thực tiễn nghề nghiệp còn phải được kiểm nghiệm bằng hiệu quả hành động. Đây là vận dụng phép biện chứng vào đánh giá nhận thức.",
+    talkTrack:
+      "Trong học đường, một câu trả lời thường được đánh giá bằng đúng và đủ. Nhưng trong nghề nghiệp, đúng và đủ vẫn chưa đủ nếu không tạo ra hiệu quả. Điều này không phủ nhận vai trò của học thuật — lý luận đúng giúp định hướng thực tiễn — mà nhấn mạnh rằng tri thức phải được vận dụng vào thực tế để tạo ra giá trị.",
+    productValue:
+      "Màn này giúp sinh viên hiểu khoảng cách giữa việc học tốt và làm việc tốt, chuẩn bị tâm lý cho bước chuyển giao từ trường học sang doanh nghiệp.",
+    transition:
+      "Sau phần cá nhân, app mở rộng ra dữ liệu lớp để xem xu hướng lựa chọn của nhiều người chơi.",
+  },
+
+  dashboard: {
+    title: "Dashboard lớp",
+    purpose:
+      "Tổng hợp dữ liệu người chơi để tạo thảo luận trong lớp. Biến app thành công cụ học tập tương tác.",
+    philosophy:
+      "Cặp phạm trù Cái chung – Cái riêng. Mỗi người chơi, mỗi ngành là một cái riêng; dashboard giúp rút ra xu hướng chung — cái chung trong cái riêng.",
+    talkTrack:
+      "Dashboard biến app thành một công cụ học tập tương tác. Không chỉ một cá nhân chơi, mà cả lớp tạo ra dữ liệu. Giáo viên có thể dùng dữ liệu này để thảo luận: vì sao nhiều người ưu tiên GPA, vì sao tiêu chí cân bằng thường hiệu quả hơn, và thực tiễn đã phản biện nhận thức ban đầu như thế nào. Xu hướng chung từ nhiều cái riêng chính là biểu hiện của cái chung trong cái riêng.",
+    productValue:
+      "Màn này giúp sản phẩm có giá trị giáo dục thật: hỗ trợ giảng viên quan sát tư duy của lớp và tạo thảo luận sâu hơn.",
+    transition:
+      "Cuối cùng, app cho người học nhìn lại toàn bộ trải nghiệm như một quá trình nhận thức biện chứng.",
+  },
+
+  schools: {
+    title: "Các trường phái nhận thức",
+    purpose:
+      "Giúp người học so sánh các cách nhìn khác nhau về chân lý và nhận thức trong lịch sử triết học.",
+    philosophy:
+      "So sánh duy tâm chủ quan (Berkeley), duy tâm khách quan (Plato, Hegel), hoài nghi luận (Hume), bất khả tri luận (Kant), duy vật siêu hình (Feuerbach) và duy vật biện chứng (Marx-Lenin).",
+    talkTrack:
+      "Màn này không nhằm bắt người học thuộc tên các triết gia, mà giúp họ thấy mỗi trường phái sẽ dẫn đến một cách ra quyết định khác nhau trong tuyển dụng. Nếu chỉ tin vào cảm giác hoặc một dấu hiệu ban đầu, ta dễ phiến diện. Nếu hoài nghi hoàn toàn, ta không thể ra quyết định. Cách tiếp cận duy vật biện chứng là xem xét nhiều mặt và kiểm nghiệm bằng thực tiễn — chính là cách app vận hành qua 3 vòng.",
+    productValue:
+      "Màn này biến kiến thức lịch sử triết học thành tình huống dễ hiểu trong tuyển dụng, giúp người học ghi nhớ tự nhiên.",
+    transition:
+      "Từ đó, người học quay lại câu hỏi ban đầu: học giỏi có chắc thành công không? Câu trả lời là: học giỏi là điều kiện cần, chưa phải điều kiện đủ.",
+  },
+
+  "final-poll": {
+    title: "Khảo sát cuối kỳ",
+    purpose:
+      "Cho người học phản tư: sau trải nghiệm này, họ sẽ thay đổi gì trong cách học? Đây là mục tiêu giáo dục cuối cùng.",
+    philosophy:
+      "Phép biện chứng duy vật không chỉ giải thích thế giới mà còn nhằm cải tạo thế giới. Nhận thức đúng phải dẫn đến hành động đúng (Marx: các nhà triết học chỉ giải thích thế giới theo nhiều cách, song vấn đề là cải tạo thế giới).",
+    talkTrack:
+      "Sau khi trải qua 3 vòng mô phỏng tuyển dụng, người chơi được hỏi một câu quan trọng: bạn sẽ thay đổi gì? Nếu chọn kết hợp học và thực hành, nghĩa là app đã đạt được mục tiêu giáo dục — giúp người học nhận thức được giá trị của thực tiễn. Đây là ví dụ cho nguyên lý: lý luận đúng dẫn đến thực tiễn đúng.",
+    productValue:
+      "Màn này đo lường hiệu quả giáo dục của sản phẩm. Nếu phần lớn người chơi chọn 'kết hợp học + thực hành', app đã thành công trong việc truyền đạt triết học.",
+    transition:
+      "Cảm ơn người chơi đã tham gia. Có thể tham khảo thêm phần AI Usage để hiểu quá trình phát triển.",
+  },
+
+  "ai-usage": {
+    title: "Minh bạch sử dụng AI",
+    purpose:
+      "Cam kết liêm chính học thuật: AI đóng vai trò hỗ trợ, con người đóng vai trò chủ động trong tư duy và phân tích.",
+    philosophy:
+      "Liên hệ phép biện chứng về mối quan hệ giữa con người và công cụ. Công cụ tăng năng suất nhưng không thay thế tư duy chủ quan. Nhận thức luôn là quá trình chủ động của chủ thể.",
+    talkTrack:
+      "Nhóm em muốn minh bạch rằng AI chỉ đóng vai trò hỗ trợ kỹ thuật — tạo boilerplate code, gợi ý cấu trúc. Toàn bộ phân tích triết học, lập luận, thiết kế kịch bản game là sản phẩm tư duy của nhóm. Điều này đúng với nguyên lý: công cụ là điều kiện cần, tư duy chủ thể là điều kiện quyết định.",
+    productValue:
+      "Phần này thể hiện tính liêm chính và chuyên nghiệp của nhóm, đồng thời minh họa rằng sử dụng công nghệ không mâu thuẫn với tư duy độc lập.",
+    transition:
+      "Đó là toàn bộ trải nghiệm HireMe Simulator. Cảm ơn thầy cô và các bạn đã lắng nghe.",
+  },
+};
