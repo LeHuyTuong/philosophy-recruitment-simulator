@@ -24,10 +24,10 @@ interface Round1Props {
 }
 
 const sortOptions = [
+  { value: 'default', label: 'Mặc định' },
   { value: 'gpa_desc', label: 'GPA ↓' },
   { value: 'exp_desc', label: 'Tháng thực tập ↓' },
   { value: 'projects_desc', label: 'Dự án ↓' },
-  { value: 'random', label: 'Ngẫu nhiên' },
 ];
 
 const filterOptions = [
@@ -43,11 +43,30 @@ function gpaColor(gpa: number): string {
   return 'text-red-500 font-semibold';
 }
 
+// Deterministic seeded random shuffle
+function seededShuffle<T>(array: T[], seed: string): T[] {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    const char = seed.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit int
+  }
+
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    hash = ((hash << 5) - hash) + i;
+    hash = hash & hash;
+    const j = Math.abs(hash) % (i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export default function Round1_CV({ sessionId, industry, onComplete }: Round1Props) {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(true);
   const [shortlist, setShortlist] = useState<string[]>([]);
-  const [sortUsed, setSortUsed] = useState('gpa_desc');
+  const [sortUsed, setSortUsed] = useState('default');
   const [filterUsed, setFilterUsed] = useState('all');
   const [submitting, setSubmitting] = useState(false);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -77,19 +96,25 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
 
   const filteredAndSorted = useMemo(() => {
     let list = [...candidates];
+
+    // Filter
     switch (filterUsed) {
       case 'gpa_high': list = list.filter(c => c.gpa >= 3.5); break;
       case 'has_internship': list = list.filter(c => c.internshipMonths > 0); break;
       case 'has_projects': list = list.filter(c => c.projects > 0); break;
     }
+
+    // Sort
     switch (sortUsed) {
       case 'gpa_desc': list.sort((a, b) => b.gpa - a.gpa); break;
       case 'exp_desc': list.sort((a, b) => b.internshipMonths - a.internshipMonths); break;
       case 'projects_desc': list.sort((a, b) => b.projects - a.projects); break;
-      case 'random': list.sort(() => Math.random() - 0.5); break;
+      case 'default':
+        list = seededShuffle(list, `${sessionId}-${industry}`);
+        break;
     }
     return list;
-  }, [candidates, filterUsed, sortUsed]);
+  }, [candidates, filterUsed, sortUsed, sessionId, industry]);
 
   const handleSubmit = async () => {
     if (shortlist.length !== 5) return;
@@ -117,6 +142,8 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
     );
   }
 
+  const isDefaultSort = sortUsed === 'default';
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -136,6 +163,13 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
         <div className="bg-slate-100 rounded-lg p-3 mb-4 text-sm border-l-4 border-slate-400">
           💬 <strong>Sếp:</strong> &ldquo;KPI tháng này chỉ được mời 5 người lên phỏng vấn. Sàng lọc kỹ giúp anh.&rdquo;
         </div>
+
+        {/* Shuffle microcopy — only show when using default sort */}
+        {isDefaultSort && (
+          <div className="bg-amber-50 border border-amber-200/60 rounded-lg px-3 py-2 mb-4 text-xs text-amber-700">
+            ⚠️ Thứ tự ứng viên đã được xáo trộn ngẫu nhiên. Đừng chỉ nhìn GPA — hãy kiểm nghiệm qua nhiều dấu hiệu để tránh nhầm hiện tượng với bản chất.
+          </div>
+        )}
 
         <div className="flex items-center justify-between mb-4">
           <div className="text-lg font-bold">

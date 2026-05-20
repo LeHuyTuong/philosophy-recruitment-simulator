@@ -244,3 +244,54 @@ Stage Summary:
 - ESLint: 0 errors
 - Dev server: returns 200 (both normal and ?present=1)
 - Architecture: Audience Overlay (visible by default when mode on) + Notes Panel (opened manually with N key or Ghi chú button)
+
+---
+Task ID: 10
+Agent: Main
+Task: Major UX overhaul — remove floating overlay, add in-document narration block, fix Round1 candidate bias
+
+Work Log:
+- Deleted `/src/components/hireme/AudienceNarrationOverlay.tsx` — replaced by in-document-flow component
+- Updated `/src/data/presentationScripts.ts`:
+  - Replaced `AudienceNarration` with `ScreenNarration` interface: { title, headline, body, philosophyLink, action }
+  - Body content 70-120 words per screen — longer, more descriptive than before
+  - Each screen has philosophy link in amber-highlighted box and action call-to-action
+  - All 11 screens mapped with new narration content
+- Created `/src/components/hireme/ScreenNarrationBlock.tsx`:
+  - In-document-flow component (NOT floating overlay)
+  - max-w-3xl centered, gradient bg, rounded-xl card
+  - Badge "Gợi ý thuyết trình" + screen title + optional "Ghi chú" button
+  - Headline (bold), body text, philosophy link (amber box), action (arrow + text)
+  - No hide/show toggle — always visible when rendered
+- Simplified `/src/hooks/usePresenterMode.ts`:
+  - Removed all presentation mode state (isPresentationMode, isAudienceOverlayVisible, togglePresentationMode, etc.)
+  - Only manages isNotesPanelOpen for PresenterScriptPanel
+  - Keyboard shortcuts: N (toggle notes), Esc (close notes)
+  - Removed localStorage persistence, URL param logic
+- Simplified `/src/components/hireme/PresenterModeToggle.tsx`:
+  - Single small button (rounded-lg, not rounded-full) — "Ghi chú" with BookOpen icon
+  - Shows active state (dark bg) when notes panel open
+  - Keyboard hint: N
+  - No "Bật thuyết trình" / "Đang thuyết trình" buttons anymore
+- Fixed `/src/views/hireme/Round1_CV.tsx`:
+  - Changed default sort from `gpa_desc` to `default` (seeded shuffle)
+  - Added `seededShuffle()` function using deterministic hash from sessionId + industry
+  - Added microcopy: "Thứ tự ứng viên đã được xáo trộn ngẫu nhiên. Đừng chỉ nhìn GPA..."
+  - Microcopy only shows when using default sort
+  - Replaced "Ngẫu nhiên" sort option with "Mặc định" (shuffle by default)
+  - Manual sort options (GPA ↓, Tháng thực tập ↓, Dự án ↓) still work when user selects them
+- Updated `/src/app/page.tsx`:
+  - Removed AudienceNarrationOverlay import and usage
+  - Added ScreenNarrationBlock at top of content (before renderPage), wrapped in px-4 pt-4
+  - Narration hidden on landing page (NARRATION_HIDDEN_SCREENS = ['landing'])
+  - Narration shown on all other screens automatically
+  - PresenterScriptPanel now always rendered (no isPresentationMode guard) — only isOpen controls visibility
+  - Simplified presenter mode props to just notes panel state
+
+Stage Summary:
+- 1 file deleted: AudienceNarrationOverlay.tsx
+- 1 new file: ScreenNarrationBlock.tsx
+- 5 files modified: presentationScripts.ts, usePresenterMode.ts, PresenterModeToggle.tsx, Round1_CV.tsx, page.tsx
+- ESLint: 0 errors
+- Production build: SUCCESS (7.6s)
+- Dev server: HTTP 200

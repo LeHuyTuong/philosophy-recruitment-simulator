@@ -7,8 +7,8 @@ import { api } from '@/lib/api';
 import { candidatePool, type Candidate } from '@/lib/candidates';
 import { presentationScripts } from '@/data/presentationScripts';
 import BottomNav from '@/components/hireme/BottomNav';
+import ScreenNarrationBlock from '@/components/hireme/ScreenNarrationBlock';
 import PresenterModeToggle from '@/components/hireme/PresenterModeToggle';
-import AudienceNarrationOverlay from '@/components/hireme/AudienceNarrationOverlay';
 import PresenterScriptPanel from '@/components/hireme/PresenterScriptPanel';
 import Landing from '@/views/hireme/Landing';
 import IndustrySelector from '@/views/hireme/IndustrySelector';
@@ -49,18 +49,12 @@ interface TrialCandidate {
   outcome: 'success' | 'fail';
 }
 
+// Screens that should NOT show the narration block
+const NARRATION_HIDDEN_SCREENS = ['landing'];
+
 export default function Home() {
   const { sessionId, industry, createSession, setIndustry, resetSession } = useSession();
-  const {
-    isPresentationMode,
-    isNotesPanelOpen,
-    isAudienceOverlayVisible,
-    togglePresentationMode,
-    openNotesPanel,
-    closeNotesPanel,
-    toggleAudienceOverlay,
-    closePresentationMode,
-  } = usePresenterMode();
+  const { isNotesPanelOpen, openNotesPanel, closeNotesPanel, toggleNotesPanel } = usePresenterMode();
   const [currentPage, setCurrentPage] = useState('landing');
   const [round1Candidates, setRound1Candidates] = useState<Round1Candidate[]>([]);
   const [round3Results, setRound3Results] = useState<{ candidates: TrialCandidate[]; successCount: number } | null>(null);
@@ -186,40 +180,37 @@ export default function Home() {
   };
 
   const currentScript = presentationScripts[currentPage];
+  const showNarration = !NARRATION_HIDDEN_SCREENS.includes(currentPage);
 
   return (
     <div className="min-h-screen bg-white" suppressHydrationWarning>
+      {/* In-document-flow narration block */}
+      {showNarration && (
+        <div className="px-4 pt-4">
+          <ScreenNarrationBlock
+            narration={currentScript?.screenNarration}
+            onOpenNotes={openNotesPanel}
+          />
+        </div>
+      )}
+
+      {/* Main page content */}
       {renderPage()}
+
       <BottomNav onNavigate={navigate} currentPage={currentPage} />
 
-      {/* Presenter Mode Controls */}
+      {/* Minimal notes toggle */}
       <PresenterModeToggle
-        isPresentationMode={isPresentationMode}
         isNotesPanelOpen={isNotesPanelOpen}
-        onTogglePresentation={togglePresentationMode}
-        onOpenNotes={openNotesPanel}
-        onCloseNotes={closeNotesPanel}
+        onToggleNotes={toggleNotesPanel}
       />
 
-      {/* Audience Narration Overlay — visible on product for audience */}
-      {isPresentationMode && (
-        <AudienceNarrationOverlay
-          narration={currentScript?.audienceNarration}
-          isPresentationMode={isPresentationMode}
-          isVisible={isAudienceOverlayVisible}
-          onToggleOverlay={toggleAudienceOverlay}
-          onOpenNotes={openNotesPanel}
-        />
-      )}
-
-      {/* Presenter Script Panel — private speaker notes, only when explicitly opened */}
-      {isPresentationMode && (
-        <PresenterScriptPanel
-          script={currentScript}
-          isOpen={isNotesPanelOpen}
-          onClose={closeNotesPanel}
-        />
-      )}
+      {/* Presenter Script Panel — only when explicitly opened */}
+      <PresenterScriptPanel
+        script={currentScript}
+        isOpen={isNotesPanelOpen}
+        onClose={closeNotesPanel}
+      />
     </div>
   );
 }

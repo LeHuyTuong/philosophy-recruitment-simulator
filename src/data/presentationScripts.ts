@@ -1,11 +1,12 @@
 // HireMe Simulator — Presenter Mode Scripts
 // Each screen maps to a presentation guide with philosophy connection and talk track.
 
-export interface AudienceNarration {
+export interface ScreenNarration {
   title: string;
   headline: string;
+  body: string;
   philosophyLink: string;
-  transition: string;
+  action: string;
 }
 
 export interface ScreenScript {
@@ -15,7 +16,7 @@ export interface ScreenScript {
   talkTrack: string;
   productValue: string;
   transition: string;
-  audienceNarration: AudienceNarration;
+  screenNarration: ScreenNarration;
 }
 
 export const presentationScripts: Record<string, ScreenScript> = {
@@ -31,13 +32,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp kéo triết học ra khỏi lý thuyết khô, đưa người học vào một vấn đề đời sống gần gũi. Thay vì mở bài bằng định nghĩa, app mở bằng cảm xúc và tò mò.",
     transition:
       "Sau khi đặt vấn đề, app cho người chơi chọn ngành để thấy cùng một nguyên lý sẽ biểu hiện khác nhau trong từng lĩnh vực.",
-    audienceNarration: {
+    screenNarration: {
       title: "Màn mở đầu",
       headline: "Học giỏi chưa chắc thành công.",
+      body: "Nhiều sinh viên tin rằng GPA cao đồng nghĩa với năng lực tốt. Nhưng trong môi trường doanh nghiệp, thành công phụ thuộc vào nhiều yếu tố: khả năng vận dụng kiến thức, xử lý tình huống, và tạo ra kết quả thực tế. App này biến câu hỏi triết học thành một thí nghiệm tuyển dụng tương tác — bạn đóng vai HR và tự mình trải nghiệm quá trình đánh giá ứng viên.",
       philosophyLink:
-        "Theo lý luận nhận thức, tri thức chỉ có giá trị khi được kiểm nghiệm trong thực tiễn.",
-      transition:
-        "Bắt đầu trải nghiệm để xem khác biệt giữa biết và làm được.",
+        "Lý luận nhận thức (Chương 2.3): nhận thức cảm tính như \"học giỏi = thành công\" là điểm xuất phát, nhưng phải được kiểm nghiệm qua thực tiễn.",
+      action: "Nhấn \"Bắt đầu trải nghiệm\" để bước vào vai HR và khám phá sự khác biệt giữa nhận thức cảm tính và bản chất năng lực.",
     },
   },
 
@@ -53,14 +54,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Thiết kế này giúp app có khả năng mở rộng đa ngành, không chỉ dùng cho một tình huống. Người học thấy triết học không trừu tượng mà biểu hiện cụ thể trong từng nghề.",
     transition:
       "Sau khi chọn ngành, người chơi bắt đầu vòng nhận thức đầu tiên: nhìn vào CV — nhận thức cảm tính.",
-    audienceNarration: {
+    screenNarration: {
       title: "Chọn ngành nghề",
-      headline:
-        "Cùng một nguyên lý, biểu hiện khác nhau trong từng nghề.",
+      headline: "Cùng một nguyên lý, biểu hiện khác nhau trong từng ngành.",
+      body: "Ở bước này, người dùng đóng vai HR và chọn bối cảnh tuyển dụng. Về mặt triết học, đây là cặp phạm trù Cái chung – Cái riêng: mọi ngành đều cần kiểm nghiệm năng lực qua thực tiễn, nhưng mỗi ngành có tiêu chuẩn biểu hiện khác nhau. IT cần sản phẩm chạy được, Marketing cần chiến dịch có chuyển đổi, Giáo dục cần năng lực truyền đạt.",
       philosophyLink:
-        "Cái chung — Cái riêng: thực tiễn kiểm nghiệm năng lực, nhưng tiêu chuẩn khác nhau theo ngành.",
-      transition:
-        "Chọn ngành để bắt đầu quá trình nhận thức tuyển dụng.",
+        "Cái chung – Cái riêng (Chương 2.2.2): thực tiễn kiểm nghiệm năng lực là điểm chung, nhưng tiêu chuẩn thực tiễn là cái riêng của từng ngành.",
+      action: "Chọn một ngành để bắt đầu quá trình nhận thức và đánh giá ứng viên.",
     },
   },
 
@@ -76,14 +76,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này buộc người chơi ra quyết định trong điều kiện thông tin chưa đầy đủ, giống tuyển dụng thật. Giáo dục trải nghiệm có giá trị vì người học tự mình trải qua thay vì chỉ nghe giảng.",
     transition:
       "Để hiểu sâu hơn, app chuyển sang vòng phỏng vấn — nhận thức lý tính, nơi người chơi đánh giá cách ứng viên tư duy và xử lý vấn đề.",
-    audienceNarration: {
+    screenNarration: {
       title: "Giai đoạn 1 — Nhận thức cảm tính",
-      headline:
-        "CV và GPA là hiện tượng, năng lực thật là bản chất cần kiểm nghiệm.",
+      headline: "CV và GPA chỉ là hiện tượng, năng lực thật là bản chất cần kiểm nghiệm.",
+      body: "Ở vòng này, bạn chỉ tiếp xúc với dữ kiện bề mặt: GPA, tháng thực tập, số dự án. Đây chính là nhận thức cảm tính — bước đầu của quá trình nhận thức. GPA cao là một tín hiệu, nhưng chưa đủ để kết luận về năng lực thật. Nếu chỉ chọn ứng viên theo GPA, bạn dễ nhầm hiện tượng với bản chất — một sai lầm phổ biến trong tuyển dụng thực tế.",
       philosophyLink:
-        "Nhận thức cảm tính: tiếp xúc dữ kiện bên ngoài nhưng chưa đủ để kết luận bản chất.",
-      transition:
-        "Tiếp tục phỏng vấn để đi sâu hơn vào bản chất ứng viên.",
+        "Nhận thức cảm tính (Chương 2.3) + Bản chất – Hiện tượng (Chương 2.2.2): CV và GPA là hiện tượng bên ngoài, năng lực nghề nghiệp là bản chất cần kiểm nghiệm qua thực tiễn.",
+      action: "Chọn 5 ứng viên để đưa lên phỏng vấn. Đừng chỉ nhìn GPA — hãy cân nhắc nhiều dấu hiệu.",
     },
   },
 
@@ -99,14 +98,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp người học hiểu rằng phỏng vấn là cần thiết nhưng không phải tiêu chuẩn cuối cùng. Nó bổ sung nhận thức cảm tính chứ không thay thế thực tiễn.",
     transition:
       "Để kiểm nghiệm lời nói, app cần một vòng thực hành — thử việc.",
-    audienceNarration: {
+    screenNarration: {
       title: "Giai đoạn 2 — Nhận thức lý tính",
-      headline:
-        "Nói giỏi chưa chắc làm giỏi. Khả năng cần trở thành hiện thực.",
+      headline: "Nói giỏi chưa chắc làm giỏi. Khả năng cần trở thành hiện thực.",
+      body: "Từ dữ liệu bề mặt ở vòng 1, bạn bước vào phân tích sâu hơn qua phỏng vấn. Đây là bước nhận thức lý tính — đi từ hiện tượng vào bản chất, từ cảm tính lên lý tính. Tuy nhiên, lời nói trong phỏng vấn chỉ thể hiện khả năng, chưa phải hiện thực. Một ứng viên trả lời rất hay vẫn có thể thất bại trong thực tế.",
       philosophyLink:
-        "Khả năng — Hiện thực: phỏng vấn thể hiện khả năng, thử việc mới kiểm nghiệm hiện thực.",
-      transition:
-        "Chuyển sang vòng thử việc để kiểm nghiệm bằng thực tiễn.",
+        "Khả năng – Hiện thực (Chương 2.2.2): phỏng vấn cho thấy khả năng tư duy, nhưng khả năng phải được chuyển hóa thành hiện thực thông qua hoạt động thực tế.",
+      action: "Đánh giá câu trả lời phỏng vấn và chọn top 3 ứng viên. So sánh với lựa chọn vòng 1 — bạn có đổi ý không?",
     },
   },
 
@@ -122,14 +120,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này tạo khoảnh khắc 'wow' cho người chơi. Họ tự mình trải nghiệm quá trình thực tiễn kiểm nghiệm nhận thức, thay vì chỉ đọc trong giáo trình.",
     transition:
       "Sau khi có dữ liệu từ cả ba vòng, app tổng hợp và chẩn đoán tư duy tuyển chọn của người chơi.",
-    audienceNarration: {
+    screenNarration: {
       title: "Giai đoạn 3 — Thực tiễn kiểm nghiệm",
-      headline:
-        "Thực tiễn là tiêu chuẩn của chân lý. Kết quả thử việc nói lên tất cả.",
+      headline: "Thực tiễn là tiêu chuẩn của chân lý. Kết quả thử việc nói lên tất cả.",
+      body: "Đây là bước kiểm nghiệm quan trọng nhất. Ứng viên không chỉ trình bày CV hay trả lời phỏng vấn, mà phải thực sự hoàn thành thử việc. Kết quả ở vòng này cho thấy khả năng có trở thành hiện thực hay không. Một người GPA 3.8 nhưng thiếu kinh nghiệm thực tế có thể thất bại, trong khi người GPA 3.2 nhưng có thực hành phong phú lại thành công.",
       philosophyLink:
-        "Feuerbach luận đề 2: vấn đề không chỉ là giải thích thế giới mà là cải tạo thế giới bằng thực tiễn.",
-      transition:
-        "Xem kết quả tổng hợp để nhận ra bản chất tuyển chọn của bạn.",
+        "Thực tiễn là tiêu chuẩn của chân lý (Feuerbach, luận đề 2): năng lực chỉ được xác nhận khi kiểm nghiệm bằng hoạt động thực tế. Bản chất bộc lộ qua quá trình thực tiễn.",
+      action: "Xem kết quả thử việc và so sánh với đánh giá ban đầu của bạn. Điều gì làm bạn bất ngờ nhất?",
     },
   },
 
@@ -145,14 +142,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này tạo khoảnh khắc phản tư sâu sắc: người chơi nhìn lại tiêu chí tuyển chọn ban đầu của mình và so sánh với kết quả thực tế.",
     transition:
       "Để hiểu sâu hơn, app tiếp tục so sánh cách đánh giá trong học đường và nghề nghiệp.",
-    audienceNarration: {
+    screenNarration: {
       title: "Kết quả — Bản chất bộc lộ",
-      headline:
-        "Bản chất không lộ ngay từ hiện tượng, mà dần bộc lộ qua thực tiễn.",
+      headline: "Bản chất không lộ ngay từ hiện tượng, mà dần bộc lộ qua thực tiễn.",
+      body: "Sau ba vòng, app tổng hợp toàn bộ dữ liệu và chẩn đoán tiêu chí tuyển chọn của bạn: bạn ưu tiên GPA, kinh nghiệm, hay cân bằng? Kết quả thực tế có khớp với đánh giá ban đầu không? Đây chính là bài học về quá trình nhận thức: từ trực quan sinh động (CV) qua tư duy trừu tượng (phỏng vấn) đến thực tiễn (thử việc), bản chất dần bộc lộ.",
       philosophyLink:
-        "Quá trình nhận thức: trực quan sinh động → tư duy trừu tượng → thực tiễn.",
-      transition:
-        "So sánh tiêu chí học đường và nghề nghiệp ở phần tiếp theo.",
+        "Bản chất – Hiện tượng (Chương 2.2.2): bản chất không hiện ra ngay từ hiện tượng ban đầu, mà dần bộc lộ qua quá trình thực tiễn.",
+      action: "Xem chẩn đoán tiêu chí của bạn. So sánh lựa chọn ban đầu với kết quả thực tế — bạn rút ra bài học gì?",
     },
   },
 
@@ -168,14 +164,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp sinh viên hiểu khoảng cách giữa việc học tốt và làm việc tốt, chuẩn bị tâm lý cho bước chuyển giao từ trường học sang doanh nghiệp.",
     transition:
       "Sau phần cá nhân, app mở rộng ra dữ liệu lớp để xem xu hướng lựa chọn của nhiều người chơi.",
-    audienceNarration: {
+    screenNarration: {
       title: "Đúng — Đủ — Hiệu quả",
-      headline:
-        "Học đường đánh giá đúng và đủ. Nghề nghiệp còn cần hiệu quả.",
+      headline: "Học đường đánh giá đúng và đủ. Nghề nghiệp còn cần hiệu quả.",
+      body: "Trong học đường, câu trả lời được đánh giá bằng đúng và đủ. Nhưng trong môi trường doanh nghiệp, đúng và đủ thôi chưa đủ — còn phải tạo ra hiệu quả thực tế. Điều này không phủ nhận vai trò của học thuật, mà nhấn mạnh rằng tri thức phải được vận dụng để tạo ra giá trị. Đây là vận dụng phép biện chứng vào đánh giá nhận thức.",
       philosophyLink:
-        "Phép biện chứng: nhận thức đúng là cần thiết, nhưng tri thức phải tạo ra giá trị thực tế.",
-      transition:
-        "Xem dữ liệu tổng hợp cả lớp ở Dashboard.",
+        "Phép biện chứng: nhận thức đúng và đủ là cần thiết, nhưng tri thức phải được kiểm nghiệm bằng hiệu quả hành động trong thực tiễn.",
+      action: "So sánh tiêu chí học đường và nghề nghiệp. Bạn thấy khoảng cách nào lớn nhất?",
     },
   },
 
@@ -191,14 +186,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này giúp sản phẩm có giá trị giáo dục thật: hỗ trợ giảng viên quan sát tư duy của lớp và tạo thảo luận sâu hơn.",
     transition:
       "Cuối cùng, app cho người học nhìn lại toàn bộ trải nghiệm như một quá trình nhận thức biện chứng.",
-    audienceNarration: {
+    screenNarration: {
       title: "Dashboard lớp",
-      headline:
-        "Từ nhiều cái riêng, rút ra xu hướng chung.",
+      headline: "Từ nhiều cái riêng, rút ra xu hướng chung.",
+      body: "Dashboard tổng hợp dữ liệu của cả lớp thành biểu đồ trực quan. Mỗi người chơi, mỗi ngành là một cái riêng; dashboard giúp rút ra xu hướng chung — biểu hiện của cái chung trong cái riêng. Giáo viên có thể dùng dữ liệu này để thảo luận: vì sao nhiều người ưu tiên GPA, vì sao phương pháp cân bằng thường hiệu quả hơn.",
       philosophyLink:
-        "Cái chung trong cái riêng: dashboard tổng hợp dữ liệu cá nhân thành xu hướng lớp.",
-      transition:
-        "Xem xét lại toàn bộ trải nghiệm dưới góc nhìn triết học.",
+        "Cái chung – Cái riêng (Chương 2.2.2): từ nhiều cái riêng, ta rút ra cái chung — xu hướng nhận thức chung của cả lớp.",
+      action: "Xem biểu đồ tổng hợp và thảo luận: kết quả lớp phản ánh điều gì về nhận thức tuyển dụng?",
     },
   },
 
@@ -214,14 +208,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này biến kiến thức lịch sử triết học thành tình huống dễ hiểu trong tuyển dụng, giúp người học ghi nhớ tự nhiên.",
     transition:
       "Từ đó, người học quay lại câu hỏi ban đầu: học giỏi có chắc thành công không? Câu trả lời là: học giỏi là điều kiện cần, chưa phải điều kiện đủ.",
-    audienceNarration: {
+    screenNarration: {
       title: "Các trường phái nhận thức",
-      headline:
-        "Mỗi trường phái triết học dẫn đến một cách tuyển dụng khác nhau.",
+      headline: "Mỗi trường phái triết học dẫn đến một cách tuyển dụng khác nhau.",
+      body: "Màn này so sánh các cách tiếp cận chân lý trong lịch sử triết học: duy tâm chủ quan, duy tâm khách quan, hoài nghi luận, bất khả tri luận, duy vật siêu hình, và duy vật biện chứng. Mỗi trường phái dẫn đến một chiến lược tuyển dụng khác nhau. Nếu chỉ tin vào cảm giác ban đầu, ta dễ phiến diện. Nếu hoài nghi hoàn toàn, ta không thể ra quyết định.",
       philosophyLink:
-        "Duy vật biện chứng: xem xét nhiều mặt, kiểm nghiệm bằng thực tiễn — chính là cách app vận hành.",
-      transition:
-        "Quay lại câu hỏi: học giỏi có chắc thành công không?",
+        "Duy vật biện chứng (Marx-Lenin): xem xét nhiều mặt, kiểm nghiệm bằng thực tiễn — chính là cách app vận hành qua ba vòng đánh giá.",
+      action: "So sánh các trường phái và nhận ra: phương pháp nào gần nhất với cách bạn đã đánh giá ứng viên?",
     },
   },
 
@@ -237,14 +230,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Màn này đo lường hiệu quả giáo dục của sản phẩm. Nếu phần lớn người chơi chọn 'kết hợp học + thực hành', app đã thành công trong việc truyền đạt triết học.",
     transition:
       "Cảm ơn người chơi đã tham gia. Có thể tham khảo thêm phần AI Usage để hiểu quá trình phát triển.",
-    audienceNarration: {
+    screenNarration: {
       title: "Khảo sát cuối kỳ",
-      headline:
-        "Nhận thức đúng phải dẫn đến hành động đúng.",
+      headline: "Nhận thức đúng phải dẫn đến hành động đúng.",
+      body: "Sau ba vòng mô phỏng, câu hỏi cuối cùng là: bạn sẽ thay đổi gì trong cách học? Đây là mục tiêu giáo dục cốt lõi — nhận thức không dừng ở việc hiểu, mà phải dẫn đến hành động. Phép biện chứng duy vật không chỉ giải thích thế giới, mà nhằm cải tạo thế giới. Nếu bạn chọn kết hợp học và thực hành, app đã đạt được mục tiêu.",
       philosophyLink:
-        "Marx: các nhà triết học chỉ giải thích thế giới, song vấn đề là cải tạo thế giới.",
-      transition:
-        "Cảm ơn bạn đã trải nghiệm HireMe Simulator!",
+        "Marx: \"Các nhà triết học chỉ giải thích thế giới theo nhiều cách, song vấn đề là cải tạo thế giới.\" Nhận thức đúng phải dẫn đến thực tiễn đúng.",
+      action: "Trả lời khảo sát: sau trải nghiệm này, bạn sẽ thay đổi gì trong cách học và rèn luyện?",
     },
   },
 
@@ -260,14 +252,13 @@ export const presentationScripts: Record<string, ScreenScript> = {
       "Phần này thể hiện tính liêm chính và chuyên nghiệp của nhóm, đồng thời minh họa rằng sử dụng công nghệ không mâu thuẫn với tư duy độc lập.",
     transition:
       "Đó là toàn bộ trải nghiệm HireMe Simulator. Cảm ơn thầy cô và các bạn đã lắng nghe.",
-    audienceNarration: {
+    screenNarration: {
       title: "Minh bạch sử dụng AI",
-      headline:
-        "AI là công cụ, tư duy con người là quyết định.",
+      headline: "AI là công cụ hỗ trợ, tư duy con người là yếu tố quyết định.",
+      body: "Nhóm cam kết minh bạch: AI chỉ đóng vai trò hỗ trợ kỹ thuật — tạo code cơ bản, gợi ý cấu trúc. Toàn bộ phân tích triết học, lập luận, thiết kế kịch bản game là sản phẩm tư duy của nhóm. Điều này đúng với nguyên lý: công cụ là điều kiện cần, tư duy chủ thể là điều kiện quyết định. Sử dụng công nghệ không mâu thuẫn với tư duy độc lập.",
       philosophyLink:
-        "Công cụ tăng năng suất nhưng không thay thế tư duy chủ quan của chủ thể.",
-      transition:
-        "Đó là toàn bộ trải nghiệm HireMe Simulator. Cảm ơn!",
+        "Mối quan hệ biện chứng giữa con người và công cụ: công cụ tăng năng suất nhưng không thay thế tư duy chủ quan. Nhận thức luôn là quá trình chủ động của chủ thể.",
+      action: "Xem chi tiết cách nhóm sử dụng AI và cam kết liêm chính học thuật.",
     },
   },
 };
