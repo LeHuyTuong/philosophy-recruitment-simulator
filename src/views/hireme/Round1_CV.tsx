@@ -150,6 +150,7 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="round1-page"
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-yellow-50 to-white"
     >
       <div className="max-w-5xl mx-auto">

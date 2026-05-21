@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession, saveSession } from '@/lib/data';
 import { candidatePool, type Industry } from '@/lib/candidates';
+import { persistPlaySession } from '@/lib/playSessionStore';
+
+export const runtime = 'nodejs';
 
 export async function POST(req: NextRequest) {
   try {
@@ -41,6 +44,19 @@ export async function POST(req: NextRequest) {
       session.round1_filterUsed = filterUsed;
       session.criteriaProfile = criteriaProfile;
       saveSession(session);
+    }
+
+    if (sessionId) {
+      await persistPlaySession(sessionId, {
+        industry: resolvedIndustry,
+        currentStage: 'round2',
+        round1Shortlist: {
+          ids: shortlist,
+          sortUsed,
+          filterUsed,
+          criteriaProfile,
+        },
+      });
     }
 
     const candidatesWithInterview = picked.map(c => ({

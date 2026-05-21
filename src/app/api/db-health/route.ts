@@ -5,6 +5,8 @@
  */
 import { NextResponse } from 'next/server'
 
+export const runtime = 'nodejs'
+
 export async function GET() {
   const env = {
     DATABASE_URL: !!process.env.DATABASE_URL,
@@ -16,9 +18,8 @@ export async function GET() {
     // Prisma client is not present locally. If the project has a usable
     // Prisma client (or is built on Vercel with Prisma generated), this will
     // import the shared `db` instance and attempt a minimal query.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mod = await import('@/lib/db')
-    const prisma = (mod as any).db
+    const prisma = mod.db as { $queryRawUnsafe?: (query: string) => Promise<unknown> }
 
     if (!prisma || typeof prisma.$queryRawUnsafe !== 'function') {
       throw new Error('prisma-unavailable')
@@ -29,8 +30,8 @@ export async function GET() {
     return NextResponse.json({ ok: true, env, db: 'connected' }, { status: 200 })
   } catch (e) {
     return NextResponse.json(
-      { ok: false, error: 'database connection failed' },
-      { status: 500 }
+      { ok: false, env, db: 'failed', error: 'database connection failed' },
+      { status: 503 }
     )
   }
 }

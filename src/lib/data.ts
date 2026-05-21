@@ -13,6 +13,7 @@ export interface Session {
   criteriaProfile: string;
   successCount: number;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface FinalPoll {
@@ -25,11 +26,24 @@ const sessions: Map<string, Session> = new Map();
 const polls: FinalPoll[] = [];
 
 export function saveSession(session: Session): void {
-  sessions.set(session.id, session);
+  sessions.set(session.id, {
+    ...session,
+    updatedAt: new Date().toISOString(),
+  });
 }
 
 export function getSession(id: string): Session | undefined {
   return sessions.get(id);
+}
+
+export function getRecentSessions(limit = 10): Session[] {
+  return Array.from(sessions.values())
+    .sort((a, b) => {
+      const left = new Date(a.updatedAt || a.createdAt).getTime();
+      const right = new Date(b.updatedAt || b.createdAt).getTime();
+      return right - left;
+    })
+    .slice(0, limit);
 }
 
 export function savePoll(poll: FinalPoll): void {

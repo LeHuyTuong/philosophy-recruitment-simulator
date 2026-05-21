@@ -28,6 +28,6 @@ export const api = {
   submitRound3: (sessionId: string) =>
     apiFetch('/api/round3', { method: 'POST', body: JSON.stringify({ sessionId }) }),
   getStats: () => apiFetch('/api/stats'),
-  submitPoll: (answer: string) =>
-    apiFetch('/api/poll', { method: 'POST', body: JSON.stringify({ answer }) }),
+  submitPoll: (answer: string, sessionId?: string | null) =>
+    apiFetch('/api/poll', { method: 'POST', body: JSON.stringify({ answer, sessionId }) }),
 };

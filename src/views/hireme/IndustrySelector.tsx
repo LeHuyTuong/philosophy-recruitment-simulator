@@ -66,6 +66,7 @@ export default function IndustrySelector({ onSelectIndustry, onNavigate }: Indus
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
+      data-testid="industry-selector"
       className="min-h-screen px-4 py-8 pb-20 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-3xl mx-auto">

@@ -16,6 +16,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
+      data-testid="home-page"
       className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-b from-slate-50 to-white"
     >
       <motion.div

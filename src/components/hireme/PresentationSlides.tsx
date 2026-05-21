@@ -122,7 +122,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
   };
 
   return (
-    <div className="fixed inset-0 z-[90]">
+    <div className="fixed inset-0 z-[90]" data-testid="presentation-slides">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -154,6 +154,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
               <button
                 onClick={onClose}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                data-testid="presentation-close"
                 aria-label="Thoát slide"
                 title="Thoát slide"
               >
@@ -205,6 +206,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
                 <button
                   onClick={() => moveSlide(1)}
                   disabled={currentIndex === presentationSlides.length - 1}
+                  data-testid="presentation-next"
                   className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Tiếp

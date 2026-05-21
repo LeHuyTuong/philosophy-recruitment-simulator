@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 import { saveSession } from '@/lib/data';
+import { persistPlaySession } from '@/lib/playSessionStore';
+
+export const runtime = 'nodejs';
 
 export async function POST() {
   try {
     const sessionId = uuidv4();
+    const now = new Date().toISOString();
     const session = {
       id: sessionId,
       industry: '',
@@ -16,10 +20,13 @@ export async function POST() {
       round3_acknowledged: false,
       criteriaProfile: '',
       successCount: 0,
-      createdAt: new Date().toISOString(),
+      createdAt: now,
+      updatedAt: now,
     };
     saveSession(session);
-    return NextResponse.json({ sessionId });
+    const db = await persistPlaySession(sessionId, { currentStage: 'landing' });
+
+    return NextResponse.json({ sessionId, db: db.ok ? 'stored' : 'fallback' });
   } catch (error) {
     console.error('Session creation error:', error);
     return NextResponse.json({ error: 'Failed to create session' }, { status: 500 });

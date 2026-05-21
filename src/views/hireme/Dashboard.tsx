@@ -8,6 +8,7 @@ import {
 } from 'recharts';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { formatDashboardSourceLabel } from '@/lib/dashboardStats';
 
 const COLORS = ['#f59e0b', '#3b82f6', '#10b981', '#9ca3af'];
 const INDUSTRY_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
@@ -21,6 +22,8 @@ interface DashboardStats {
   topPicked: { id: string; name: string; count: number }[];
   topSuccess: { id: string; name: string; count: number }[];
   finalPoll: { A: number; B: number; C: number };
+  source?: 'db' | 'memory' | 'demo' | 'empty';
+  fallbackReason?: string;
 }
 
 const industryLabels: Record<string, string> = {
@@ -44,7 +47,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(async () => {
+    const fetchStats = async () => {
       try {
         const res = await fetch('/api/stats');
         const data = await res.json();
@@ -52,8 +55,12 @@ export default function Dashboard() {
         setLoading(false);
       } catch (error) {
         console.error('Stats fetch error:', error);
+        setLoading(false);
       }
-    }, 2500);
+    };
+
+    void fetchStats();
+    const interval = setInterval(fetchStats, 2500);
     return () => clearInterval(interval);
   }, []);
 
@@ -102,6 +109,7 @@ export default function Dashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="dashboard-page"
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-4xl mx-auto">
@@ -109,8 +117,18 @@ export default function Dashboard() {
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
             Biện chứng nhận thức — diễn ra ngay tại lớp
           </h1>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
+            <span>Nguồn dữ liệu:</span>
+            <span className="text-slate-900">{formatDashboardSourceLabel({ source: stats.source || 'empty' })}</span>
+          </div>
           <PhilosophyBadge variant="universal" title="📊 Cái chung trong cái riêng · Dashboard lớp" className="mx-auto" />
         </div>
+
+        {stats.fallbackReason ? (
+          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            {stats.fallbackReason}
+          </div>
+        ) : null}
 
         {/* Hero metric */}
         <motion.div

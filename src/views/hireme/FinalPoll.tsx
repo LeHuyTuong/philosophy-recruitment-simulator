@@ -6,7 +6,9 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import QuoteBlock from '@/components/hireme/QuoteBlock';
 
 interface FinalPollProps {
+  sessionId?: string | null;
   onNavigate?: (page: string) => void;
+  onSubmitted?: (answer: string) => void;
 }
 
 const options = [
@@ -35,7 +37,7 @@ const options = [
 
 const POLL_COLORS = ['#ef4444', '#3b82f6', '#f59e0b'];
 
-export default function FinalPoll({ onNavigate }: FinalPollProps) {
+export default function FinalPoll({ sessionId, onNavigate, onSubmitted }: FinalPollProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [pollData, setPollData] = useState<{ name: string; value: number }[]>([]);
@@ -46,8 +48,9 @@ export default function FinalPoll({ onNavigate }: FinalPollProps) {
       await fetch('/api/poll', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answer }),
+        body: JSON.stringify({ answer, sessionId }),
       });
+      onSubmitted?.(answer);
       setSubmitted(true);
       fetchPollData();
     } catch (error) {
@@ -77,6 +80,7 @@ export default function FinalPoll({ onNavigate }: FinalPollProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="final-poll-page"
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-2xl mx-auto">
