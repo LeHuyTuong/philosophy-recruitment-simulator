@@ -6,9 +6,8 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend
 } from 'recharts';
-import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { createDemoDashboardStats, formatDashboardSourceLabel } from '@/lib/dashboardStats';
+import { createDemoDashboardStats } from '@/lib/dashboardStats';
 
 const COLORS = ['#f59e0b', '#3b82f6', '#10b981', '#9ca3af'];
 const INDUSTRY_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
@@ -56,9 +55,9 @@ function SummaryCard({ label, value, caption }: { label: string; value: string |
 
 function DashboardEmptyState() {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
-      <p className="text-lg font-semibold text-slate-900">
-        Chưa có lượt chơi thật từ lớp này. Hãy cho sinh viên quét QR và hoàn thành trải nghiệm để tạo dữ liệu.
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+      <p className="text-base font-semibold text-slate-900">
+        Chưa có lượt chơi thật. Cho sinh viên quét QR và hoàn thành trải nghiệm để tạo dữ liệu.
       </p>
     </div>
   );
@@ -104,7 +103,7 @@ function DashboardVisuals({ stats, mode, hasRealData }: { stats: DashboardStats;
           value={stats.totalSessions}
           caption={mode === 'simulated'
             ? 'Dữ liệu giả lập phục vụ thuyết trình'
-            : formatDashboardSourceLabel({ source: stats.source })}
+            : 'Dữ liệu lớp thật khi DB hoặc bộ nhớ tạm có lượt chơi'}
         />
         <SummaryCard
           label="Ứng viên được chọn nhiều nhất"
@@ -228,7 +227,7 @@ export default function Dashboard() {
 
   if (loading || !stats) {
     return (
-      <div className="min-h-screen px-4 py-8 pb-24 bg-gradient-to-b from-slate-50 to-white">
+      <div className="min-h-screen px-4 py-6 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-4xl mx-auto">
           <Skeleton className="h-8 w-64 mb-6" />
           <Skeleton className="h-32 w-full mb-6 rounded-xl" />
@@ -243,11 +242,6 @@ export default function Dashboard() {
     ? stats
     : createDemoDashboardStats('Dữ liệu giả lập phục vụ thuyết trình — không phải thống kê lớp thật.');
   const activeStats = viewMode === 'simulated' ? simulatedStats : stats;
-  const sourceLabel = viewMode === 'simulated'
-    ? 'Dữ liệu giả lập'
-    : hasRealData
-      ? formatDashboardSourceLabel({ source: stats.source })
-      : 'Chưa có dữ liệu thật';
 
   return (
     <motion.div
@@ -255,26 +249,22 @@ export default function Dashboard() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       data-testid="dashboard-page"
-      className="min-h-screen px-4 py-6 pb-24 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.05),_transparent_38%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)]"
+      className="min-h-screen px-4 py-4 pb-20 md:pb-8 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.05),_transparent_38%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)]"
     >
       <div className="mx-auto max-w-5xl">
-        <div className="mb-6 text-center">
+        <div className="mb-5 text-center">
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Dashboard lớp</h1>
-          <p className="text-sm text-slate-600">
+          <p className="mx-auto max-w-2xl text-sm text-slate-600">
             Tách rõ dữ liệu lớp thật và dữ liệu mô phỏng để giảng viên biết chính xác đang xem ngữ cảnh nào.
           </p>
-          <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
-            <span>Nguồn đang xem:</span>
-            <span className="text-slate-900">{sourceLabel}</span>
-          </div>
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <div className="mt-4 inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
             <button
               type="button"
               onClick={() => setViewMode('real')}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                 viewMode === 'real'
-                  ? 'border-slate-900 bg-slate-900 text-white'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'bg-slate-900 text-white'
+                  : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               Dữ liệu lớp thật
@@ -282,17 +272,14 @@ export default function Dashboard() {
             <button
               type="button"
               onClick={() => setViewMode('simulated')}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                 viewMode === 'simulated'
-                  ? 'border-slate-900 bg-slate-900 text-white'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'bg-slate-900 text-white'
+                  : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               Dữ liệu mô phỏng
             </button>
-          </div>
-          <div className="mt-4">
-            <PhilosophyBadge variant="universal" title="📊 Cái chung trong cái riêng · Dashboard lớp" className="mx-auto" />
           </div>
         </div>
 

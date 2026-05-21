@@ -14,7 +14,7 @@ export default function PresenterModeToggle({
   return (
     <button
       onClick={onToggleNotes}
-      className={`fixed top-3 right-3 z-[60] flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium shadow-sm transition-all cursor-pointer border ${
+      className={`fixed top-16 right-3 z-[60] flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium shadow-sm transition-all cursor-pointer border ${
         isNotesPanelOpen
           ? 'bg-gray-800 text-white border-gray-700'
           : 'bg-white/90 backdrop-blur-sm text-gray-500 border-gray-200 hover:text-gray-700 hover:bg-gray-50'

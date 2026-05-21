@@ -40,7 +40,7 @@ export default function AIUsage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-slate-50 to-white"
+      className="min-h-screen px-4 py-5 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-6">

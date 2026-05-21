@@ -439,7 +439,7 @@ export default function Home() {
 
       {/* In-document-flow narration block */}
       {showNarration && (
-        <div className="px-4 pt-4">
+        <div className="px-4 pt-3">
           <ScreenNarrationBlock
             narration={currentScript?.screenNarration}
             onOpenNotes={openNotesPanel}

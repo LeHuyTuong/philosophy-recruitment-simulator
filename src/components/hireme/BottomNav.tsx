@@ -17,7 +17,7 @@ export default function BottomNav({ onNavigate, currentPage }: BottomNavProps) {
   if (hiddenPages.includes(currentPage)) return null;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 safe-area-bottom md:hidden">
       <div className="max-w-lg mx-auto flex items-center justify-around h-14 px-2">
         {navItems.map(item => (
           <button
