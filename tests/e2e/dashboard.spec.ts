@@ -5,8 +5,12 @@ test('dashboard tab shows DB or fallback stats safely', async ({ page }) => {
 
   await page.getByTestId('product-nav-class-dashboard').click();
   await expect(page.getByTestId('dashboard-page')).toBeVisible();
-  await expect(page.getByText(/Nguồn dữ liệu/)).toBeVisible();
-  await expect(page.getByText(/DB thật|Dữ liệu mô phỏng|Bộ nhớ tạm|Chưa có dữ liệu/)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Dữ liệu lớp thật' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Dữ liệu mô phỏng' })).toBeVisible();
+  await expect(page.getByText(/Chưa có lượt chơi thật từ lớp này|Tổng số lượt chơi/)).toBeVisible();
+
+  await page.getByRole('button', { name: 'Dữ liệu mô phỏng' }).click();
+  await expect(page.getByText('Dữ liệu giả lập phục vụ thuyết trình — không phải thống kê lớp thật.').first()).toBeVisible();
 });
 
 test('mobile viewport keeps ProductNavbar usable without page overflow', async ({ page }) => {

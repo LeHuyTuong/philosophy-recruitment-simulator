@@ -80,6 +80,12 @@ export default function Home() {
   const hasHandledJoinRef = useRef(false);
 
   const navigate = useCallback((page: string) => {
+    if (page === 'presentation-slides') {
+      setPresentationSession(session => session + 1);
+      setIsPresentationOpen(true);
+      return;
+    }
+
     if (GAME_PAGES.includes(page)) {
       setLastGamePage(page);
     }

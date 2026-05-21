@@ -1,5 +1,7 @@
 export type ProductNavStatus = 'live' | 'db' | 'demo' | 'soon';
 
+export type ProductNavGroupId = 'experience' | 'classroom' | 'presentation' | 'learning' | 'extensions';
+
 export type ProductNavItemId =
   | 'main-experience'
   | 'presentation-slides'
@@ -16,6 +18,7 @@ export type ProductNavItemId =
 
 export interface ProductNavItem {
   id: ProductNavItemId;
+  group: ProductNavGroupId;
   label: string;
   status: ProductNavStatus;
   icon: string;
@@ -23,9 +26,44 @@ export interface ProductNavItem {
   description: string;
 }
 
+export interface ProductNavGroup {
+  id: ProductNavGroupId;
+  label: string;
+  description: string;
+}
+
+export const productNavGroups: ProductNavGroup[] = [
+  {
+    id: 'experience',
+    label: 'Trải nghiệm',
+    description: 'Flow tuyển dụng mô phỏng dành cho sinh viên.',
+  },
+  {
+    id: 'classroom',
+    label: 'Lớp học',
+    description: 'Tổng hợp dữ liệu và điều phối thảo luận trên lớp.',
+  },
+  {
+    id: 'presentation',
+    label: 'Thuyết trình',
+    description: 'Màn hình trình chiếu cho giảng viên hoặc nhóm thuyết trình.',
+  },
+  {
+    id: 'learning',
+    label: 'Học liệu',
+    description: 'Tài liệu nền để giải thích trường phái và tiêu chí.',
+  },
+  {
+    id: 'extensions',
+    label: 'Mở rộng',
+    description: 'Các màn hình demo, preview và tính năng sắp ra mắt.',
+  },
+];
+
 export const productNavItems: ProductNavItem[] = [
   {
     id: 'main-experience',
+    group: 'experience',
     label: 'Trải nghiệm chính',
     status: 'live',
     icon: 'play',
@@ -33,6 +71,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'presentation-slides',
+    group: 'presentation',
     label: 'Slide thuyết trình',
     status: 'live',
     icon: 'presentation',
@@ -40,6 +79,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'class-dashboard',
+    group: 'classroom',
     label: 'Dashboard lớp',
     status: 'db',
     icon: 'dashboard',
@@ -48,6 +88,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'personal-report',
+    group: 'extensions',
     label: 'Báo cáo cá nhân',
     status: 'demo',
     icon: 'report',
@@ -55,6 +96,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'db-results',
+    group: 'classroom',
     label: 'Kết quả DB',
     status: 'db',
     icon: 'database',
@@ -62,6 +104,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'candidate-comparison',
+    group: 'extensions',
     label: 'So sánh ứng viên',
     status: 'demo',
     icon: 'compare',
@@ -69,6 +112,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'session-history',
+    group: 'classroom',
     label: 'Lịch sử phiên chơi',
     status: 'db',
     icon: 'history',
@@ -76,6 +120,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'schools',
+    group: 'learning',
     label: 'Trường phái',
     status: 'live',
     icon: 'schools',
@@ -84,6 +129,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'criteria',
+    group: 'learning',
     label: 'Tiêu chí đánh giá',
     status: 'live',
     icon: 'criteria',
@@ -92,6 +138,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'ai-usage',
+    group: 'learning',
     label: 'AI Usage',
     status: 'live',
     icon: 'ai',
@@ -100,6 +147,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'teacher-mode',
+    group: 'extensions',
     label: 'Teacher Mode',
     status: 'soon',
     icon: 'teacher',
@@ -107,6 +155,7 @@ export const productNavItems: ProductNavItem[] = [
   },
   {
     id: 'export-report',
+    group: 'extensions',
     label: 'Xuất báo cáo',
     status: 'soon',
     icon: 'export',
