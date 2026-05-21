@@ -50,17 +50,31 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const gamePages = new Set(['landing', 'industry', 'round1', 'round2', 'round3', 'reveal', 'final-poll']);
-const dropdownBadgeStatuses = new Set(['db', 'demo', 'soon']);
+// hide badges in the main navbar; keep data model intact but don't surface status badges
+const dropdownBadgeStatuses = new Set<string>();
 
 function isActive(item: ProductNavItem, currentPage: string) {
   if (item.id === 'main-experience') return gamePages.has(currentPage);
   return item.targetPage === currentPage;
 }
 
-const groupedItems = productNavGroups.map(group => ({
-  ...group,
-  items: productNavItems.filter(item => item.group === group.id),
-}));
+// Only surface production-ready items in the main navbar.
+const allowedItemIds = new Set([
+  'main-experience',
+  'class-dashboard',
+  'presentation-slides',
+  'schools',
+  'criteria',
+  'ai-usage',
+  'db-results',
+]);
+
+const groupedItems = productNavGroups
+  .filter(g => g.id !== 'extensions')
+  .map(group => ({
+    ...group,
+    items: productNavItems.filter(item => item.group === group.id && allowedItemIds.has(item.id)),
+  }));
 
 const itemById = new Map(productNavItems.map(item => [item.id, item]));
 
@@ -72,7 +86,7 @@ const desktopActions: Array<
   { type: 'menu', label: 'Lớp học', groupId: 'classroom' },
   { type: 'direct', label: 'Slide', itemId: 'presentation-slides', groupId: 'presentation' },
   { type: 'menu', label: 'Học liệu', groupId: 'learning' },
-  { type: 'menu', label: 'Mở rộng', groupId: 'extensions' },
+  // extensions group intentionally omitted from main navbar (kept out of primary UI)
 ];
 
 export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarProps) {
@@ -101,7 +115,6 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
   const renderDropdownItem = (item: ProductNavItem) => {
     const Icon = iconMap[item.icon] || iconMap.default;
     const active = isActive(item, currentPage);
-    const showBadge = dropdownBadgeStatuses.has(item.status);
 
     return (
       <button
@@ -113,19 +126,9 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
         className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors ${
           active ? 'bg-slate-900 text-white' : 'text-slate-700 hover:bg-slate-50 hover:text-slate-950'
         }`}
-        title={item.description}
       >
         <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
         <span className="flex-1">{item.label}</span>
-        {showBadge ? (
-          <span
-            className={`rounded-md border px-1.5 py-0.5 text-[10px] font-black uppercase leading-none ${
-              active ? 'border-white/30 bg-white/10 text-white' : getStatusBadgeClass(item.status)
-            }`}
-          >
-            {getStatusBadgeLabel(item.status)}
-          </span>
-        ) : null}
       </button>
     );
   };
@@ -140,7 +143,7 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
         <button
           type="button"
-          data-testid="product-nav-brand"
+          data-testid="nav-brand"
           onClick={() => {
             const item = itemById.get('main-experience');
             if (item) selectItem(item);
@@ -159,11 +162,13 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
               const item = itemById.get(action.itemId);
               if (!item) return null;
 
+              const requiredTestId = item.id === 'main-experience' ? 'nav-main-experience' : `product-nav-${item.id}`;
+
               return (
                 <button
                   key={action.label}
                   type="button"
-                  data-testid={`product-nav-${item.id}`}
+                  data-testid={requiredTestId}
                   onClick={() => selectItem(item)}
                   className={`rounded-full border px-3.5 py-2 text-sm font-bold transition-colors ${
                     isActive(item, currentPage)
@@ -180,7 +185,15 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
               <div key={action.groupId} className="relative">
                 <button
                   type="button"
-                  data-testid={`product-nav-trigger-${action.groupId}`}
+                  data-testid={
+                    action.groupId === 'classroom'
+                      ? 'nav-group-classroom'
+                      : action.groupId === 'learning'
+                        ? 'nav-group-learning'
+                        : action.groupId === 'extensions'
+                          ? 'nav-group-more'
+                          : `product-nav-trigger-${action.groupId}`
+                  }
                   aria-expanded={openDesktopGroup === action.groupId}
                   onClick={() => setOpenDesktopGroup(group => (group === action.groupId ? null : action.groupId))}
                   className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-bold transition-colors ${
@@ -209,7 +222,7 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
 
         <button
           type="button"
-          data-testid="product-nav-mobile-menu-button"
+          data-testid="mobile-menu-button"
           aria-expanded={mobileMenuOpen}
           onClick={() => setMobileMenuOpen(open => !open)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 md:hidden"

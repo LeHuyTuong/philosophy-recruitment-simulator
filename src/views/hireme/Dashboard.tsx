@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -7,7 +7,7 @@ import {
   PieChart, Pie, Cell, Legend
 } from 'recharts';
 import { Skeleton } from '@/components/ui/skeleton';
-import { createDemoDashboardStats } from '@/lib/dashboardStats';
+import type { DashboardStats } from '@/lib/dashboardStats';
 
 const COLORS = ['#f59e0b', '#3b82f6', '#10b981', '#9ca3af'];
 const INDUSTRY_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
@@ -41,7 +41,14 @@ const profileLabels: Record<string, string> = {
   mixed: 'Hỗn hợp',
 };
 
-type DashboardViewMode = 'real' | 'simulated';
+type ApiStatsResponse = {
+  ok: boolean;
+  source: 'db' | string;
+  hasData: boolean;
+  totalSessions: number;
+  stats: DashboardStats | null;
+  error?: string;
+};
 
 function SummaryCard({ label, value, caption }: { label: string; value: string | number; caption: string }) {
   return (
@@ -53,17 +60,21 @@ function SummaryCard({ label, value, caption }: { label: string; value: string |
   );
 }
 
-function DashboardEmptyState() {
+function DashboardEmptyState({ onOpenQR, onStartExperience }: { onOpenQR: () => void; onStartExperience: () => void }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
       <p className="text-base font-semibold text-slate-900">
-        Chưa có lượt chơi thật. Cho sinh viên quét QR và hoàn thành trải nghiệm để tạo dữ liệu.
+        Chưa có dữ liệu lớp thật. Hãy cho sinh viên quét QR và hoàn thành trải nghiệm để tạo dữ liệu.
       </p>
+      <div className="mt-4 flex items-center justify-center gap-3">
+        <button type="button" onClick={onOpenQR} className="rounded-full border px-4 py-2 text-sm font-semibold bg-slate-900 text-white">Mở QR tham gia</button>
+        <button type="button" onClick={onStartExperience} className="rounded-full border px-4 py-2 text-sm font-semibold">Bắt đầu trải nghiệm</button>
+      </div>
     </div>
   );
 }
 
-function DashboardVisuals({ stats, mode, hasRealData }: { stats: DashboardStats; mode: DashboardViewMode; hasRealData: boolean }) {
+function DashboardVisuals({ stats }: { stats: DashboardStats }) {
   const profileDistData = Object.entries(stats.criteriaProfileDist).map(([key, value]) => ({
     name: profileLabels[key] || key,
     value,
@@ -91,19 +102,13 @@ function DashboardVisuals({ stats, mode, hasRealData }: { stats: DashboardStats;
 
   const hasData = stats.totalSessions > 0;
 
-  if (mode === 'real' && !hasRealData) {
-    return <DashboardEmptyState />;
-  }
-
   return (
     <>
       <div className="grid gap-3 md:grid-cols-3 mb-6">
         <SummaryCard
-          label={mode === 'simulated' ? 'Dữ liệu mô phỏng' : 'Tổng số lượt chơi'}
+          label="Tổng số lượt chơi"
           value={stats.totalSessions}
-          caption={mode === 'simulated'
-            ? 'Dữ liệu giả lập phục vụ thuyết trình'
-            : 'Dữ liệu lớp thật khi DB hoặc bộ nhớ tạm có lượt chơi'}
+          caption="Dữ liệu lớp thật từ Neon DB"
         />
         <SummaryCard
           label="Ứng viên được chọn nhiều nhất"
@@ -116,12 +121,6 @@ function DashboardVisuals({ stats, mode, hasRealData }: { stats: DashboardStats;
           caption={stats.topSuccess[0] ? `${stats.topSuccess[0].count} lượt pass` : 'Chưa có dữ liệu lớp'}
         />
       </div>
-
-      {mode === 'simulated' ? (
-        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          Dữ liệu giả lập phục vụ thuyết trình — không phải thống kê lớp thật.
-        </div>
-      ) : null}
 
       {stats.fallbackReason ? (
         <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
@@ -203,29 +202,36 @@ function DashboardVisuals({ stats, mode, hasRealData }: { stats: DashboardStats;
 }
 
 export default function Dashboard() {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [viewMode, setViewMode] = useState<DashboardViewMode>('real');
+  const [apiResp, setApiResp] = useState<ApiStatsResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await fetch('/api/stats');
-        const data = await res.json();
-        setStats(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Stats fetch error:', error);
-        setLoading(false);
-      }
-    };
+  const fetchStats = async () => {
+    setLoading(true);
+    const t0 = performance.now();
+    try {
+      const res = await fetch('/api/stats');
+      const data: ApiStatsResponse = await res.json();
+      const dur = Math.round(performance.now() - t0);
+      if (process.env.NODE_ENV !== 'production') console.debug(`[dashboard] fetch /api/stats ${res.status} ${dur}ms`);
+      setApiResp(data);
+    } catch (err) {
+      console.error('Stats fetch error:', err);
+      setApiResp({ ok: false, source: 'db', hasData: false, totalSessions: 0, stats: null, error: 'network' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    void fetchStats();
-    const interval = setInterval(fetchStats, 2500);
-    return () => clearInterval(interval);
+  useEffect(() => {
+    // avoid calling setState synchronously inside effect body
+    const t = setTimeout(() => {
+      void fetchStats();
+    }, 0);
+    return () => clearTimeout(t);
+    // intentionally no polling; fetch on mount and via refresh button only
   }, []);
 
-  if (loading || !stats) {
+  if (loading) {
     return (
       <div className="min-h-screen px-4 py-6 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-4xl mx-auto">
@@ -237,11 +243,8 @@ export default function Dashboard() {
       </div>
     );
   }
-  const hasRealData = stats.source === 'db' || stats.source === 'memory';
-  const simulatedStats = stats.source === 'demo'
-    ? stats
-    : createDemoDashboardStats('Dữ liệu giả lập phục vụ thuyết trình — không phải thống kê lớp thật.');
-  const activeStats = viewMode === 'simulated' ? simulatedStats : stats;
+
+  const resp = apiResp;
 
   return (
     <motion.div
@@ -254,36 +257,23 @@ export default function Dashboard() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-5 text-center">
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Dashboard lớp</h1>
-          <p className="mx-auto max-w-2xl text-sm text-slate-600">
-            Tách rõ dữ liệu lớp thật và dữ liệu mô phỏng để giảng viên biết chính xác đang xem ngữ cảnh nào.
-          </p>
-          <div className="mt-4 inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
-            <button
-              type="button"
-              onClick={() => setViewMode('real')}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                viewMode === 'real'
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              Dữ liệu lớp thật
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('simulated')}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                viewMode === 'simulated'
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              Dữ liệu mô phỏng
-            </button>
+          <p className="mx-auto max-w-2xl text-sm text-slate-600">Tổng hợp dữ liệu thật từ các lượt chơi đã hoàn thành.</p>
+
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <div className="rounded-full border px-3 py-1 text-sm text-slate-700 bg-white">
+              {resp?.ok && resp.source === 'db' && resp.hasData ? 'Dữ liệu Neon DB' : resp?.ok && !resp.hasData ? 'Chưa có dữ liệu thật' : 'DB unavailable'}
+            </div>
+            <button onClick={() => void fetchStats()} className="rounded-full border px-3 py-1 text-sm">Làm mới</button>
           </div>
         </div>
 
-        <DashboardVisuals stats={activeStats} mode={viewMode} hasRealData={hasRealData} />
+        {resp && resp.ok && resp.hasData && resp.stats ? (
+          <DashboardVisuals stats={resp.stats} />
+        ) : resp && resp.ok && !resp.hasData ? (
+          <DashboardEmptyState onOpenQR={() => window.open('/', '_blank')} onStartExperience={() => (window.location.href = '/')} />
+        ) : (
+          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center">Có lỗi khi đọc DB. Vui lòng kiểm tra kết nối DB.</div>
+        )}
       </div>
     </motion.div>
   );

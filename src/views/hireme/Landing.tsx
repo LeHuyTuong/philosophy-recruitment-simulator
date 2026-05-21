@@ -23,6 +23,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
+        data-testid="landing-hero"
         className="w-full max-w-4xl mx-auto"
       >
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
@@ -56,6 +57,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onStart}
+                data-testid="primary-cta"
                 className="px-8 py-3 bg-gradient-to-r from-slate-900 to-slate-700 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-shadow w-full max-w-sm"
               >
                 Bắt đầu trải nghiệm
@@ -70,6 +72,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
                 </button>
                 <button
                   onClick={() => onNavigate('presentation-slides')}
+                  data-testid="slide-button"
                   className="px-4 py-2.5 bg-white border border-slate-200 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-50 transition-colors"
                 >
                   Mở Slide thuyết trình

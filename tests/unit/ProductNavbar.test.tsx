@@ -10,12 +10,12 @@ describe('ProductNavbar', () => {
 
     render(<ProductNavbar currentPage="landing" onSelect={onSelect} />);
 
-    expect(screen.getByTestId('product-nav-brand')).toHaveTextContent('HireMe Lab');
+    expect(screen.getByTestId('nav-brand')).toHaveTextContent('HireMe Lab');
     expect(screen.getByRole('button', { name: 'Trải nghiệm' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Lớp học' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Slide' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Học liệu' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Mở rộng' })).toBeInTheDocument();
+    // 'Mở rộng' (extensions) removed from main nav by product cleanup
     expect(screen.queryByText('Flow tuyển dụng mô phỏng dành cho sinh viên.')).not.toBeInTheDocument();
 
     await user.click(screen.getByTestId('product-nav-presentation-slides'));
@@ -28,16 +28,15 @@ describe('ProductNavbar', () => {
 
     render(<ProductNavbar currentPage="landing" onSelect={onSelect} />);
 
-    await user.click(screen.getByTestId('product-nav-trigger-classroom'));
+    await user.click(screen.getByTestId('nav-group-classroom'));
     const classroomMenu = screen.getByTestId('product-nav-menu-classroom');
     expect(within(classroomMenu).getByRole('menuitem', { name: /Dashboard lớp/ })).toBeInTheDocument();
     expect(within(classroomMenu).getByRole('menuitem', { name: /Kết quả DB/ })).toBeInTheDocument();
-    expect(within(classroomMenu).getByRole('menuitem', { name: /Lịch sử phiên chơi/ })).toBeInTheDocument();
 
     await user.click(within(classroomMenu).getByRole('menuitem', { name: /Dashboard lớp/ }));
     expect(onSelect).toHaveBeenCalledWith(expect.objectContaining({ id: 'class-dashboard' }));
 
-    await user.click(screen.getByTestId('product-nav-trigger-learning'));
+    await user.click(screen.getByTestId('nav-group-learning'));
     const learningMenu = screen.getByTestId('product-nav-menu-learning');
     expect(within(learningMenu).getByRole('menuitem', { name: 'Trường phái' })).toBeInTheDocument();
     expect(within(learningMenu).getByRole('menuitem', { name: 'Tiêu chí đánh giá' })).toBeInTheDocument();
@@ -49,7 +48,7 @@ describe('ProductNavbar', () => {
 
     render(<ProductNavbar currentPage="landing" onSelect={vi.fn()} />);
 
-    await user.click(screen.getByTestId('product-nav-mobile-menu-button'));
+    await user.click(screen.getByTestId('mobile-menu-button'));
     expect(screen.getByTestId('product-nav-mobile-menu')).toBeInTheDocument();
     expect(screen.getByTestId('product-nav-group-learning')).toHaveTextContent('Học liệu');
   });

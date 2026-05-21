@@ -84,7 +84,7 @@ export const productNavItems: ProductNavItem[] = [
     status: 'db',
     icon: 'dashboard',
     targetPage: 'dashboard',
-    description: 'Đọc thống kê thật từ DB, có fallback demo khi chưa có dữ liệu.',
+    description: 'Đọc thống kê thật từ DB (không dùng dữ liệu mô phỏng trên production).',
   },
   {
     id: 'personal-report',

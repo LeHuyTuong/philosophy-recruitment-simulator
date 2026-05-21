@@ -53,9 +53,14 @@ describe('API route integration shape', () => {
     expect(JSON.stringify(body)).not.toContain('DATABASE_URL=');
   });
 
-  it('/api/stats returns fallback/demo shape when DB is empty', async () => {
-    vi.doMock('@/lib/playSessionStore', () => ({
-      getDashboardStats: vi.fn().mockResolvedValue(createDemoDashboardStats('DB empty')),
+  it('/api/stats returns hasData=false when DB is empty', async () => {
+    // Mock DB client with empty sessions
+    vi.doMock('@/lib/db', () => ({
+      db: {
+        playSession: {
+          findMany: vi.fn().mockResolvedValue([]),
+        },
+      },
     }));
 
     const { GET } = await import('@/app/api/stats/route');
@@ -63,9 +68,11 @@ describe('API route integration shape', () => {
     const body = await response.json();
 
     expect(response.status).toBe(200);
-    expect(body.source).toBe('demo');
-    expect(body.totalSessions).toBeGreaterThan(0);
-    expect(body.finalPoll).toEqual(expect.objectContaining({ A: expect.any(Number), B: expect.any(Number), C: expect.any(Number) }));
+    expect(body.ok).toBe(true);
+    expect(body.source).toBe('db');
+    expect(body.hasData).toBe(false);
+    expect(body.totalSessions).toBe(0);
+    expect(body.stats).toBeNull();
   });
 
   it('/api/sessions/recent returns an anonymous list safely', async () => {
