@@ -4,19 +4,22 @@ import { candidatePool, type Industry } from '@/lib/candidates';
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionId, shortlist, sortUsed, filterUsed } = await req.json();
-    if (!sessionId || !shortlist || shortlist.length !== 5) {
+    const { sessionId, industry, shortlist, sortUsed, filterUsed } = await req.json();
+    if (!shortlist || shortlist.length !== 5) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
     }
 
-    const session = getSession(sessionId);
-    if (!session) {
-      return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+    const session = sessionId ? getSession(sessionId) : undefined;
+    const resolvedIndustry = (session?.industry || industry) as Industry | undefined;
+    if (!resolvedIndustry || !candidatePool[resolvedIndustry]) {
+      return NextResponse.json({ error: 'Invalid industry context' }, { status: 400 });
     }
 
-    const industry = session.industry as Industry;
-    const pool = candidatePool[industry];
+    const pool = candidatePool[resolvedIndustry];
     const picked = pool.filter(c => shortlist.includes(c.id));
+    if (picked.length !== 5) {
+      return NextResponse.json({ error: 'Invalid shortlist entries' }, { status: 400 });
+    }
 
     const avgGPA = picked.reduce((sum, c) => sum + c.gpa, 0) / 5;
     const avgExp = picked.reduce((sum, c) => sum + c.internshipMonths, 0) / 5;
@@ -32,11 +35,13 @@ export async function POST(req: NextRequest) {
       criteriaProfile = 'mixed';
     }
 
-    session.round1_shortlist = shortlist;
-    session.round1_sortUsed = sortUsed;
-    session.round1_filterUsed = filterUsed;
-    session.criteriaProfile = criteriaProfile;
-    saveSession(session);
+    if (session) {
+      session.round1_shortlist = shortlist;
+      session.round1_sortUsed = sortUsed;
+      session.round1_filterUsed = filterUsed;
+      session.criteriaProfile = criteriaProfile;
+      saveSession(session);
+    }
 
     const candidatesWithInterview = picked.map(c => ({
       id: c.id,

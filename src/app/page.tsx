@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useSession } from '@/hooks/useSession';
 import { usePresenterMode } from '@/hooks/usePresenterMode';
 import { api } from '@/lib/api';
-import { candidatePool, type Candidate } from '@/lib/candidates';
+import { candidatePool, type Candidate, industryList, type Industry } from '@/lib/candidates';
 import { presentationScripts } from '@/data/presentationScripts';
 import BottomNav from '@/components/hireme/BottomNav';
 import ScreenNarrationBlock from '@/components/hireme/ScreenNarrationBlock';
@@ -53,12 +53,14 @@ interface TrialCandidate {
 const NARRATION_HIDDEN_SCREENS = ['landing'];
 
 export default function Home() {
-  const { sessionId, industry, createSession, setIndustry, resetSession } = useSession();
+  const { sessionId, industry, createSession, setIndustry } = useSession();
   const { isNotesPanelOpen, openNotesPanel, closeNotesPanel, toggleNotesPanel } = usePresenterMode();
   const [currentPage, setCurrentPage] = useState('landing');
   const [round1Candidates, setRound1Candidates] = useState<Round1Candidate[]>([]);
+  const [round1Shortlist, setRound1Shortlist] = useState<string[]>([]);
   const [round3Results, setRound3Results] = useState<{ candidates: TrialCandidate[]; successCount: number } | null>(null);
   const [criteriaProfile, setCriteriaProfile] = useState('');
+  const hasHandledJoinRef = useRef(false);
 
   const navigate = useCallback((page: string) => {
     setCurrentPage(page);
@@ -84,16 +86,17 @@ export default function Home() {
   }, [setIndustry, navigate]);
 
   const handleRound1Complete = useCallback(async (shortlist: string[], sortUsed: string, filterUsed: string) => {
-    if (!sessionId) return;
+    if (!sessionId || !industry) return;
     try {
-      const data = await api.submitRound1({ sessionId, shortlist, sortUsed, filterUsed });
+      const data = await api.submitRound1({ sessionId, industry, shortlist, sortUsed, filterUsed });
       setRound1Candidates(data.candidates);
+      setRound1Shortlist(shortlist);
       setCriteriaProfile(data.criteriaProfile);
       navigate('round2');
     } catch (error) {
       console.error('Round1 complete error:', error);
     }
-  }, [sessionId, navigate]);
+  }, [sessionId, industry, navigate]);
 
   const handleRound2Complete = useCallback(async (ratings: Record<string, number>, top3: string[]) => {
     if (!sessionId) return;
@@ -109,6 +112,49 @@ export default function Home() {
     setRound3Results(results);
     navigate('reveal');
   }, [navigate]);
+
+  const normalizeIndustry = useCallback((value: string | null): Industry | null => {
+    if (!value) return null;
+    const normalized = value.toLowerCase();
+    if ((industryList as readonly string[]).includes(normalized)) {
+      return normalized as Industry;
+    }
+    return null;
+  }, []);
+
+  const bootstrapJoinFlow = useCallback(async () => {
+    if (typeof window === 'undefined' || hasHandledJoinRef.current) return;
+    hasHandledJoinRef.current = true;
+
+    const params = new URLSearchParams(window.location.search);
+    const join = params.get('join');
+    if (join !== '1') return;
+
+    const requestedIndustry = normalizeIndustry(params.get('industry'));
+    let activeSessionId = sessionId;
+
+    if (!activeSessionId) {
+      activeSessionId = await createSession();
+    }
+
+    if (requestedIndustry) {
+      await setIndustry(requestedIndustry, activeSessionId || undefined);
+      navigate('round1');
+      return;
+    }
+
+    navigate('industry');
+  }, [createSession, navigate, normalizeIndustry, sessionId, setIndustry]);
+
+  useEffect(() => {
+    const timerId = window.setTimeout(() => {
+      void bootstrapJoinFlow();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timerId);
+    };
+  }, [bootstrapJoinFlow]);
 
   const getRevealData = useCallback(() => {
     if (!industry || !round3Results) return null;
@@ -149,7 +195,7 @@ export default function Home() {
           navigate('landing');
           return null;
         }
-        return <Round3_Task sessionId={sessionId} onComplete={handleRound3Complete} />;
+        return <Round3_Task sessionId={sessionId} industry={industry} shortlist={round1Shortlist} onComplete={handleRound3Complete} />;
       case 'reveal':
         if (!round3Results) {
           navigate('round3');

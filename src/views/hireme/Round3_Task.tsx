@@ -25,10 +25,12 @@ interface TrialCandidate {
 
 interface Round3Props {
   sessionId: string;
+  industry: string | null;
+  shortlist: string[];
   onComplete: (results: { candidates: TrialCandidate[]; successCount: number }) => void;
 }
 
-export default function Round3_Task({ sessionId, onComplete }: Round3Props) {
+export default function Round3_Task({ sessionId, industry, shortlist, onComplete }: Round3Props) {
   const [data, setData] = useState<{ candidates: TrialCandidate[]; successCount: number; failCount: number } | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,9 +40,12 @@ export default function Round3_Task({ sessionId, onComplete }: Round3Props) {
         const res = await fetch('/api/round3', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId }),
+          body: JSON.stringify({ sessionId, industry, shortlist }),
         });
         const result = await res.json();
+        if (!res.ok) {
+          throw new Error(result?.error || 'Round3 request failed');
+        }
         setData(result);
       } catch (error) {
         console.error('Round3 fetch error:', error);
@@ -49,7 +54,7 @@ export default function Round3_Task({ sessionId, onComplete }: Round3Props) {
       }
     }
     fetchResults();
-  }, [sessionId]);
+  }, [industry, sessionId, shortlist]);
 
   useEffect(() => {
     if (data) {

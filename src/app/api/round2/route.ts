@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
     const session = getSession(sessionId);
     if (!session) {
-      return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+      return NextResponse.json({ success: true, volatile: true });
     }
 
     session.round2_ratings = ratings;

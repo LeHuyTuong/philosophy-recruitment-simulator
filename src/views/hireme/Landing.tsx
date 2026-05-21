@@ -83,6 +83,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
 
 function ClientOnlyQR() {
   const [Module, setModule] = useState<{ QRCodeSVG: React.ComponentType<{ value: string; size: number; level: string }> } | null>(null);
+  const qrValue = typeof window !== 'undefined' ? `${window.location.origin}/?join=1` : '';
 
   if (typeof window !== 'undefined' && !Module) {
     import('qrcode.react').then(mod => {
@@ -105,9 +106,24 @@ function ClientOnlyQR() {
   }
 
   const { QRCodeSVG } = Module;
+
+  if (!qrValue) {
+    return (
+      <div className="w-[200px] h-[200px] flex items-center justify-center bg-gray-50 rounded-lg">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="200" fill="#f9fafb" />
+          <rect x="20" y="20" width="60" height="60" rx="8" fill="#e5e7eb" />
+          <rect x="120" y="20" width="60" height="60" rx="8" fill="#e5e7eb" />
+          <rect x="20" y="120" width="60" height="60" rx="8" fill="#e5e7eb" />
+          <rect x="120" y="120" width="60" height="60" rx="8" fill="#e5e7eb" />
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div className="w-[200px] h-[200px] flex items-center justify-center bg-white rounded-lg">
-      <QRCodeSVG value="https://hireme-simulator.vercel.app" size={200} level="M" />
+      <QRCodeSVG value={qrValue} size={200} level="M" />
     </div>
   );
 }

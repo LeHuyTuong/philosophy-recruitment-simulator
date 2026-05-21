@@ -21,7 +21,7 @@ export const api = {
     }),
   getCandidates: (industry: string) =>
     apiFetch(`/api/candidates?industry=${industry}`),
-  submitRound1: (data: { sessionId: string; shortlist: string[]; sortUsed: string; filterUsed: string }) =>
+  submitRound1: (data: { sessionId: string; industry: string; shortlist: string[]; sortUsed: string; filterUsed: string }) =>
     apiFetch('/api/round1', { method: 'POST', body: JSON.stringify(data) }),
   submitRound2: (data: { sessionId: string; ratings: Record<string, number>; top3: string[] }) =>
     apiFetch('/api/round2', { method: 'POST', body: JSON.stringify(data) }),
