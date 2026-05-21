@@ -15,7 +15,6 @@ describe('ProductNavbar', () => {
     expect(screen.getByRole('button', { name: 'Lớp học' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Slide' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Học liệu' })).toBeInTheDocument();
-    // 'Mở rộng' (extensions) removed from main nav by product cleanup
     expect(screen.queryByText('Flow tuyển dụng mô phỏng dành cho sinh viên.')).not.toBeInTheDocument();
 
     await user.click(screen.getByTestId('product-nav-presentation-slides'));
@@ -31,7 +30,6 @@ describe('ProductNavbar', () => {
     await user.click(screen.getByTestId('nav-group-classroom'));
     const classroomMenu = screen.getByTestId('product-nav-menu-classroom');
     expect(within(classroomMenu).getByRole('menuitem', { name: /Dashboard lớp/ })).toBeInTheDocument();
-    expect(within(classroomMenu).getByRole('menuitem', { name: /Kết quả DB/ })).toBeInTheDocument();
 
     await user.click(within(classroomMenu).getByRole('menuitem', { name: /Dashboard lớp/ }));
     expect(onSelect).toHaveBeenCalledWith(expect.objectContaining({ id: 'class-dashboard' }));

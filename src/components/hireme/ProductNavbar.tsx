@@ -21,8 +21,6 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import {
-  getStatusBadgeClass,
-  getStatusBadgeLabel,
   productNavGroups,
   productNavItems,
   type ProductNavItem,
@@ -50,9 +48,6 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const gamePages = new Set(['landing', 'industry', 'round1', 'round2', 'round3', 'reveal', 'final-poll']);
-// hide badges in the main navbar; keep data model intact but don't surface status badges
-const dropdownBadgeStatuses = new Set<string>();
-
 function isActive(item: ProductNavItem, currentPage: string) {
   if (item.id === 'main-experience') return gamePages.has(currentPage);
   return item.targetPage === currentPage;
@@ -66,7 +61,6 @@ const allowedItemIds = new Set([
   'schools',
   'criteria',
   'ai-usage',
-  'db-results',
 ]);
 
 const groupedItems = productNavGroups
@@ -92,9 +86,12 @@ const desktopActions: Array<
 export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarProps) {
   const [openDesktopGroup, setOpenDesktopGroup] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    setHydrated(true);
+
     function handlePointerDown(event: MouseEvent) {
       if (!navRef.current?.contains(event.target as Node)) {
         setOpenDesktopGroup(null);
@@ -138,6 +135,7 @@ export default function ProductNavbar({ currentPage, onSelect }: ProductNavbarPr
       ref={navRef}
       aria-label="Product modules"
       data-testid="product-navbar"
+      data-hydrated={hydrated ? 'true' : 'false'}
       className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">

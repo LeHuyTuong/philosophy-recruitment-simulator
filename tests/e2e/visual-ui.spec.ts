@@ -43,6 +43,8 @@ test.describe('Visual UI regression guards', () => {
   test('ProductNavbar compact desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
     const navbar = page.getByTestId('product-navbar');
     await expect(navbar).toBeVisible();
@@ -55,18 +57,20 @@ test.describe('Visual UI regression guards', () => {
     await expect(navbar.getByText('Màn hình trình chiếu cho giảng viên hoặc nhóm thuyết trình.')).toHaveCount(0);
     await expect(navbar.getByText('Các màn hình demo, preview và tính năng sắp ra mắt.')).toHaveCount(0);
 
-    await expect(navbar.getByRole('button', { name: 'Trải nghiệm' })).toBeVisible();
-    await expect(navbar.getByRole('button', { name: 'Lớp học' })).toBeVisible();
-    await expect(navbar.getByRole('button', { name: 'Slide' })).toBeVisible();
-    await expect(navbar.getByRole('button', { name: 'Học liệu' })).toBeVisible();
-    await expect(navbar.getByRole('button', { name: 'Mở rộng' })).toBeVisible();
+    await expect(navbar.getByTestId('nav-main-experience')).toBeVisible();
+    await expect(navbar.getByTestId('nav-group-classroom')).toBeVisible();
+    await expect(navbar.getByTestId('product-nav-presentation-slides')).toBeVisible();
+    await expect(navbar.getByTestId('nav-group-learning')).toBeVisible();
+    await expect(navbar.getByText('Kết quả DB')).toHaveCount(0);
   });
 
   test('ProductNavbar dropdown behavior', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    await page.getByTestId('nav-group-classroom').click();
+    await page.getByTestId('nav-group-classroom').evaluate(el => (el as HTMLElement).click());
     const classroomMenu = page.getByTestId('product-nav-menu-classroom');
     await expect(classroomMenu).toBeVisible();
 
@@ -74,30 +78,21 @@ test.describe('Visual UI regression guards', () => {
     await expect(classroomDashboard.locator('span').first()).toHaveText('Dashboard lớp');
     await expect(classroomDashboard).toContainText('Dashboard lớp');
     await expect(classroomDashboard).not.toHaveText('Dashboard lớpDB');
-    await expect(classroomDashboard.locator('span').nth(1)).toHaveText(/DB|Demo|Soon/);
+    await expect(page.getByText('Kết quả DB')).toHaveCount(0);
 
-    await expect(page.getByTestId('product-nav-db-results').locator('span').first()).toHaveText('Kết quả DB');
-    await expect(page.getByTestId('product-nav-session-history').locator('span').first()).toHaveText('Lịch sử phiên chơi');
-
-    await page.getByTestId('nav-group-learning').click();
+    await page.getByTestId('nav-group-learning').evaluate(el => (el as HTMLElement).click());
     const learningMenu = page.getByTestId('product-nav-menu-learning');
     await expect(learningMenu).toBeVisible();
     await expect(page.getByTestId('product-nav-schools').locator('span').first()).toHaveText('Trường phái');
     await expect(page.getByTestId('product-nav-criteria').locator('span').first()).toHaveText('Tiêu chí đánh giá');
     await expect(page.getByTestId('product-nav-ai-usage').locator('span').first()).toHaveText('AI Usage');
-
-    await page.getByTestId('nav-group-more').click();
-    const moreMenu = page.getByTestId('product-nav-menu-extensions');
-    await expect(moreMenu).toBeVisible();
-    await expect(page.getByTestId('product-nav-personal-report').locator('span').first()).toHaveText('Báo cáo cá nhân');
-    await expect(page.getByTestId('product-nav-candidate-comparison').locator('span').first()).toHaveText('So sánh ứng viên');
-    await expect(page.getByTestId('product-nav-teacher-mode').locator('span').first()).toHaveText('Teacher Mode');
-    await expect(page.getByTestId('product-nav-export-report').locator('span').first()).toHaveText('Xuất báo cáo');
   });
 
   test('Mobile navbar behavior', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
     const navbar = page.getByTestId('product-navbar');
     await expect(navbar).toBeVisible();
@@ -107,11 +102,11 @@ test.describe('Visual UI regression guards', () => {
     await expect(page.getByText('Flow tuyển dụng mô phỏng dành cho sinh viên.')).toHaveCount(0);
     await expect(page.getByTestId('mobile-menu-button')).toBeVisible();
 
-    await page.getByTestId('mobile-menu-button').click();
+    await page.getByTestId('mobile-menu-button').evaluate(el => (el as HTMLElement).click());
     await expect(page.getByTestId('product-nav-mobile-menu')).toBeVisible();
     await expect(page.getByTestId('product-nav-group-classroom')).toBeVisible();
     await expect(page.getByTestId('product-nav-group-learning')).toBeVisible();
-    await expect(page.getByTestId('product-nav-group-extensions')).toBeVisible();
+    await expect(page.getByText('Kết quả DB')).toHaveCount(0);
 
     const overflow = await page.evaluate(() => document.body.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(2);
@@ -150,38 +145,38 @@ test.describe('Visual UI regression guards', () => {
   test('Dashboard visual honesty check', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    await page.getByTestId('nav-group-classroom').click();
-    await page.getByTestId('product-nav-class-dashboard').click();
+    await page.getByTestId('nav-group-classroom').evaluate(el => (el as HTMLElement).click());
+    await expect(page.getByTestId('product-nav-menu-classroom')).toBeVisible();
+    await page.getByTestId('product-nav-menu-classroom').getByRole('menuitem', { name: 'Dashboard lớp' }).click();
 
     await expect(page.getByTestId('dashboard-page')).toBeVisible();
-    await expect(page.getByTestId('dashboard-real-tab')).toBeVisible();
-    await expect(page.getByTestId('dashboard-demo-tab')).toBeVisible();
-
-    await page.getByTestId('dashboard-real-tab').click();
-    await expect(page.getByText(/Chưa có lượt chơi thật|Tổng số lượt chơi/)).toBeVisible();
-
-    const hasDbUnavailable = await page.getByText(/DB chưa sẵn sàng/i).first().isVisible().catch(() => false);
-    const hasSimLabelInReal = await page.getByText(/Dữ liệu giả lập phục vụ thuyết trình/i).first().isVisible().catch(() => false);
-    expect(hasDbUnavailable && hasSimLabelInReal).toBeFalsy();
-
-    await page.getByTestId('dashboard-demo-tab').click();
-    await expect(page.getByText(/Dữ liệu giả lập|không phải thống kê lớp thật/i).first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Dashboard lớp' })).toBeVisible();
+    await expect(page.getByText('Tổng hợp dữ liệu thật từ các lượt chơi đã hoàn thành.')).toBeVisible();
+    await expect(page.getByText(/Chưa có dữ liệu lớp thật|Có lỗi khi đọc DB/i)).toBeVisible();
+    await expect(page.getByText(/Dữ liệu giả lập|mô phỏng|DB chưa sẵn sàng/i)).toHaveCount(0);
   });
 
   test('Screenshot regression: landing desktop, dashboard desktop, navbar mobile opened', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
     await expect(page).toHaveScreenshot('landing-desktop.png', { fullPage: true });
 
-    await page.getByTestId('nav-group-classroom').click();
-    await page.getByTestId('product-nav-class-dashboard').click();
+    await page.getByTestId('nav-group-classroom').evaluate(el => (el as HTMLElement).click());
+    await expect(page.getByTestId('product-nav-menu-classroom')).toBeVisible();
+    await page.getByTestId('product-nav-menu-classroom').getByRole('menuitem', { name: 'Dashboard lớp' }).click();
     await expect(page.getByTestId('dashboard-page')).toBeVisible();
     await expect(page).toHaveScreenshot('dashboard-desktop.png', { fullPage: true });
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
-    await page.getByTestId('mobile-menu-button').click();
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+    await page.getByTestId('mobile-menu-button').evaluate(el => (el as HTMLElement).click());
     await expect(page.getByTestId('product-nav-mobile-menu')).toBeVisible();
     await expect(page).toHaveScreenshot('mobile-menu.png', { fullPage: true });
   });

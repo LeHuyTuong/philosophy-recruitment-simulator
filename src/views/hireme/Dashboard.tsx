@@ -9,22 +9,6 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import type { DashboardStats } from '@/lib/dashboardStats';
 
-const COLORS = ['#f59e0b', '#3b82f6', '#10b981', '#9ca3af'];
-const INDUSTRY_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
-
-interface DashboardStats {
-  totalSessions: number;
-  byIndustry: Record<string, number>;
-  criteriaProfileDist: Record<string, number>;
-  successRateByProfile: Record<string, number>;
-  crossIndustry: { industry: string; gpa_heavy: number; exp_heavy: number; balanced: number; mixed: number }[];
-  topPicked: { id: string; name: string; count: number }[];
-  topSuccess: { id: string; name: string; count: number }[];
-  finalPoll: { A: number; B: number; C: number };
-  source?: 'db' | 'memory' | 'demo' | 'empty';
-  fallbackReason?: string;
-}
-
 const industryLabels: Record<string, string> = {
   it: 'IT',
   marketing: 'Marketing',
@@ -99,8 +83,6 @@ function DashboardVisuals({ stats }: { stats: DashboardStats }) {
     { name: 'B. Học + thực hành', value: stats.finalPoll.B || 0 },
     { name: 'C. Kinh nghiệm thôi', value: stats.finalPoll.C || 0 },
   ].filter(d => d.value > 0);
-
-  const hasData = stats.totalSessions > 0;
 
   return (
     <>
@@ -261,7 +243,7 @@ export default function Dashboard() {
 
           <div className="mt-4 flex items-center justify-center gap-3">
             <div className="rounded-full border px-3 py-1 text-sm text-slate-700 bg-white">
-              {resp?.ok && resp.source === 'db' && resp.hasData ? 'Dữ liệu Neon DB' : resp?.ok && !resp.hasData ? 'Chưa có dữ liệu thật' : 'DB unavailable'}
+              {resp?.ok && resp.source === 'db' && resp.hasData ? 'Dữ liệu Neon DB' : 'Chưa có dữ liệu thật'}
             </div>
             <button onClick={() => void fetchStats()} className="rounded-full border px-3 py-1 text-sm">Làm mới</button>
           </div>
