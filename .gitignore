@@ -53,3 +53,5 @@ server.log
 # Skills directory
 /skills/.env
 .env.local
+.env
+.env.local
