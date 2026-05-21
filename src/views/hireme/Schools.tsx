@@ -8,68 +8,68 @@ const schools = [
     name: 'Duy tâm chủ quan',
     icon: '🧠',
     thinker: 'George Berkeley, Ernst Mach',
-    view: '"Tồn tại là được cảm giác. Chân lý phụ thuộc cảm nhận cá nhân."',
-    hire: 'Ứng viên có GPA cao — vì tôi CẢM THẤY họ giỏi.',
-    mistake: 'Lấy hiện tượng chủ quan làm bản chất.',
-    color: 'border-red-200 bg-red-50',
-    label: 'SAI',
-    labelColor: 'text-red-600',
+    view: 'Ý thức hoặc cảm giác cá nhân được đặt trước; chân lý bị đặt vào kinh nghiệm chủ quan.',
+    hire: 'Ví dụ tuyển dụng: chọn ứng viên vì “tôi cảm thấy bạn này giỏi”.',
+    mistake: 'Dễ tuyệt đối hóa cảm giác cá nhân.',
+    color: 'border-rose-200 bg-rose-50',
+    status: 'Hạn chế',
+    statusColor: 'text-rose-600',
   },
   {
     name: 'Duy tâm khách quan',
     icon: '🔵',
     thinker: 'Plato, Hegel',
-    view: '"Ý niệm có trước, vật chất có sau. Chân lý có sẵn trong ý niệm tuyệt đối."',
-    hire: 'Người tài là người trời sinh, được số phận chọn.',
-    mistake: 'Tách rời chân lý khỏi thực tiễn vật chất.',
-    color: 'border-orange-200 bg-orange-50',
-    label: 'SAI',
-    labelColor: 'text-orange-600',
+    view: 'Ý niệm, tinh thần khách quan được xem là nguồn gốc; vật chất bị hiểu qua khái niệm có sẵn.',
+    hire: 'Ví dụ tuyển dụng: tin rằng người tài có “tố chất có sẵn”, ít chú ý đến hoàn cảnh thực tiễn.',
+    mistake: 'Dễ tách đánh giá khỏi điều kiện thực tiễn.',
+    color: 'border-amber-200 bg-amber-50',
+    status: 'Hạn chế',
+    statusColor: 'text-amber-600',
   },
   {
-    name: 'Hoài nghi luận',
-    icon: '❓',
-    thinker: 'Pyrrho, David Hume',
-    view: '"Chúng ta không thể biết chắc điều gì là đúng."',
-    hire: '"Ai biết được. Tuyển đại."',
-    mistake: 'Phủ nhận khả năng nhận thức → bế tắc.',
-    color: 'border-yellow-200 bg-yellow-50',
-    label: 'BẾ TẮC',
-    labelColor: 'text-yellow-700',
-  },
-  {
-    name: 'Bất khả tri luận',
-    icon: '🌫️',
-    thinker: 'Immanuel Kant',
-    view: '"Chỉ biết được hiện tượng, không biết được vật tự nó."',
-    hire: '"CV chỉ là bề ngoài, không thể biết bản chất con người."',
-    mistake: 'Dừng ở hiện tượng, không tiến đến bản chất.',
-    color: 'border-gray-200 bg-gray-50',
-    label: 'THIẾU',
-    labelColor: 'text-gray-600',
+    name: 'Duy vật chất phác',
+    icon: '🔬',
+    thinker: 'Trung tính/tiền-biện chứng',
+    view: 'Nhấn mạnh vật chất hoặc các dữ kiện hiện thực một cách trực quan và đơn giản.',
+    hire: 'Ví dụ tuyển dụng: chỉ dựa vào một chỉ số như số dự án hoặc số tháng kinh nghiệm.',
+    mistake: 'Dễ đơn giản hóa, bỏ qua các khía cạnh liên hệ và phát triển.',
+    color: 'border-sky-200 bg-sky-50',
+    status: 'Chưa toàn diện',
+    statusColor: 'text-sky-600',
   },
   {
     name: 'Duy vật siêu hình',
     icon: '📐',
     thinker: 'Feuerbach',
-    view: '"Nhận thức là sự phản ánh tĩnh, máy móc của vật chất vào ý thức."',
-    hire: '"Cứ đo GPA + làm test IQ là biết hết."',
-    mistake: 'Bỏ qua tính biện chứng và vai trò thực tiễn.',
+    view: 'Nhìn sự vật tách rời, tĩnh tại; coi các thuộc tính như các hằng số.',
+    hire: 'Ví dụ tuyển dụng: cộng điểm GPA + thực tập + test rồi kết luận cứng.',
+    mistake: 'Bỏ qua sự phát triển, mâu thuẫn và khả năng thay đổi.',
     color: 'border-slate-200 bg-slate-50',
-    label: 'THIẾU',
-    labelColor: 'text-slate-600',
+    status: 'Chưa toàn diện',
+    statusColor: 'text-slate-600',
   },
   {
-    name: 'Duy vật biện chứng ⭐',
+    name: 'Bất khả tri luận',
+    icon: '🌫️',
+    thinker: 'Immanuel Kant',
+    view: 'Nghi ngờ hoặc phủ nhận khả năng nhận thức bản chất; chỉ có thể biết hiện tượng.',
+    hire: 'Ví dụ tuyển dụng: “CV chỉ là bề ngoài, không thể biết năng lực thật”.',
+    mistake: 'Nếu tuyệt đối hóa sẽ dẫn đến bế tắc trong ra quyết định.',
+    note: 'Ghi chú: các dạng hoài nghi luận (ví dụ Hume) nhấn mạnh nghi vấn về cơ sở khẳng định.',
+    color: 'border-gray-200 bg-gray-50',
+    status: 'Chưa đầy đủ',
+    statusColor: 'text-gray-600',
+  },
+  {
+    name: 'Duy vật biện chứng',
     icon: '⭐',
     thinker: 'Karl Marx, Friedrich Engels, V.I. Lenin',
-    view: '"Nhận thức là quá trình biện chứng đi từ trực quan sinh động → tư duy trừu tượng → thực tiễn. Thực tiễn là tiêu chuẩn của chân lý."',
-    hire: '"Phải qua 3 vòng (CV → Phỏng vấn → Thử việc) — thực tiễn phán quyết."',
-    correct: true,
-    mistake: 'Khắc phục cả duy tâm + hoài nghi + siêu hình.',
-    color: 'border-yellow-400 bg-yellow-50 ring-2 ring-yellow-300',
-    label: 'ĐÚNG',
-    labelColor: 'text-emerald-600',
+    view: 'Nhận thức phải xuất phát từ hiện thực khách quan, xem xét mối liên hệ, sự phát triển và kiểm nghiệm bằng thực tiễn.',
+    hire: 'Ví dụ tuyển dụng: đánh giá qua CV → phỏng vấn → thử việc/tình huống thực tế.',
+    mistake: 'Không dừng ở hiện tượng; khuyến khích kiểm nghiệm thực tiễn.',
+    color: 'border-emerald-300 bg-emerald-50 ring-2 ring-emerald-200',
+    status: 'Phù hợp với bài học',
+    statusColor: 'text-emerald-700',
   },
 ];
 
@@ -84,12 +84,12 @@ export default function Schools() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-            6 Trường phái Nhận thức trong Lịch sử Triết học
+            Các lập trường và phương pháp triết học liên quan đến nhận thức
           </h1>
           <p className="text-sm text-gray-500 mb-3">
-            Mỗi trường phái sẽ trả lời câu hỏi &ldquo;ai sẽ thành công?&rdquo; khác nhau
+            Mỗi lập trường đưa ra một cách nhìn khác nhau về quan hệ giữa vật chất, ý thức và khả năng nhận thức.
           </p>
-          <PhilosophyBadge variant="rational" title="📚 Chương 2.3 · Lý luận nhận thức" subtitle="Trường phái nhận thức" className="mx-auto" />
+          <PhilosophyBadge variant="rational" title="📚 Chương 1–2 · Nhập môn và Lý luận nhận thức" subtitle="Bản đồ lập trường triết học" className="mx-auto" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -108,7 +108,7 @@ export default function Schools() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold text-base">{school.name}</h3>
-                    <span className={`text-xs font-bold ${school.labelColor}`}>{school.label}</span>
+                    <span className={`text-xs font-semibold ${school.statusColor}`}>{school.status}</span>
                   </div>
                   <p className="text-xs text-gray-500">{school.thinker}</p>
                 </div>
@@ -123,10 +123,13 @@ export default function Schools() {
                   <p className="text-xs font-semibold text-gray-500 mb-0.5">Trường phái này tuyển ai?</p>
                   <p className="text-gray-700">{school.hire}</p>
                 </div>
-                <div className={`rounded-lg p-2 ${school.correct ? 'bg-emerald-100' : 'bg-red-100/50'}`}>
-                  <p className={`text-xs font-semibold ${school.correct ? 'text-emerald-700' : 'text-red-600'}`}>
-                    {school.correct ? '✓ Đúng đắn:' : '✗ Sai lầm:'} {school.mistake}
+                <div className={`rounded-lg p-2 bg-gray-50`}>
+                  <p className={`text-xs font-semibold text-gray-700`}>
+                    {school.status ? `${school.status}:` : 'Lưu ý:'} {school.mistake}
                   </p>
+                  {school.note ? (
+                    <p className="text-[11px] text-gray-500 italic mt-2">{school.note}</p>
+                  ) : null}
                 </div>
               </div>
             </motion.div>
@@ -134,9 +137,9 @@ export default function Schools() {
         </div>
 
         <div className="bg-gradient-to-r from-yellow-100 to-emerald-100 rounded-xl border-2 border-emerald-300 p-4 text-center">
-          <p className="text-sm font-bold text-gray-700 mb-1">Bạn vừa chơi game theo trường phái nào?</p>
+          <p className="text-sm font-bold text-gray-700 mb-1">Cách app vận hành gần với lập trường nào?</p>
           <p className="text-sm text-emerald-700 font-semibold">
-            Duy vật biện chứng — bằng cách kiểm nghiệm qua 3 vòng thực tiễn.
+            App tiếp cận theo tinh thần duy vật biện chứng: không dừng ở CV/GPA ban đầu, mà đi qua phân tích, đối chiếu và kiểm nghiệm bằng tình huống thực tiễn.
           </p>
         </div>
       </div>

@@ -70,9 +70,9 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
   const qCounts = successByQuadrant(allCandidates);
 
   const schools = [
-    { name: 'Duy tâm chủ quan (Berkeley)', verdict: 'SAI', color: 'text-red-500', desc: '"Cái tôi tin = chân lý"' },
-    { name: 'Hoài nghi luận (Hume)', verdict: 'BẾ TẮC', color: 'text-yellow-600', desc: '"Không biết được"' },
-    { name: 'Duy vật biện chứng (Marx-Lenin)', verdict: 'ĐÚNG', color: 'text-emerald-600', desc: '"Thực tiễn = tiêu chuẩn"' },
+    { name: 'Duy tâm chủ quan (Berkeley)', status: 'Hạn chế', color: 'text-rose-600', desc: 'Tuyệt đối hóa cảm giác chủ quan' },
+    { name: 'Hoài nghi luận (Hume)', status: 'Giới hạn', color: 'text-yellow-700', desc: 'Làm suy yếu khả năng khẳng định và ra quyết định' },
+    { name: 'Duy vật biện chứng (Marx-Lenin)', status: 'Phù hợp với bài học', color: 'text-emerald-700', desc: 'Nhấn mạnh quá trình nhận thức và kiểm nghiệm bằng thực tiễn' },
   ];
 
   const journey = [
@@ -147,12 +147,12 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + i * 0.1 }}
                 className={`rounded-xl border-2 p-4 text-center ${
-                  s.verdict === 'ĐÚNG' ? 'border-emerald-300 bg-emerald-50' : s.verdict === 'SAI' ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'
-                }`}
+                  s.status === 'Phù hợp với bài học' ? 'border-emerald-300 bg-emerald-50' : s.status === 'Hạn chế' ? 'border-rose-200 bg-rose-50' : 'border-yellow-200 bg-yellow-50'
+                    }`}
               >
-                <p className="text-xs font-bold text-gray-600 mb-1">{s.name}</p>
-                <p className="text-sm text-gray-600 mb-1">{s.desc}</p>
-                <p className={`font-extrabold text-sm ${s.color}`}>{s.verdict}</p>
+                    <p className="text-xs font-bold text-gray-600 mb-1">{s.name}</p>
+                    <p className="text-sm text-gray-600 mb-1">{s.desc}</p>
+                    <p className={`font-extrabold text-sm ${s.color}`}>{s.status}</p>
               </motion.div>
             ))}
           </div>

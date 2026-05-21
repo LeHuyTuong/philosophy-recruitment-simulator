@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { Presentation as PresentationIcon } from 'lucide-react';
 import { useSession } from '@/hooks/useSession';
 import { usePresenterMode } from '@/hooks/usePresenterMode';
 import { api } from '@/lib/api';
@@ -21,6 +22,7 @@ import Criteria from '@/views/hireme/Criteria';
 import Dashboard from '@/views/hireme/Dashboard';
 import FinalPoll from '@/views/hireme/FinalPoll';
 import AIUsage from '@/views/hireme/AIUsage';
+import PresentationSlides from '@/components/hireme/PresentationSlides';
 
 interface Round1Candidate {
   id: string;
@@ -56,6 +58,8 @@ export default function Home() {
   const { sessionId, industry, createSession, setIndustry } = useSession();
   const { isNotesPanelOpen, openNotesPanel, closeNotesPanel, toggleNotesPanel } = usePresenterMode();
   const [currentPage, setCurrentPage] = useState('landing');
+  const [isPresentationOpen, setIsPresentationOpen] = useState(false);
+  const [presentationSession, setPresentationSession] = useState(0);
   const [round1Candidates, setRound1Candidates] = useState<Round1Candidate[]>([]);
   const [round1Shortlist, setRound1Shortlist] = useState<string[]>([]);
   const [round3Results, setRound3Results] = useState<{ candidates: TrialCandidate[]; successCount: number } | null>(null);
@@ -230,6 +234,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white" suppressHydrationWarning>
+      <button
+        onClick={() => {
+          setPresentationSession(session => session + 1);
+          setIsPresentationOpen(true);
+        }}
+        className="fixed top-14 right-3 z-[60] flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium shadow-sm transition-all cursor-pointer border bg-white/90 backdrop-blur-sm text-slate-600 border-slate-200 hover:text-slate-900 hover:bg-slate-50"
+        title="Slide thuyết trình"
+      >
+        <PresentationIcon className="w-3.5 h-3.5" />
+        <span className="hidden sm:inline">Slide thuyết trình</span>
+      </button>
+
       {/* In-document-flow narration block */}
       {showNarration && (
         <div className="px-4 pt-4">
@@ -256,6 +272,12 @@ export default function Home() {
         script={currentScript}
         isOpen={isNotesPanelOpen}
         onClose={closeNotesPanel}
+      />
+
+      <PresentationSlides
+        key={presentationSession}
+        isOpen={isPresentationOpen}
+        onClose={() => setIsPresentationOpen(false)}
       />
     </div>
   );

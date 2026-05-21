@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Skeleton } from '@/components/ui/skeleton';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
 import QuoteBlock from '@/components/hireme/QuoteBlock';
+import { getJobDescription, matchJdSkills } from '@/data/jobDescriptions';
 
 interface Candidate {
   id: string;
@@ -152,16 +153,57 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-yellow-50 to-white"
     >
       <div className="max-w-5xl mx-auto">
-        <div className="mb-4">
-          <PhilosophyBadge
-            variant="sensory"
-            title="GIAI ĐOẠN 1 · NHẬN THỨC CẢM TÍNG"
-            subtitle="📚 Cặp phạm trù: BẢN CHẤT – HIỆN TƯỢNG · CV chỉ là hiện tượng"
-          />
-        </div>
+              <div className="mb-4">
+                <PhilosophyBadge
+                  variant="sensory"
+                  title="GIAI ĐOẠN 1 · NHẬN THỨC CẢM TÍNH"
+                  subtitle="📚 Cặp phạm trù: BẢN CHẤT – HIỆN TƯỢNG · CV chỉ là hiện tượng"
+                />
+              </div>
 
         <div className="bg-slate-100 rounded-lg p-3 mb-4 text-sm border-l-4 border-slate-400">
           💬 <strong>Sếp:</strong> &ldquo;KPI tháng này chỉ được mời 5 người lên phỏng vấn. Sàng lọc kỹ giúp anh.&rdquo;
+        </div>
+
+        {/* Job Description card (from boss) */}
+        <div className="bg-white rounded-lg border p-4 mb-4">
+          {(() => {
+            const jd = getJobDescription(industry);
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="text-sm font-semibold">💼 {jd.title}</h4>
+                  <p className="text-xs text-gray-500 mt-1">{jd.companyContext}</p>
+
+                  <div className="mt-3 text-sm">
+                    <p className="font-semibold text-xs text-gray-600">Yêu cầu bắt buộc</p>
+                    <ul className="list-disc list-inside text-sm mt-1 text-gray-700">
+                      {jd.mustHave.map(m => <li key={m}>{m}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-xs text-gray-600">Gợi ý sàng lọc</p>
+                  <p className="text-sm text-gray-700 mt-1">{jd.evaluationHint}</p>
+
+                  <details className="mt-3 text-sm">
+                    <summary className="cursor-pointer text-xs text-gray-500">Xem JD đầy đủ</summary>
+                    <div className="mt-2">
+                      <p className="font-semibold text-xs text-gray-600">Nhiệm vụ chính</p>
+                      <ul className="list-disc list-inside text-sm mt-1 text-gray-700">
+                        {jd.responsibilities.map(r => <li key={r}>{r}</li>)}
+                      </ul>
+                      <p className="font-semibold text-xs text-gray-600 mt-2">Điểm cộng</p>
+                      <ul className="list-disc list-inside text-sm mt-1 text-gray-700">
+                        {jd.niceToHave.map(n => <li key={n}>{n}</li>)}
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Shuffle microcopy — only show when using default sort */}
@@ -217,24 +259,59 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
                   </div>
                 </div>
 
-                <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm mb-2">
-                  {c.name.split(' ').pop()?.[0]}
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">
+                    {c.name.split(' ').pop()?.[0]}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-sm text-gray-800 truncate pr-6">{c.name}</h3>
+                    <p className="text-xs text-gray-500">GPA <span className={gpaColor(c.gpa)}>{c.gpa.toFixed(2)}</span></p>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-sm text-gray-800 truncate pr-6">{c.name}</h3>
-                <p className={`text-lg font-bold ${gpaColor(c.gpa)}`}>{c.gpa.toFixed(2)}</p>
+
                 <div className="text-xs text-gray-500 space-y-0.5 mt-1">
-                  <p>{c.internshipMonths} tháng thực tập</p>
-                  <p>{c.projects} dự án</p>
+                  <p>
+                    <strong>Kinh nghiệm:</strong>{' '}
+                    {c.internshipMonths > 0 ? `${c.internshipMonths} tháng thực tập` : 'Chưa có kinh nghiệm doanh nghiệp'}
+                    {' · '}
+                    {c.projects > 0 ? `${c.projects} dự án` : 'Chưa có portfolio rõ ràng'}
+                  </p>
                 </div>
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {c.skills.slice(0, 2).map(s => (
-                    <span key={s} className="text-[10px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">{s}</span>
+
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {c.skills.map(s => (
+                    <span key={s} className="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded">{s}</span>
                   ))}
-                  {c.skills.length > 2 && (
-                    <span className="text-[10px] text-gray-400">+{c.skills.length - 2}</span>
-                  )}
                 </div>
-                <p className="text-[10px] text-gray-400 italic mt-1.5 truncate">{c.note}</p>
+
+                <p className="text-[10px] text-gray-400 italic mt-2 truncate">{c.note}</p>
+                {/* JD fit hints */}
+                <div className="mt-2 text-xs text-gray-600">
+                  {(() => {
+                    const jd = getJobDescription(industry);
+                    const { matchedMust, matchedNice } = matchJdSkills(c.skills, jd);
+                    const displayMust = matchedMust.slice(0, 3).map(m => m.replace(/\b([a-z])/g, s => s.toUpperCase()));
+                    const displayNice = matchedNice.slice(0, 3).map(n => n.replace(/\b([a-z])/g, s => s.toUpperCase()));
+                    const note = (c.note || '').toLowerCase();
+                    const warnings: string[] = [];
+                    if (/(kiêu|ngại|tiêu cực|cãi|ngại)/.test(note)) warnings.push('thái độ / làm việc nhóm');
+
+                    return (
+                      <div>
+                        {displayMust.length > 0 ? (
+                          <p><strong>Khớp JD:</strong> {displayMust.join(', ')}</p>
+                        ) : matchedNice.length > 0 ? (
+                          <p><strong>Điểm cộng JD:</strong> {displayNice.join(', ')}</p>
+                        ) : (
+                          <p><strong>Khớp JD:</strong> Chưa rõ - cần kiểm chứng qua phỏng vấn</p>
+                        )}
+                        {warnings.length > 0 && (
+                          <p className="text-[11px] text-rose-600 mt-1">Cần kiểm chứng: {warnings.join(', ')}</p>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
               </motion.div>
             );
           })}
@@ -299,13 +376,15 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
                     <p className="text-xs text-gray-500">GPA</p>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-3 text-center">
-                    <p className="text-2xl font-bold">{card.internshipMonths}</p>
-                    <p className="text-xs text-gray-500">Tháng thực tập</p>
+                    <p className="text-sm">
+                      {card.internshipMonths > 0 ? `${card.internshipMonths} tháng thực tập` : 'Chưa có kinh nghiệm doanh nghiệp'}
+                    </p>
+                    <p className="text-xs text-gray-500">Kinh nghiệm</p>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <p className="text-sm font-semibold mb-1">Dự án: {card.projects}</p>
-                  <div className="flex flex-wrap gap-1">
+                  <p className="text-sm font-semibold mb-1">Portfolio: {card.projects > 0 ? `${card.projects} dự án` : 'Chưa có portfolio rõ ràng'}</p>
+                  <div className="flex flex-wrap gap-2">
                     {card.skills.map(s => (
                       <span key={s} className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">{s}</span>
                     ))}

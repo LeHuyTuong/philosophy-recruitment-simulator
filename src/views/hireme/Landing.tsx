@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
 
@@ -85,11 +85,20 @@ function ClientOnlyQR() {
   const [Module, setModule] = useState<{ QRCodeSVG: React.ComponentType<{ value: string; size: number; level: string }> } | null>(null);
   const qrValue = typeof window !== 'undefined' ? `${window.location.origin}/?join=1` : '';
 
-  if (typeof window !== 'undefined' && !Module) {
-    import('qrcode.react').then(mod => {
-      setModule({ QRCodeSVG: mod.QRCodeSVG as React.ComponentType<{ value: string; size: number; level: string }> });
-    });
-  }
+  useEffect(() => {
+    let isMounted = true;
+
+    if (!Module) {
+      void import('qrcode.react').then(mod => {
+        if (!isMounted) return;
+        setModule({ QRCodeSVG: mod.QRCodeSVG as React.ComponentType<{ value: string; size: number; level: string }> });
+      });
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [Module]);
 
   if (!Module) {
     return (
