@@ -6,13 +6,15 @@ import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
 
 interface TrialCandidate {
   id: string;
-  name: string;
-  gpa: number;
-  internshipMonths: number;
-  projects: number;
-  skills: string[];
-  quadrant: string;
-  outcome: 'success' | 'fail';
+  name?: string;
+  label?: string;
+  gpa?: number;
+  internshipMonths?: number;
+  projects?: number;
+  skills?: string[];
+  quadrant?: string;
+  outcome?: 'success' | 'fail';
+  selectionReason?: string; // optional: why player selected this candidate
 }
 
 interface RevealProps {
@@ -25,23 +27,23 @@ interface RevealProps {
 
 const verdicts: Record<string, { title: string; description: string; color: string }> = {
   gpa_heavy: {
-    title: 'Duy tâm chủ quan (Berkeley)',
-    description: 'Bạn ưu tiên GPA — bạn đang ở vị trí của BERKELEY (Duy tâm chủ quan): lấy con số trên giấy làm chân lý.',
+    title: 'Xu hướng ưu tiên học thuật',
+    description: 'Xu hướng cho thấy bạn ưu tiên thành tích học tập (GPA) hơn yếu tố thực hành.',
     color: 'border-red-300 bg-red-50 text-red-700',
   },
   exp_heavy: {
-    title: 'Thực tiễn mù quáng',
-    description: 'Bạn ưu tiên kinh nghiệm — bạn nghiêng về "thực tiễn mù quáng" theo Hồ Chí Minh: thực tiễn không có lý luận.',
+    title: 'Xu hướng ưu tiên kinh nghiệm',
+    description: 'Xu hướng cho thấy bạn đánh giá cao kinh nghiệm thực tế và sản phẩm/thực hành.',
     color: 'border-yellow-300 bg-yellow-50 text-yellow-700',
   },
   balanced: {
-    title: 'Phép biện chứng chứng ✓',
-    description: 'Bạn kết hợp cả hai — bạn đang vận dụng PHÉP BIỆN CHỨNG: lý luận đi đôi với thực tiễn.',
+    title: 'Xu hướng đánh giá cân bằng',
+    description: 'Bạn có xu hướng kết hợp cả thành tích học thuật và kinh nghiệm thực tế trong đánh giá.',
     color: 'border-emerald-300 bg-emerald-50 text-emerald-700',
   },
   mixed: {
-    title: 'Hoài nghi luận',
-    description: 'Bạn chọn ngẫu nhiên — gần với HOÀI NGHI LUẬN: không có tiêu chí rõ ràng.',
+    title: 'Dữ liệu chưa đủ để kết luận xu hướng rõ ràng',
+    description: 'Không có xu hướng rõ rệt từ các lựa chọn — cần thêm kiểm nghiệm để kết luận.',
     color: 'border-gray-300 bg-gray-50 text-gray-600',
   },
 };
@@ -51,7 +53,7 @@ const quadrantLabels: Record<string, string> = {
   Q2: 'GPA cao + Thực tập thấp',
   Q3: 'GPA thấp + Thực tập cao',
   Q4: 'GPA thấp + Thực tập thấp',
-  WILD: 'Đặc biệt',
+  WILD: 'Hồ sơ ngoại lệ',
 };
 
 const successByQuadrant = (candidates: TrialCandidate[]) => {
@@ -70,9 +72,9 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
   const qCounts = successByQuadrant(allCandidates);
 
   const schools = [
-    { name: 'Duy tâm chủ quan (Berkeley)', status: 'Hạn chế', color: 'text-rose-600', desc: 'Tuyệt đối hóa cảm giác chủ quan' },
-    { name: 'Hoài nghi luận (Hume)', status: 'Giới hạn', color: 'text-yellow-700', desc: 'Làm suy yếu khả năng khẳng định và ra quyết định' },
-    { name: 'Duy vật biện chứng (Marx-Lenin)', status: 'Phù hợp với bài học', color: 'text-emerald-700', desc: 'Nhấn mạnh quá trình nhận thức và kiểm nghiệm bằng thực tiễn' },
+    { name: 'Xu hướng ưu tiên học thuật', status: 'Lưu ý', color: 'text-rose-600', desc: 'Ưu tiên thành tích học thuật trong đánh giá' },
+    { name: 'Xu hướng ưu tiên kinh nghiệm', status: 'Lưu ý', color: 'text-yellow-700', desc: 'Ưu tiên năng lực thực hành và sản phẩm' },
+    { name: 'Đánh giá cân bằng', status: 'Khuyến khích', color: 'text-emerald-700', desc: 'Kết hợp học thuật và thực hành, ưu tiên kiểm nghiệm' },
   ];
 
   const journey = [
@@ -97,9 +99,9 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           className="text-center mb-6"
         >
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">
-            THỰC TIỄN ĐÃ PHÁN QUYẾT
+            THỰC TIỄN GIÚP KIỂM NGHIỆM
           </h1>
-          <PhilosophyBadge variant="practice" title="Kết quả · BẢN CHẤT đã lộ ra" />
+          <PhilosophyBadge variant="practice" title="Kết quả · Bản chất dần bộc lộ" />
         </motion.div>
 
         {/* Criteria verdict */}
@@ -120,7 +122,12 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           transition={{ delay: 0.4 }}
           className="bg-white rounded-xl border p-4 mb-6"
         >
-          <h3 className="font-bold text-sm mb-3 text-gray-700">Top ứng viên thực sự PASS theo phân khu:</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold text-sm mb-3 text-gray-700">Tỷ lệ PASS theo nhóm hồ sơ</h3>
+            {process.env.NODE_ENV === 'development' && (
+              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Dữ liệu minh họa</span>
+            )}
+          </div>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(qCounts).map(([q, counts]) => (
               <div key={q} className="bg-gray-50 rounded-lg p-3">
@@ -132,29 +139,105 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-2 italic">
-            Phân khu Q1 (GPA cao + thực hành) có xác suất thành công cao nhất — nhưng Q3 và WILD cũng đáng kể.
+            Bảng này thống kê toàn bộ bộ ứng viên trong lượt chơi, không chỉ 5 ứng viên bạn đã chọn.
           </p>
+        </motion.div>
+
+        {/* 5 selected candidates results */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="bg-white rounded-xl border p-4 mb-6"
+        >
+          <h3 className="font-bold text-sm mb-3 text-gray-700">Kết quả kiểm nghiệm 5 ứng viên bạn đã chọn</h3>
+
+          <p className="text-xs text-gray-500 mb-3">
+            PASS được xác định từ vòng kiểm nghiệm thực tiễn, gồm bài test tình huống, phỏng vấn phản biện, sản phẩm/kinh nghiệm thực tế và khả năng học tiếp.
+            <br />Quy tắc hiển thị: PASS nếu practicalScore ≥ 70; CẦN XEM XÉT nếu 50 ≤ practicalScore &lt; 70; FAIL nếu practicalScore &lt; 50.
+          </p>
+
+          <div className="space-y-3">
+            {candidates && candidates.length > 0 ? (
+              candidates.map((c) => {
+                const candidate = c as TrialCandidate;
+                const name = candidate.name || candidate.label || candidate.id;
+                const quadrant = quadrantLabels[candidate.quadrant || ''] || (candidate.quadrant || 'Không rõ');
+                // derive practical score/result
+                const derivePracticalResult = (cand: TrialCandidate) => {
+                  const months = cand.internshipMonths ?? NaN;
+                  const projects = cand.projects ?? NaN;
+                  const skills = (cand.skills || []).length;
+
+                  const hasEnough = Number.isFinite(months) || Number.isFinite(projects) || skills > 0;
+                  if (!hasEnough) {
+                    return { score: null as number | null, result: 'CẦN XEM XÉT', reason: 'Dữ liệu kiểm nghiệm chưa đủ.' };
+                  }
+
+                  const normMonths = Number.isFinite(months) ? Math.min(36, months) / 36 : 0; // cap at 36 months
+                  const normProjects = Number.isFinite(projects) ? Math.min(10, projects) / 10 : 0; // cap
+
+                  // weighted sum -> 100 scale: months 40%, projects 40%, skills 20%
+                  const score = Math.round((normMonths * 40 + normProjects * 40 + Math.min(10, skills) / 10 * 20));
+                  let result = 'CẦN XEM XÉT';
+                  if (score >= 70) result = 'PASS';
+                  else if (score < 50) result = 'FAIL';
+
+                  const reasonParts: string[] = [];
+                  if (Number.isFinite(months)) reasonParts.push(`${months} tháng thực tập`);
+                  if (Number.isFinite(projects)) reasonParts.push(`${projects} dự án`);
+                  if (skills > 0) reasonParts.push(`${skills} kỹ năng`);
+
+                  return { score, result, reason: reasonParts.length ? reasonParts.join(' · ') : 'Dữ liệu kiểm nghiệm chưa đủ.' };
+                };
+
+                const res = derivePracticalResult(candidate);
+
+                return (
+                  <div key={candidate.id} className="border rounded-lg p-3 flex items-start justify-between">
+                    <div>
+                      <div className="text-sm font-bold text-gray-800">{name}</div>
+                      <div className="text-xs text-gray-500">Nhóm: {quadrant}</div>
+                      {candidate.selectionReason && (
+                        <div className="text-xs text-gray-600 mt-1">Bạn chọn vì: {candidate.selectionReason}</div>
+                      )}
+                      <div className="text-xs text-gray-600 mt-1">Lý do: {res.reason}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className={`font-extrabold ${res.result === 'PASS' ? 'text-emerald-600' : res.result === 'FAIL' ? 'text-rose-600' : 'text-yellow-700'}`}>
+                        {res.result}
+                      </div>
+                      <div className="text-xs text-gray-400">{res.score === null ? 'Không đủ dữ liệu' : `Practical ${res.score}`}</div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-sm text-gray-500">Không có ứng viên được chọn trong lượt chơi này.</p>
+            )}
+          </div>
         </motion.div>
 
         {/* 3 schools comparison */}
         <div className="mb-6">
           <h3 className="font-bold text-sm mb-3 text-gray-700">Ba trường phái so sánh:</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {schools.map((s, i) => (
-              <motion.div
-                key={s.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className={`rounded-xl border-2 p-4 text-center ${
-                  s.status === 'Phù hợp với bài học' ? 'border-emerald-300 bg-emerald-50' : s.status === 'Hạn chế' ? 'border-rose-200 bg-rose-50' : 'border-yellow-200 bg-yellow-50'
-                    }`}
-              >
-                    <p className="text-xs font-bold text-gray-600 mb-1">{s.name}</p>
-                    <p className="text-sm text-gray-600 mb-1">{s.desc}</p>
-                    <p className={`font-extrabold text-sm ${s.color}`}>{s.status}</p>
-              </motion.div>
-            ))}
+            {schools.map((s, i) => {
+              const toneClass = s.status === 'Khuyến khích' ? 'border-emerald-300 bg-emerald-50' : s.status === 'Lưu ý' ? 'border-yellow-200 bg-yellow-50' : 'border-gray-200 bg-white';
+              return (
+                <motion.div
+                  key={s.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  className={`rounded-xl border-2 p-4 text-center ${toneClass}`}
+                >
+                  <p className="text-xs font-bold text-gray-600 mb-1">{s.name}</p>
+                  <p className="text-sm text-gray-600 mb-1">{s.desc}</p>
+                  <p className={`font-extrabold text-sm ${s.color}`}>{s.status}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -185,12 +268,14 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-5 text-white mb-6"
         >
           <p className="text-sm leading-relaxed font-medium">
-            GPA cao + thực hành = xác suất cao nhất.
-            <br />Chỉ GPA cao = lý luận suông (Hồ Chí Minh).
-            <br />Chỉ kinh nghiệm = thực tiễn mù quáng (Hồ Chí Minh).
-            <br />Cả hai + thực tiễn kiểm nghiệm = <strong>CHÂN LÝ</strong>.
+            Trong bộ dữ liệu này, nhóm GPA cao + thực hành tốt có tỷ lệ PASS cao hơn. Tuy vậy, nhóm GPA thấp + thực hành cao và hồ sơ ngoại lệ cho thấy không nên đánh giá ứng viên chỉ bằng một chỉ số đơn lẻ.
+            <br />CV/GPA chỉ là hiện tượng ban đầu — phỏng vấn, bài test và thử việc là quá trình kiểm nghiệm để làm rõ năng lực thực tế. Thực tiễn giúp kiểm tra nhận thức; không tuyệt đối hóa một chỉ số.
           </p>
         </motion.div>
+
+        <div className="text-xs text-gray-500 mb-6">
+          <strong>Hồ sơ ngoại lệ:</strong> Hồ sơ ngoại lệ là các ứng viên không thuộc rõ 4 nhóm GPA/thực tập chính, nhưng có tín hiệu đặc thù như sản phẩm nổi bật, năng lực tự học, kinh nghiệm không chính quy hoặc dữ liệu chưa đầy đủ.
+        </div>
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
