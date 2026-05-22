@@ -5,6 +5,9 @@ export interface PresentationSlide {
   bullets: string[];
   philosophyLink: string;
   speakerNote?: string;
+  appConnection?: string; // optional: how this slide connects to the app
+  reflectionQuestion?: string[]; // optional reflective questions
+  takeaway?: string[]; // optional key takeaways
 }
 
 export const presentationSlides: PresentationSlide[] = [
@@ -19,6 +22,14 @@ export const presentationSlides: PresentationSlide[] = [
     ],
     philosophyLink: 'Lý luận nhận thức: nhận thức ban đầu chỉ là điểm xuất phát, phải được kiểm nghiệm qua thực tiễn.',
     speakerNote: 'Mở bằng một niềm tin quen thuộc để kéo người nghe vào câu hỏi trung tâm của sản phẩm.',
+    appConnection: 'Người chơi bắt đầu bằng dữ liệu CV/GPA và phải đặt câu hỏi: đây là bản chất hay chỉ là hiện tượng?',
+    reflectionQuestion: [
+      'Bạn có đang đánh giá ứng viên chỉ bằng một dấu hiệu ban đầu không?',
+      'Điều gì chứng minh năng lực thật sự của một người?'
+    ],
+    takeaway: [
+      'CV/GPA là điểm xuất phát, không phải kết luận cuối cùng.',
+    ],
   },
   {
     id: 'idea',
@@ -41,6 +52,13 @@ export const presentationSlides: PresentationSlide[] = [
       'Thực tiễn: kiểm nghiệm bằng thử việc và kết quả thực tế.',
     ],
     philosophyLink: 'Học qua trải nghiệm giúp tri thức đi từ hiểu sang làm, từ biết sang vận dụng được, từ nhận thức sang kiểm nghiệm được.',
+    appConnection: 'App mô phỏng quá trình từ quan sát hồ sơ đến phỏng vấn và kiểm nghiệm thực tiễn.',
+    reflectionQuestion: [
+      'Khi dữ liệu ban đầu và kết quả thực tế khác nhau, bạn điều chỉnh nhận thức thế nào?'
+    ],
+    takeaway: [
+      'Luồng trải nghiệm giúp chuyển từ nhận diện hiện tượng sang kiểm nghiệm thực tế.'
+    ],
   },
   {
     id: 'round1',
@@ -74,6 +92,13 @@ export const presentationSlides: PresentationSlide[] = [
       'Người GPA vừa phải vẫn có thể tỏa sáng nhờ năng lực thật.',
     ],
     philosophyLink: 'Thực tiễn là tiêu chuẩn của chân lý: năng lực chỉ được xác nhận qua hoạt động thực tế.',
+    appConnection: 'Kết quả thử việc giúp kiểm tra nhận định ban đầu về năng lực.',
+    reflectionQuestion: [
+      'Kết quả thử việc có khớp với dự đoán ban đầu không?'
+    ],
+    takeaway: [
+      'Năng lực phải được kiểm nghiệm qua kết quả thực tế, không chỉ dựa vào dấu hiệu ban đầu.'
+    ],
   },
   {
     id: 'dashboard',
@@ -107,6 +132,13 @@ export const presentationSlides: PresentationSlide[] = [
       'Điều đó thể hiện vai trò chủ động của chủ thể trong nhận thức.',
     ],
     philosophyLink: 'Nhận thức là quá trình chủ động của con người — công cụ hỗ trợ, nhưng chủ thể nhận thức vẫn là con người.',
+    appConnection: 'Phần AI hỗ trợ được ghi nhận trong màn Minh bạch sử dụng AI; nhóm giữ trách nhiệm học thuật và chọn lọc nội dung.',
+    reflectionQuestion: [
+      'AI hỗ trợ được phần nào trong quy trình mà bạn thấy hữu ích?'
+    ],
+    takeaway: [
+      'AI là công cụ hỗ trợ kỹ thuật và trình bày; lập luận và kết luận thuộc về con người.'
+    ],
   },
   {
     id: 'conclusion',

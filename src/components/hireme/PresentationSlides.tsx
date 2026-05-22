@@ -35,7 +35,6 @@ function SlideBody({ slide }: { slide: PresentationSlide }) {
           ))}
         </ul>
       </div>
-
       <aside className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm backdrop-blur-sm space-y-4">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Liên hệ triết học</p>
@@ -50,6 +49,38 @@ function SlideBody({ slide }: { slide: PresentationSlide }) {
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">{slide.speakerNote}</p>
           </div>
         ) : null}
+
+        {/* Optional helper boxes: app connection, reflection questions, takeaways */}
+        <div className="grid grid-cols-1 gap-3">
+          {slide.appConnection ? (
+            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Liên hệ với app</p>
+              <p className="mt-2 text-sm text-slate-600 leading-relaxed">{slide.appConnection}</p>
+            </div>
+          ) : null}
+
+          {slide.reflectionQuestion ? (
+            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Câu hỏi phản tư</p>
+              <ul className="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-4 space-y-1">
+                {slide.reflectionQuestion.map((q) => (
+                  <li key={q}>{q}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {slide.takeaway ? (
+            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Ý chính cần nhớ</p>
+              <ul className="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-4 space-y-1">
+                {slide.takeaway.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
       </aside>
     </div>
   );
