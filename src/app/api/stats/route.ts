@@ -12,7 +12,7 @@ export async function GET() {
     const db = mod.db;
     if (!db?.playSession) {
       const dur = Math.round(performance.now() - t0);
-      const res = NextResponse.json({ ok: false, source: 'db', hasData: false, error: 'database unavailable' }, { status: 500, headers: { 'Server-Timing': `db;dur=${dur}` } });
+      const res = NextResponse.json({ ok: false, source: 'db', hasData: false, error: 'dashboard_data_unavailable' }, { status: 500, headers: { 'Server-Timing': `db;dur=${dur}` } });
       if (process.env.NODE_ENV !== 'production') console.debug(`[dashboard] /api/stats DB unavailable (${dur}ms)`);
       return res;
     }
@@ -23,7 +23,7 @@ export async function GET() {
 
     if (!sessions || sessions.length === 0) {
       return NextResponse.json(
-        { ok: true, source: 'db', hasData: false, totalSessions: 0, stats: null },
+        { ok: true, source: 'db', hasData: false, totalSessions: 0, data: [], stats: null },
         { headers: { 'Server-Timing': `db;dur=${dur}` } }
       );
     }
@@ -45,6 +45,6 @@ export async function GET() {
     const dur = Math.round(performance.now() - t0);
     console.error('Stats error:', error);
     if (process.env.NODE_ENV !== 'production') console.debug(`[dashboard] /api/stats error (${dur}ms)`, error);
-    return NextResponse.json({ ok: false, source: 'db', hasData: false, error: 'database unavailable' }, { status: 500, headers: { 'Server-Timing': `db;dur=${dur}` } });
+    return NextResponse.json({ ok: false, source: 'db', hasData: false, error: 'dashboard_data_unavailable' }, { status: 500, headers: { 'Server-Timing': `db;dur=${dur}` } });
   }
 }

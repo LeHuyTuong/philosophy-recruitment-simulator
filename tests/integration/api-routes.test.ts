@@ -72,7 +72,29 @@ describe('API route integration shape', () => {
     expect(body.source).toBe('db');
     expect(body.hasData).toBe(false);
     expect(body.totalSessions).toBe(0);
+    expect(body.data).toEqual([]);
     expect(body.stats).toBeNull();
+  });
+
+  it('/api/stats returns a sanitized error when DB read fails', async () => {
+    vi.doMock('@/lib/db', () => ({
+      db: {
+        playSession: {
+          findMany: vi.fn().mockRejectedValue(new Error('database unavailable')),
+        },
+      },
+    }));
+
+    const { GET } = await import('@/app/api/stats/route');
+    const response = await GET();
+    const body = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(body.ok).toBe(false);
+    expect(body.source).toBe('db');
+    expect(body.hasData).toBe(false);
+    expect(body.error).toBe('dashboard_data_unavailable');
+    expect(JSON.stringify(body)).not.toContain('database unavailable');
   });
 
   it('/api/sessions/recent returns an anonymous list safely', async () => {

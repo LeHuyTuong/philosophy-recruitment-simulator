@@ -7,7 +7,7 @@ import {
   PieChart, Pie, Cell, Legend
 } from 'recharts';
 import { Skeleton } from '@/components/ui/skeleton';
-import type { DashboardStats } from '@/lib/dashboardStats';
+import { createDemoDashboardStats, type DashboardStats } from '@/lib/dashboardStats';
 
 const industryLabels: Record<string, string> = {
   it: 'IT',
@@ -31,6 +31,7 @@ type ApiStatsResponse = {
   hasData: boolean;
   totalSessions: number;
   stats: DashboardStats | null;
+  data?: unknown[];
   error?: string;
 };
 
@@ -44,11 +45,17 @@ function SummaryCard({ label, value, caption }: { label: string; value: string |
   );
 }
 
-function DashboardEmptyState({ onOpenQR, onStartExperience }: { onOpenQR: () => void; onStartExperience: () => void }) {
+function DashboardEmptyState({
+  onOpenQR,
+  onStartExperience,
+}: {
+  onOpenQR: () => void;
+  onStartExperience: () => void;
+}) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
       <p className="text-base font-semibold text-slate-900">
-        Chưa có dữ liệu lớp thật. Hãy cho sinh viên quét QR và hoàn thành trải nghiệm để tạo dữ liệu.
+        Chưa có lượt chơi nào được ghi nhận. Hãy hoàn thành một lượt chơi để dashboard tự động cập nhật.
       </p>
       <div className="mt-4 flex items-center justify-center gap-3">
         <button type="button" onClick={onOpenQR} className="rounded-full border px-4 py-2 text-sm font-semibold bg-slate-900 text-white">Mở QR tham gia</button>
@@ -185,10 +192,13 @@ function DashboardVisuals({ stats }: { stats: DashboardStats }) {
 
 export default function Dashboard() {
   const [apiResp, setApiResp] = useState<ApiStatsResponse | null>(null);
+  const [renderStats, setRenderStats] = useState<DashboardStats | null>(null);
+  const [isDemoFallback, setIsDemoFallback] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchStats = async () => {
     setLoading(true);
+    setIsDemoFallback(false);
     const t0 = performance.now();
     try {
       const res = await fetch('/api/stats');
@@ -196,9 +206,32 @@ export default function Dashboard() {
       const dur = Math.round(performance.now() - t0);
       if (process.env.NODE_ENV !== 'production') console.debug(`[dashboard] fetch /api/stats ${res.status} ${dur}ms`);
       setApiResp(data);
+      if (data.ok && data.hasData && data.stats) {
+        setRenderStats(data.stats);
+        return;
+      }
+
+      if (data.ok && !data.hasData) {
+        setRenderStats(null);
+        return;
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: DB chưa sẵn sàng hoặc chưa có dữ liệu.'));
+        setIsDemoFallback(true);
+        return;
+      }
+
+      setRenderStats(null);
     } catch (err) {
       console.error('Stats fetch error:', err);
       setApiResp({ ok: false, source: 'db', hasData: false, totalSessions: 0, stats: null, error: 'network' });
+      if (process.env.NODE_ENV !== 'production') {
+        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: không thể tải dữ liệu DB thật.'));
+        setIsDemoFallback(true);
+        return;
+      }
+      setRenderStats(null);
     } finally {
       setLoading(false);
     }
@@ -227,6 +260,13 @@ export default function Dashboard() {
   }
 
   const resp = apiResp;
+  const statusLabel = isDemoFallback
+    ? 'Dữ liệu minh họa'
+    : resp?.ok && resp.source === 'db' && resp.hasData
+      ? 'Dữ liệu Neon DB'
+      : resp?.ok && !resp.hasData
+        ? 'Chưa có dữ liệu thật'
+        : 'Chưa thể tải dữ liệu lớp học';
 
   return (
     <motion.div
@@ -242,19 +282,26 @@ export default function Dashboard() {
           <p className="mx-auto max-w-2xl text-sm text-slate-600">Tổng hợp dữ liệu thật từ các lượt chơi đã hoàn thành.</p>
 
           <div className="mt-4 flex items-center justify-center gap-3">
-            <div className="rounded-full border px-3 py-1 text-sm text-slate-700 bg-white">
-              {resp?.ok && resp.source === 'db' && resp.hasData ? 'Dữ liệu Neon DB' : 'Chưa có dữ liệu thật'}
+            <div className={`rounded-full border px-3 py-1 text-sm ${isDemoFallback ? 'border-amber-200 bg-amber-50 text-amber-800' : 'text-slate-700 bg-white'}`}>
+              {statusLabel}
             </div>
             <button onClick={() => void fetchStats()} className="rounded-full border px-3 py-1 text-sm">Làm mới</button>
           </div>
         </div>
 
-        {resp && resp.ok && resp.hasData && resp.stats ? (
-          <DashboardVisuals stats={resp.stats} />
+        {renderStats ? (
+          <div className="space-y-3">
+            {isDemoFallback ? (
+              <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+                Dữ liệu minh họa
+              </div>
+            ) : null}
+            <DashboardVisuals stats={renderStats} />
+          </div>
         ) : resp && resp.ok && !resp.hasData ? (
           <DashboardEmptyState onOpenQR={() => window.open('/', '_blank')} onStartExperience={() => (window.location.href = '/')} />
         ) : (
-          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center">Có lỗi khi đọc DB. Vui lòng kiểm tra kết nối DB.</div>
+          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center text-rose-800">Chưa thể tải dữ liệu lớp học. Vui lòng thử làm mới sau.</div>
         )}
       </div>
     </motion.div>

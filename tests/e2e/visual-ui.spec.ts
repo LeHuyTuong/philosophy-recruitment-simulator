@@ -155,7 +155,8 @@ test.describe('Visual UI regression guards', () => {
     await expect(page.getByTestId('dashboard-page')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Dashboard lớp' })).toBeVisible();
     await expect(page.getByText('Tổng hợp dữ liệu thật từ các lượt chơi đã hoàn thành.')).toBeVisible();
-    await expect(page.getByText(/Chưa có dữ liệu lớp thật|Có lỗi khi đọc DB/i)).toBeVisible();
+    await expect(page.getByText(/Chưa có lượt chơi nào được ghi nhận|Dữ liệu minh họa|Chưa thể tải dữ liệu lớp học/i)).toBeVisible();
+    await expect(page.getByText(/database unavailable/i)).toHaveCount(0);
     await expect(page.getByText(/Dữ liệu giả lập|mô phỏng|DB chưa sẵn sàng/i)).toHaveCount(0);
   });
 
