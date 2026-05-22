@@ -179,7 +179,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     purpose:
       "Tổng hợp dữ liệu người chơi để tạo thảo luận trong lớp. Biến app thành công cụ học tập tương tác.",
     philosophy:
-      "Cặp phạm trù Cái chung – Cái riêng. Mỗi người chơi, mỗi ngành là một cái riêng; dashboard giúp rút ra xu hướng chung — cái chung trong cái riêng.",
+      "Cặp phạm trù Cái chung – Cái riêng. Quy luật chung về đánh giá năng lực không tồn tại tách rời, mà được biểu hiện qua từng trường hợp cụ thể.",
     talkTrack:
       "Dashboard biến app thành một công cụ học tập tương tác. Không chỉ một cá nhân chơi, mà cả lớp tạo ra dữ liệu. Giáo viên có thể dùng dữ liệu này để thảo luận: vì sao nhiều người ưu tiên GPA, vì sao tiêu chí cân bằng thường hiệu quả hơn, và thực tiễn đã phản biện nhận thức ban đầu như thế nào. Xu hướng chung từ nhiều cái riêng chính là biểu hiện của cái chung trong cái riêng.",
     productValue:
@@ -189,7 +189,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     screenNarration: {
       title: "Dashboard lớp",
       headline: "Từ nhiều cái riêng, rút ra xu hướng chung.",
-      body: "Dashboard tổng hợp dữ liệu của cả lớp thành biểu đồ trực quan. Mỗi người chơi, mỗi ngành là một cái riêng; dashboard giúp rút ra xu hướng chung — biểu hiện của cái chung trong cái riêng. Giáo viên có thể dùng dữ liệu này để thảo luận: vì sao nhiều người ưu tiên GPA, vì sao phương pháp cân bằng thường hiệu quả hơn.",
+      body: "Dashboard tổng hợp dữ liệu của cả lớp thành biểu đồ trực quan. Quy luật chung về đánh giá năng lực không tồn tại tách rời, mà được biểu hiện qua từng trường hợp cụ thể. Giáo viên có thể dùng dữ liệu này để thảo luận: vì sao nhiều người ưu tiên GPA, vì sao phương pháp cân bằng thường hiệu quả hơn.",
       philosophyLink:
         "Cái chung – Cái riêng (Chương 2.2.2): từ nhiều cái riêng, ta rút ra cái chung — xu hướng nhận thức chung của cả lớp.",
       action: "Xem biểu đồ tổng hợp và thảo luận: kết quả lớp phản ánh điều gì về nhận thức tuyển dụng?",
@@ -197,24 +197,24 @@ export const presentationScripts: Record<string, ScreenScript> = {
   },
 
   schools: {
-    title: "Các trường phái nhận thức",
+    title: "Các lập trường triết học về vật chất, ý thức và nhận thức",
     purpose:
-      "Giúp người học so sánh các cách nhìn khác nhau về chân lý và nhận thức trong lịch sử triết học.",
+      "Giúp người học so sánh các cách nhìn khác nhau về chân lý và nhận thức trong lịch sử triết học, liên hệ với tình huống tuyển dụng.",
     philosophy:
-      "So sánh duy tâm chủ quan (Berkeley), duy tâm khách quan (Plato, Hegel), hoài nghi luận (Hume), bất khả tri luận (Kant), duy vật siêu hình (Feuerbach) và duy vật biện chứng (Marx-Lenin).",
+      "So sánh duy tâm chủ quan (Berkeley), duy tâm khách quan (Plato, Hegel), hoài nghi luận (Hume), bất khả tri luận (Kant), duy vật siêu hình (các nhà duy vật thế kỷ XVII–XVIII) và duy vật biện chứng (Marx-Lenin).",
     talkTrack:
-      "Màn này không nhằm bắt người học thuộc tên các triết gia, mà giúp họ thấy mỗi trường phái sẽ dẫn đến một cách ra quyết định khác nhau trong tuyển dụng. Nếu chỉ tin vào cảm giác hoặc một dấu hiệu ban đầu, ta dễ phiến diện. Nếu hoài nghi hoàn toàn, ta không thể ra quyết định. Cách tiếp cận duy vật biện chứng là xem xét nhiều mặt và kiểm nghiệm bằng thực tiễn — chính là cách app vận hành qua 3 vòng.",
+      "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
     productValue:
       "Màn này biến kiến thức lịch sử triết học thành tình huống dễ hiểu trong tuyển dụng, giúp người học ghi nhớ tự nhiên.",
     transition:
       "Từ đó, người học quay lại câu hỏi ban đầu: học giỏi có chắc thành công không? Câu trả lời là: học giỏi là điều kiện cần, chưa phải điều kiện đủ.",
     screenNarration: {
-      title: "Các trường phái nhận thức",
-      headline: "Mỗi trường phái triết học dẫn đến một cách tuyển dụng khác nhau.",
-      body: "Màn này so sánh các cách tiếp cận chân lý trong lịch sử triết học: duy tâm chủ quan, duy tâm khách quan, hoài nghi luận, bất khả tri luận, duy vật siêu hình, và duy vật biện chứng. Mỗi trường phái dẫn đến một chiến lược tuyển dụng khác nhau. Nếu chỉ tin vào cảm giác ban đầu, ta dễ phiến diện. Nếu hoài nghi hoàn toàn, ta không thể ra quyết định.",
+      title: "Các lập trường triết học về vật chất, ý thức và nhận thức",
+      headline: "Mỗi lập trường triết học có thể được minh họa bằng một cách đánh giá con người trong tuyển dụng.",
+      body: "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
       philosophyLink:
         "Duy vật biện chứng (Marx-Lenin): xem xét nhiều mặt, kiểm nghiệm bằng thực tiễn — chính là cách app vận hành qua ba vòng đánh giá.",
-      action: "So sánh các trường phái và nhận ra: phương pháp nào gần nhất với cách bạn đã đánh giá ứng viên?",
+      action: "So sánh các lập trường và nhận ra: phương pháp nào gần nhất với cách bạn đã đánh giá ứng viên?",
     },
   },
 
@@ -245,7 +245,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     purpose:
       "Cam kết liêm chính học thuật: AI đóng vai trò hỗ trợ, con người đóng vai trò chủ động trong tư duy và phân tích.",
     philosophy:
-      "Liên hệ phép biện chứng về mối quan hệ giữa con người và công cụ. Công cụ tăng năng suất nhưng không thay thế tư duy chủ quan. Nhận thức luôn là quá trình chủ động của chủ thể.",
+      "Nhận thức là quá trình chủ động của con người — công cụ hỗ trợ, nhưng chủ thể nhận thức vẫn là con người.",
     talkTrack:
       "Nhóm em muốn minh bạch rằng AI chỉ đóng vai trò hỗ trợ kỹ thuật — tạo boilerplate code, gợi ý cấu trúc. Toàn bộ phân tích triết học, lập luận, thiết kế kịch bản game là sản phẩm tư duy của nhóm. Điều này đúng với nguyên lý: công cụ là điều kiện cần, tư duy chủ thể là điều kiện quyết định.",
     productValue:
@@ -257,7 +257,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
       headline: "AI là công cụ hỗ trợ, tư duy con người là yếu tố quyết định.",
       body: "Nhóm cam kết minh bạch: AI chỉ đóng vai trò hỗ trợ kỹ thuật — tạo code cơ bản, gợi ý cấu trúc. Toàn bộ phân tích triết học, lập luận, thiết kế kịch bản game là sản phẩm tư duy của nhóm. Điều này đúng với nguyên lý: công cụ là điều kiện cần, tư duy chủ thể là điều kiện quyết định. Sử dụng công nghệ không mâu thuẫn với tư duy độc lập.",
       philosophyLink:
-        "Mối quan hệ biện chứng giữa con người và công cụ: công cụ tăng năng suất nhưng không thay thế tư duy chủ quan. Nhận thức luôn là quá trình chủ động của chủ thể.",
+        "Nhận thức là quá trình chủ động của con người — công cụ hỗ trợ, nhưng chủ thể nhận thức vẫn là con người.",
       action: "Xem chi tiết cách nhóm sử dụng AI và cam kết liêm chính học thuật.",
     },
   },

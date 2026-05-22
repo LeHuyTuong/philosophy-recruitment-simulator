@@ -40,7 +40,7 @@ export const presentationSlides: PresentationSlide[] = [
       'Lý tính: phân tích phỏng vấn, lập luận và cách ứng viên trả lời.',
       'Thực tiễn: kiểm nghiệm bằng thử việc và kết quả thực tế.',
     ],
-    philosophyLink: 'Quá trình nhận thức đi từ trực quan sinh động, đến tư duy trừu tượng, rồi quay lại thực tiễn.',
+    philosophyLink: 'Học qua trải nghiệm giúp tri thức đi từ hiểu sang làm, từ biết sang vận dụng được, từ nhận thức sang kiểm nghiệm được.',
   },
   {
     id: 'round1',
@@ -62,7 +62,7 @@ export const presentationSlides: PresentationSlide[] = [
       'Người nói hay chưa chắc làm tốt, nhưng tư duy tốt là dấu hiệu quan trọng.',
       'Đây là bước chuyển từ nhìn thấy sang phân tích.',
     ],
-    philosophyLink: 'Nhận thức lý tính giúp đi từ dấu hiệu bên ngoài vào bản chất của năng lực.',
+    philosophyLink: 'Cái chung – Cái riêng: quy luật chung về đánh giá năng lực không tồn tại tách rời, mà được biểu hiện qua từng trường hợp cụ thể.',
   },
   {
     id: 'round3',
@@ -84,7 +84,7 @@ export const presentationSlides: PresentationSlide[] = [
       'Từ nhiều lựa chọn riêng lẻ, ta rút ra xu hướng chung.',
       'Giáo viên có thể dùng kết quả để mở thảo luận sâu hơn.',
     ],
-    philosophyLink: 'Cái chung – Cái riêng: từ nhiều trải nghiệm cá nhân, ta rút ra một quy luật chung.',
+    philosophyLink: 'Cái chung – Cái riêng: quy luật chung về đánh giá năng lực không tồn tại tách rời, mà được biểu hiện qua từng trường hợp cụ thể.',
   },
   {
     id: 'value',
@@ -95,7 +95,7 @@ export const presentationSlides: PresentationSlide[] = [
       'Người học cảm được sự khác nhau giữa hiện tượng và bản chất.',
       'Sản phẩm có giá trị giáo dục vì tạo được khoảnh khắc phản tư.',
     ],
-    philosophyLink: 'Học qua trải nghiệm giúp tri thức đi từ hiểu sang làm, từ biết sang tin.',
+    philosophyLink: 'Học qua trải nghiệm giúp tri thức đi từ hiểu sang làm, từ biết sang vận dụng được, từ nhận thức sang kiểm nghiệm được.',
   },
   {
     id: 'ai-usage',
@@ -106,7 +106,7 @@ export const presentationSlides: PresentationSlide[] = [
       'Phân tích triết học, thiết kế kịch bản và lựa chọn thông điệp do nhóm quyết định.',
       'Điều đó thể hiện vai trò chủ động của chủ thể trong nhận thức.',
     ],
-    philosophyLink: 'Quan hệ giữa công cụ và chủ thể: công cụ hỗ trợ nhưng không thay thế tư duy con người.',
+    philosophyLink: 'Nhận thức là quá trình chủ động của con người — công cụ hỗ trợ, nhưng chủ thể nhận thức vẫn là con người.',
   },
   {
     id: 'conclusion',

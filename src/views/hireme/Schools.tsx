@@ -40,10 +40,10 @@ const schools = [
   {
     name: 'Duy vật siêu hình',
     icon: '📐',
-    thinker: 'Feuerbach',
-    view: 'Nhìn sự vật tách rời, tĩnh tại; coi các thuộc tính như các hằng số.',
-    hire: 'Ví dụ tuyển dụng: cộng điểm GPA + thực tập + test rồi kết luận cứng.',
-    mistake: 'Bỏ qua sự phát triển, mâu thuẫn và khả năng thay đổi.',
+    thinker: 'Các nhà duy vật thế kỷ XVII–XVIII, chịu ảnh hưởng tư duy cơ giới',
+    view: 'Xuất phát từ thế giới hiện thực, nhưng thường nhìn sự vật tách rời, tĩnh tại; ít thấy sự vận động, mâu thuẫn và phát triển.',
+    hire: 'Cộng điểm GPA + số tháng thực tập + điểm test rồi kết luận cứng, ít xét bối cảnh, quá trình tiến bộ và khả năng thay đổi.',
+    mistake: 'Dễ biến dữ liệu thành kết luận máy móc, bỏ qua sự phát triển của ứng viên.',
     color: 'border-slate-200 bg-slate-50',
     status: 'Chưa toàn diện',
     statusColor: 'text-slate-600',
@@ -55,10 +55,44 @@ const schools = [
     view: 'Nghi ngờ hoặc phủ nhận khả năng nhận thức bản chất; chỉ có thể biết hiện tượng.',
     hire: 'Ví dụ tuyển dụng: “CV chỉ là bề ngoài, không thể biết năng lực thật”.',
     mistake: 'Nếu tuyệt đối hóa sẽ dẫn đến bế tắc trong ra quyết định.',
-    note: 'Ghi chú: các dạng hoài nghi luận (ví dụ Hume) nhấn mạnh nghi vấn về cơ sở khẳng định.',
+    note: 'Lưu ý: Hoài nghi luận có liên quan nhưng không đồng nhất với bất khả tri luận. Hoài nghi luận nhấn mạnh việc nghi ngờ cơ sở của tri thức; bất khả tri luận nghi ngờ hoặc phủ nhận khả năng nhận thức bản chất sự vật.',
     color: 'border-gray-200 bg-gray-50',
     status: 'Chưa đầy đủ',
     statusColor: 'text-gray-600',
+  },
+  {
+    name: 'Hoài nghi luận',
+    icon: '❓',
+    thinker: 'David Hume và truyền thống hoài nghi',
+    view: 'Nâng sự hoài nghi thành nguyên tắc khi xem xét tri thức đã có.',
+    hire: 'Luôn nghi ngờ mọi dữ liệu về ứng viên, từ CV đến phỏng vấn và bài test.',
+    mistake: 'Nếu hoài nghi quá mức, người tuyển dụng không thể ra quyết định.',
+    color: 'border-violet-200 bg-violet-50',
+    status: 'Liên quan đến nhận thức',
+    statusColor: 'text-violet-600',
+  },
+  {
+    name: 'Khả tri luận',
+    icon: '🔎',
+    thinker: 'Đa số các nhà triết học duy vật và duy tâm thừa nhận khả năng nhận thức',
+    view: 'Con người về nguyên tắc có thể nhận thức được thế giới và bản chất sự vật thông qua quá trình nhận thức.',
+    hire: 'Năng lực ứng viên có thể được hiểu dần qua CV, phỏng vấn, bài test, sản phẩm thực tế và quá trình thử việc.',
+    mistake: 'Không có nghĩa là biết ngay lập tức, mà là biết thông qua kiểm chứng từng bước.',
+    color: 'border-emerald-100 bg-emerald-25',
+    status: 'Cơ sở tích cực',
+    statusColor: 'text-emerald-700',
+    note: 'Lưu ý: khả tri luận không nói là biết ngay, mà là biết thông qua quá trình kiểm chứng và thực tiễn.',
+  },
+  {
+    name: 'Nhị nguyên luận',
+    icon: '⚖️',
+    thinker: 'Descartes',
+    view: 'Xem vật chất và tinh thần như hai bản nguyên cùng tồn tại.',
+    hire: 'Vừa tin vào dữ liệu khách quan, vừa tin vào trực giác người phỏng vấn, nhưng chưa chỉ ra rõ yếu tố nào quyết định cuối cùng.',
+    mistake: 'Dễ dao động giữa duy vật và duy tâm khi ra quyết định.',
+    color: 'border-indigo-200 bg-indigo-50',
+    status: 'Xem thêm',
+    statusColor: 'text-indigo-600',
   },
   {
     name: 'Duy vật biện chứng',
@@ -84,10 +118,10 @@ export default function Schools() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-            Các lập trường và phương pháp triết học liên quan đến nhận thức
+            Các lập trường triết học về vật chất, ý thức và nhận thức
           </h1>
           <p className="text-sm text-gray-500 mb-3">
-            Mỗi lập trường đưa ra một cách nhìn khác nhau về quan hệ giữa vật chất, ý thức và khả năng nhận thức.
+            Mỗi lập trường triết học có thể được minh họa bằng một cách đánh giá con người trong tuyển dụng.
           </p>
           <PhilosophyBadge variant="rational" title="📚 Chương 1–2 · Nhập môn và Lý luận nhận thức" subtitle="Bản đồ lập trường triết học" className="mx-auto" />
         </div>
@@ -139,7 +173,7 @@ export default function Schools() {
         <div className="bg-gradient-to-r from-yellow-100 to-emerald-100 rounded-xl border-2 border-emerald-300 p-4 text-center">
           <p className="text-sm font-bold text-gray-700 mb-1">Cách app vận hành gần với lập trường nào?</p>
           <p className="text-sm text-emerald-700 font-semibold">
-            App tiếp cận theo tinh thần duy vật biện chứng: không dừng ở CV/GPA ban đầu, mà đi qua phân tích, đối chiếu và kiểm nghiệm bằng tình huống thực tiễn.
+            App vận hành gần với tinh thần duy vật biện chứng: không tuyệt đối hóa CV, GPA hay cảm giác ban đầu, mà xem năng lực ứng viên trong mối liên hệ giữa dữ liệu, bối cảnh, quá trình phát triển và kiểm nghiệm thực tiễn. Quy trình CV → phân tích → phỏng vấn → bài test/tình huống → thử việc phản ánh quan điểm: nhận thức phải được kiểm tra bằng thực tiễn.
           </p>
         </div>
       </div>
