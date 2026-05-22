@@ -201,9 +201,9 @@ export const presentationScripts: Record<string, ScreenScript> = {
     purpose:
       "Giúp người học so sánh các cách nhìn khác nhau về chân lý và nhận thức trong lịch sử triết học, liên hệ với tình huống tuyển dụng.",
     philosophy:
-      "So sánh duy tâm chủ quan (Berkeley), duy tâm khách quan (Plato, Hegel), hoài nghi luận (Hume), bất khả tri luận (Kant), duy vật siêu hình (các nhà duy vật thế kỷ XVII–XVIII) và duy vật biện chứng (Marx-Lenin).",
+      "So sánh duy tâm chủ quan (Berkeley), duy tâm khách quan (Plato, Hegel), hoài nghi luận (truyền thống hoài nghi; Hume là đại biểu liên quan), thuyết bất khả tri (Hume, Kant), thuyết khả tri và duy vật siêu hình (các nhà duy vật thế kỷ XVII–XVIII) cùng duy vật biện chứng (Marx-Lenin).",
     talkTrack:
-      "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
+      "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Các ví dụ tuyển dụng trong màn này là phần minh họa ứng dụng, không phải nội dung nguyên văn của giáo trình. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
     productValue:
       "Màn này biến kiến thức lịch sử triết học thành tình huống dễ hiểu trong tuyển dụng, giúp người học ghi nhớ tự nhiên.",
     transition:
@@ -211,7 +211,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     screenNarration: {
       title: "Các lập trường triết học về vật chất, ý thức và nhận thức",
       headline: "Mỗi lập trường triết học có thể được minh họa bằng một cách đánh giá con người trong tuyển dụng.",
-      body: "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
+      body: "Màn này dùng tuyển dụng như một ví dụ đời sống để minh họa các lập trường triết học về vật chất, ý thức và khả năng nhận thức. Các ví dụ tuyển dụng trong màn này là phần minh họa ứng dụng, không phải nội dung nguyên văn của giáo trình. Nếu chỉ dựa vào cảm giác ban đầu, đánh giá dễ rơi vào chủ quan. Nếu chỉ nhìn các chỉ số tĩnh, đánh giá dễ máy móc. Nếu hoài nghi tuyệt đối, con người khó ra quyết định. Cách tiếp cận phù hợp hơn là xem xét ứng viên trong mối liên hệ, quá trình phát triển và kiểm nghiệm qua thực tiễn.",
       philosophyLink:
         "Duy vật biện chứng (Marx-Lenin): xem xét nhiều mặt, kiểm nghiệm bằng thực tiễn — chính là cách app vận hành qua ba vòng đánh giá.",
       action: "So sánh các lập trường và nhận ra: phương pháp nào gần nhất với cách bạn đã đánh giá ứng viên?",
