@@ -208,6 +208,15 @@ export default function Dashboard() {
       setApiResp(data);
       if (data.ok && data.hasData && data.stats) {
         setRenderStats(data.stats);
+        if (data.source === 'demo') {
+          setIsDemoFallback(true);
+        }
+        return;
+      }
+
+      if (data.ok && data.hasData && data.source === 'demo') {
+        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: payload demo từ test hoặc mock.'));
+        setIsDemoFallback(true);
         return;
       }
 

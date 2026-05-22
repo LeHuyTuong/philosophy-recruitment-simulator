@@ -112,6 +112,7 @@ export default function Schools() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="schools-page"
       className="min-h-screen px-4 py-5 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-4xl mx-auto">
@@ -132,6 +133,8 @@ export default function Schools() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: i * 0.08 }}
+              data-testid="philosophy-card"
+              data-school-name={school.name}
               className={`rounded-xl border-2 p-5 ${school.color} ${
                 school.correct ? 'md:col-span-2 max-w-lg mx-auto w-full' : ''
               }`}

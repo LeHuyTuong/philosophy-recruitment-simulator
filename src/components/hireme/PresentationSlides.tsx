@@ -12,7 +12,7 @@ interface PresentationSlidesProps {
 
 function SlideBody({ slide }: { slide: PresentationSlide }) {
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] items-start">
+    <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-start">
       <div className="space-y-5">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
@@ -194,7 +194,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
             </div>
           </div>
 
-          <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-4 sm:px-6 sm:pb-6 lg:px-8 lg:pb-8">
+          <div className="flex min-h-0 flex-1 flex-col px-4 pb-6 pt-4 sm:px-6 sm:pb-6 lg:px-8 lg:pb-8">
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm font-semibold text-slate-700 sm:hidden">
                 Slide {currentIndex + 1}/{presentationSlides.length}

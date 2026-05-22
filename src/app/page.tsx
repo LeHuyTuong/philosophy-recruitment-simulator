@@ -93,13 +93,11 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleStart = useCallback(async () => {
-    try {
-      await createSession();
-      navigate('industry');
-    } catch (error) {
+  const handleStart = useCallback(() => {
+    void createSession().catch(error => {
       console.error('Start error:', error);
-    }
+    });
+    navigate('industry');
   }, [createSession, navigate]);
 
   const openPresentationSlides = useCallback(() => {
@@ -138,13 +136,13 @@ export default function Home() {
     }
   }, [lastGamePage, navigate, openPresentationSlides]);
 
-  const handleSelectIndustry = useCallback(async (industryId: string) => {
-    try {
-      await setIndustry(industryId);
-      navigate('round1');
-    } catch (error) {
+  const handleSelectIndustry = useCallback((industryId: string) => {
+    void setIndustry(industryId).catch(error => {
       console.error('Industry select error:', error);
-    }
+    });
+    window.setTimeout(() => {
+      navigate('round1');
+    }, 0);
   }, [setIndustry, navigate]);
 
   const handleRound1Complete = useCallback(async (shortlist: string[], sortUsed: string, filterUsed: string) => {

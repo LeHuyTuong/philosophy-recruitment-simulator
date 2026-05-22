@@ -96,6 +96,7 @@ export default function IndustrySelector({ onSelectIndustry, onNavigate }: Indus
               <button
                 onClick={() => handleSelect(ind.id)}
                 disabled={loading}
+                data-testid={`industry-card-${ind.id}`}
                 className="w-full bg-white rounded-xl border-2 border-gray-100 p-5 text-left hover:border-purple-300 hover:shadow-lg transition-all group disabled:opacity-50"
               >
                 <span className="text-4xl block mb-2">{ind.icon}</span>

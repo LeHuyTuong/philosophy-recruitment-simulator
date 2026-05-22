@@ -247,6 +247,8 @@ export default function Round1_CV({ sessionId, industry, onComplete }: Round1Pro
               <motion.div
                 key={c.id}
                 layout
+                data-testid="candidate-card"
+                data-candidate-id={c.id}
                 className={`relative bg-white rounded-xl border-2 p-4 cursor-pointer transition-all ${
                   isSelected ? 'border-purple-500 shadow-lg ring-2 ring-purple-200' : 'border-gray-100 hover:border-gray-200 hover:shadow'
                 }`}

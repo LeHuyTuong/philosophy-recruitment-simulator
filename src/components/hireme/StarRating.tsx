@@ -24,6 +24,7 @@ export default function StarRating({ rating, onChange, readonly = false, size = 
           type="button"
           disabled={readonly}
           onClick={() => onChange(star)}
+          data-testid={`star-rating-${star}`}
           className={`${readonly ? 'cursor-default' : 'cursor-pointer hover:scale-110'} transition-transform`}
         >
           <Star

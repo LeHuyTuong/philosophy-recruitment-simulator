@@ -57,7 +57,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onStart}
-                data-testid="primary-cta"
+                data-testid="start-experience"
                 className="px-8 py-3 bg-gradient-to-r from-slate-900 to-slate-700 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-shadow w-full max-w-sm"
               >
                 Bắt đầu trải nghiệm

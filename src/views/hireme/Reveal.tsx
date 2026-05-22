@@ -89,6 +89,7 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="reveal-page"
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-3xl mx-auto">
@@ -148,13 +149,16 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
+          data-testid="result-selected-candidates"
           className="bg-white rounded-xl border p-4 mb-6"
         >
           <h3 className="font-bold text-sm mb-3 text-gray-700">Kết quả kiểm nghiệm 5 ứng viên bạn đã chọn</h3>
 
           <p className="text-xs text-gray-500 mb-3">
+            <span data-testid="pass-criteria-note">
             PASS được xác định từ vòng kiểm nghiệm thực tiễn, gồm bài test tình huống, phỏng vấn phản biện, sản phẩm/kinh nghiệm thực tế và khả năng học tiếp.
             <br />Quy tắc hiển thị: PASS nếu practicalScore ≥ 70; CẦN XEM XÉT nếu 50 ≤ practicalScore &lt; 70; FAIL nếu practicalScore &lt; 50.
+            </span>
           </p>
 
           <div className="space-y-3">
@@ -174,11 +178,11 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
                     return { score: null as number | null, result: 'CẦN XEM XÉT', reason: 'Dữ liệu kiểm nghiệm chưa đủ.' };
                   }
 
-                  const normMonths = Number.isFinite(months) ? Math.min(36, months) / 36 : 0; // cap at 36 months
-                  const normProjects = Number.isFinite(projects) ? Math.min(10, projects) / 10 : 0; // cap
+                  const normMonths = Number.isFinite(months) ? Math.min(24, months) / 24 : 0;
+                  const normProjects = Number.isFinite(projects) ? Math.min(6, projects) / 6 : 0;
 
                   // weighted sum -> 100 scale: months 40%, projects 40%, skills 20%
-                  const score = Math.round((normMonths * 40 + normProjects * 40 + Math.min(10, skills) / 10 * 20));
+                  const score = Math.round((normMonths * 40 + normProjects * 40 + Math.min(5, skills) / 5 * 20));
                   let result = 'CẦN XEM XÉT';
                   if (score >= 70) result = 'PASS';
                   else if (score < 50) result = 'FAIL';
@@ -194,7 +198,7 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
                 const res = derivePracticalResult(candidate);
 
                 return (
-                  <div key={candidate.id} className="border rounded-lg p-3 flex items-start justify-between">
+                  <div key={candidate.id} data-testid="result-candidate-row" className="border rounded-lg p-3 flex items-start justify-between">
                     <div>
                       <div className="text-sm font-bold text-gray-800">{name}</div>
                       <div className="text-xs text-gray-500">Nhóm: {quadrant}</div>
