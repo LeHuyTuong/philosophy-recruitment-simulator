@@ -14,10 +14,18 @@ async function runResponsiveFlow(page: import('@playwright/test').Page) {
   await openHome(page);
   await expect(page.getByTestId('product-navbar')).toBeVisible();
 
-  await page.getByTestId('nav-group-learning').evaluate(el => (el as HTMLElement).click());
-  const learningMenu = page.getByTestId('product-nav-menu-learning');
-  await expect(learningMenu).toBeVisible();
-  await learningMenu.getByRole('menuitem', { name: 'AI Usage' }).click();
+  const mobileMenuButton = page.getByTestId('mobile-menu-button');
+  if (await mobileMenuButton.isVisible()) {
+    await mobileMenuButton.click();
+    const mobileMenu = page.getByTestId('product-nav-mobile-menu');
+    await expect(mobileMenu).toBeVisible();
+    await mobileMenu.getByRole('menuitem', { name: 'AI Usage' }).click();
+  } else {
+    await page.getByTestId('nav-group-learning').evaluate(el => (el as HTMLElement).click());
+    const learningMenu = page.getByTestId('product-nav-menu-learning');
+    await expect(learningMenu).toBeVisible();
+    await learningMenu.getByRole('menuitem', { name: 'AI Usage' }).click();
+  }
   await expect(page.getByTestId('ai-usage-page')).toBeVisible();
   await expect(page.getByText('AI đã hỗ trợ gì?')).toBeVisible();
   await expect(page.getByText('Nhóm tự quyết định gì?')).toBeVisible();
@@ -35,8 +43,8 @@ async function runResponsiveFlow(page: import('@playwright/test').Page) {
   await submitRound1(page);
   await completeRound2(page);
 
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(overflow).toBeLessThanOrEqual(8);
+  const overflowCheck = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 8);
+  expect(overflowCheck).toBeTruthy();
 }
 
 test('responsive flow stays usable on desktop', async ({ page }) => {

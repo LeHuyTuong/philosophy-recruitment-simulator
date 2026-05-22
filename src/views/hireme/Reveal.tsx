@@ -78,10 +78,11 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
   ];
 
   const journey = [
-    { label: 'Bản chất – Hiện tượng', detail: 'Vòng 1', done: true },
-    { label: 'Khả năng – Hiện thực', detail: 'Vòng 2', done: true },
-    { label: 'Thực tiễn → bản chất lộ ra', detail: 'Vòng 3', done: true },
-    { label: 'Cái chung – Cái riêng', detail: 'Đa ngành', done: true },
+    { label: 'Bản chất – Hiện tượng (Nhận thức cảm tính)', detail: 'Vòng 1 · Duyệt CV', done: true },
+    { label: 'Khả năng – Hiện thực (Nhận thức lý tính)', detail: 'Vòng 2 · Phỏng vấn', done: true },
+    { label: 'Thực tiễn là tiêu chuẩn kiểm nghiệm chân lý', detail: 'Vòng 3 · Thử việc', done: true },
+    { label: 'Lượng – Chất', detail: 'Tích lũy kỹ năng tạo bước chuyển', done: true },
+    { label: 'Biện chứng giữa Cái chung – Cái riêng', detail: 'Ứng dụng đa ngành', done: true },
   ];
 
   return (
@@ -116,6 +117,12 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           <p className="text-sm leading-relaxed">{verdict.description}</p>
         </motion.div>
 
+        <div className="mb-6 flex justify-center">
+          <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+            Dữ liệu minh họa
+          </span>
+        </div>
+
         {/* Success by quadrant */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -125,9 +132,6 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
         >
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-sm mb-3 text-gray-700">Tỷ lệ PASS theo nhóm hồ sơ</h3>
-            {process.env.NODE_ENV === 'development' && (
-              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Dữ liệu minh họa</span>
-            )}
           </div>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(qCounts).map(([q, counts]) => (
@@ -272,8 +276,8 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-5 text-white mb-6"
         >
           <p className="text-sm leading-relaxed font-medium">
-            Trong bộ dữ liệu này, nhóm GPA cao + thực hành tốt có tỷ lệ PASS cao hơn. Tuy vậy, nhóm GPA thấp + thực hành cao và hồ sơ ngoại lệ cho thấy không nên đánh giá ứng viên chỉ bằng một chỉ số đơn lẻ.
-            <br />CV/GPA chỉ là hiện tượng ban đầu — phỏng vấn, bài test và thử việc là quá trình kiểm nghiệm để làm rõ năng lực thực tế. Thực tiễn giúp kiểm tra nhận thức; không tuyệt đối hóa một chỉ số.
+            Quy trình mô phỏng phản ánh con đường biện chứng của nhận thức: từ Trực quan sinh động (nhận thức cảm tính ở vòng CV — hiện tượng ban đầu), qua Tư duy trừu tượng (nhận thức lý tính ở vòng phỏng vấn — phân tích khả năng), rồi quay về Thực tiễn (vòng thử việc) để kiểm nghiệm.
+            <br />Theo triết học Mác - Lênin, thực tiễn là tiêu chuẩn để kiểm nghiệm chân lý. GPA, CV hay câu trả lời phỏng vấn đều là những tín hiệu có giá trị, nhưng chưa đủ để khẳng định toàn diện bản chất năng lực nếu chưa được kiểm tra trong hoạt động thực tế.
           </p>
         </motion.div>
 

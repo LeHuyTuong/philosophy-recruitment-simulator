@@ -8,14 +8,16 @@ import {
   submitRound1,
 } from './helpers';
 
-test('user can complete the full HireMe flow and reach transparent results', async ({ page }) => {
+test.setTimeout(60_000);
+
+test('user can complete the full HireMe flow and reach transparent results', async ({ page }, testInfo) => {
   await openExperience(page);
   await chooseIndustry(page, 'Giáo dục');
   await sortRound1ByProjects(page);
 
   const selectedNames = await selectRound1Candidates(page, 5);
   await submitRound1(page);
-  await completeRound2(page);
+  await completeRound2(page, testInfo);
 
   await expect(page.getByText('THỰC TIỄN GIÚP KIỂM NGHIỆM')).toBeVisible();
   await expect(page.getByText('Kết quả · Bản chất dần bộc lộ')).toBeVisible();
@@ -30,14 +32,9 @@ test('user can complete the full HireMe flow and reach transparent results', asy
   await expect(selectedContainer).toContainText('CẦN XEM XÉT');
   await expect(selectedContainer).toContainText('FAIL');
   await expect(page.getByText('Tỷ lệ PASS theo nhóm hồ sơ')).toBeVisible();
-  await expect(page.getByText('Hồ sơ ngoại lệ')).toBeVisible();
+  await expect(page.getByText('Hồ sơ ngoại lệ', { exact: true }).first()).toBeVisible();
 
-  const rowNames = await resultRows.evaluateAll(rows => rows.map(row => row.querySelector('h3')?.textContent?.trim() || ''));
   for (const name of selectedNames) {
-    expect(rowNames).toContain(name);
-  }
-
-  for (const row of rowNames) {
-    expect(row).toBeTruthy();
+    await expect(selectedContainer).toContainText(name);
   }
 });

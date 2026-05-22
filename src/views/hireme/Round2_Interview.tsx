@@ -123,6 +123,7 @@ export default function Round2_Interview({ candidates, onComplete }: Round2Props
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
+            data-testid="round2-current-candidate"
           >
             <div className="bg-white rounded-2xl border-2 border-blue-100 shadow-lg p-6 mb-6">
               <div className="flex items-center gap-4 mb-4">
@@ -183,6 +184,7 @@ export default function Round2_Interview({ candidates, onComplete }: Round2Props
           <button
             onClick={handleNext}
             disabled={!ratings[currentCandidate.id] || ratings[currentCandidate.id] === 0}
+            data-testid="next-step"
             className="flex items-center gap-1 px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {isLast ? (submitting ? 'Đang xử lý...' : 'Hoàn tất →') : 'Tiếp theo →'}

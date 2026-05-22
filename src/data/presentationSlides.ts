@@ -70,6 +70,10 @@ export const presentationSlides: PresentationSlide[] = [
       'Người chơi phải chọn trong điều kiện thông tin còn thiếu.',
     ],
     philosophyLink: 'Bản chất – Hiện tượng: hiện tượng cần được đọc đúng trước khi kết luận về bản chất.',
+    appConnection: 'CV/GPA là hiện tượng ban đầu; người chơi chưa thể kết luận bản chất năng lực chỉ từ dữ liệu bề mặt.',
+    takeaway: [
+      'Hiện tượng ban đầu cần được kiểm nghiệm trước khi kết luận về bản chất.',
+    ],
   },
   {
     id: 'round2',
@@ -142,14 +146,14 @@ export const presentationSlides: PresentationSlide[] = [
   },
   {
     id: 'conclusion',
-    title: 'Kết luận: Nhận thức đúng phải được kiểm nghiệm bằng thực tiễn',
+    title: 'Nhận thức đúng phải được kiểm nghiệm bằng thực tiễn',
     subtitle: 'Kết quả cuối cùng quay về bài học trung tâm của toàn bộ app.',
     bullets: [
       'Học giỏi là điều kiện cần, nhưng chưa đủ để kết luận thành công.',
       'Một đánh giá đúng phải đi qua kiểm nghiệm bằng hành động và kết quả.',
-      'Đó là thông điệp xuyên suốt của toàn bộ trải nghiệm.',
+      'Tích lũy kiến thức và kỹ năng là biến đổi về lượng; kiểm nghiệm qua công việc thực tế có thể tạo bước chuyển về chất.',
     ],
-    philosophyLink: 'Marx: nhận thức đúng không dừng ở lý thuyết, mà phải được chứng minh trong thực tiễn.',
+    philosophyLink: 'Marx: nhận thức đúng không dừng ở lý thuyết, mà phải được kiểm nghiệm trong thực tiễn.',
     speakerNote: 'Kết bằng một câu chốt gọn: vấn đề không phải học giỏi hay không, mà là năng lực có được kiểm nghiệm bằng thực tiễn không.',
   },
 ];

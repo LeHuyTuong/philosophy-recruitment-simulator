@@ -77,11 +77,11 @@ export default function IndustrySelector({ onSelectIndustry, onNavigate }: Indus
           <PhilosophyBadge
             variant="universal"
             title="📚 Cặp phạm trù: CÁI CHUNG – CÁI RIÊNG"
-            subtitle="Cái chung = thực tiễn là tiêu chuẩn chân lý · Cái riêng = biểu hiện qua từng ngành"
+            subtitle="Cái chung = thực tiễn kiểm nghiệm năng lực · Cái riêng = biểu hiện qua từng ngành"
             className="mx-auto"
           />
           <p className="text-sm text-gray-500 mt-3 max-w-lg mx-auto">
-            Nguyên lý &ldquo;thực tiễn là tiêu chuẩn chân lý&rdquo; biểu hiện qua từng ngành (cái riêng), nhưng bản chất là chung.
+            Nguyên lý &ldquo;thực tiễn kiểm nghiệm năng lực&rdquo; biểu hiện qua từng ngành (cái riêng), nhưng bản chất là chung.
           </p>
         </div>
 

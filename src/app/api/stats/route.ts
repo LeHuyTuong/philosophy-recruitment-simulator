@@ -3,10 +3,31 @@ import { buildDashboardStatsFromRecords } from '@/lib/dashboardStats';
 
 export const runtime = 'nodejs';
 
+function hasStatsDatabaseEnv() {
+  return Boolean(process.env.DATABASE_URL);
+}
+
 export async function GET() {
   const t0 = performance.now();
 
   try {
+    if (!hasStatsDatabaseEnv()) {
+      const dur = Math.round(performance.now() - t0);
+      if (process.env.NODE_ENV !== 'production') {
+        console.debug('[dashboard] /api/stats DB env missing', {
+          hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
+          hasUnpooledUrl: Boolean(process.env.DATABASE_URL_UNPOOLED),
+          vercelEnv: process.env.VERCEL_ENV,
+          nodeEnv: process.env.NODE_ENV,
+          errorCode: 'dashboard_env_missing',
+        });
+      }
+      return NextResponse.json(
+        { ok: false, source: 'db', hasData: false, error: 'dashboard_env_missing' },
+        { status: 500, headers: { 'Server-Timing': `db;dur=${dur}` } }
+      );
+    }
+
     // Try to access DB directly. The API must reflect DB state
     const mod = await import('@/lib/db');
     const db = mod.db;

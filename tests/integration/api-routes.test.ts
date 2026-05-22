@@ -54,6 +54,8 @@ describe('API route integration shape', () => {
   });
 
   it('/api/stats returns hasData=false when DB is empty', async () => {
+    const originalDatabaseUrl = process.env.DATABASE_URL;
+    process.env.DATABASE_URL = 'postgres://user:secret@example.test/db';
     // Mock DB client with empty sessions
     vi.doMock('@/lib/db', () => ({
       db: {
@@ -74,9 +76,54 @@ describe('API route integration shape', () => {
     expect(body.totalSessions).toBe(0);
     expect(body.data).toEqual([]);
     expect(body.stats).toBeNull();
+
+    if (originalDatabaseUrl === undefined) {
+      delete process.env.DATABASE_URL;
+    } else {
+      process.env.DATABASE_URL = originalDatabaseUrl;
+    }
+  });
+
+  it('/api/stats returns a controlled env-missing response before DB import', async () => {
+    const originalDatabaseUrl = process.env.DATABASE_URL;
+    delete process.env.DATABASE_URL;
+    const dbImport = vi.fn();
+
+    vi.doMock('@/lib/db', () => {
+      dbImport();
+      return {
+        db: {
+          playSession: {
+            findMany: vi.fn().mockResolvedValue([]),
+          },
+        },
+      };
+    });
+
+    const { GET } = await import('@/app/api/stats/route');
+    const response = await GET();
+    const body = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(body).toMatchObject({
+      ok: false,
+      source: 'db',
+      hasData: false,
+      error: 'dashboard_env_missing',
+    });
+    expect(dbImport).not.toHaveBeenCalled();
+    expect(JSON.stringify(body)).not.toContain('DATABASE_URL');
+
+    if (originalDatabaseUrl === undefined) {
+      delete process.env.DATABASE_URL;
+    } else {
+      process.env.DATABASE_URL = originalDatabaseUrl;
+    }
   });
 
   it('/api/stats returns a sanitized error when DB read fails', async () => {
+    const originalDatabaseUrl = process.env.DATABASE_URL;
+    process.env.DATABASE_URL = 'postgres://user:secret@example.test/db';
     vi.doMock('@/lib/db', () => ({
       db: {
         playSession: {
@@ -95,6 +142,12 @@ describe('API route integration shape', () => {
     expect(body.hasData).toBe(false);
     expect(body.error).toBe('dashboard_data_unavailable');
     expect(JSON.stringify(body)).not.toContain('database unavailable');
+
+    if (originalDatabaseUrl === undefined) {
+      delete process.env.DATABASE_URL;
+    } else {
+      process.env.DATABASE_URL = originalDatabaseUrl;
+    }
   });
 
   it('/api/sessions/recent returns an anonymous list safely', async () => {

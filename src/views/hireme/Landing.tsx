@@ -31,7 +31,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
             <div className="mb-4 flex flex-wrap justify-center gap-2 lg:justify-start">
               <PhilosophyBadge variant="universal" title="Chương 2.2.2 · Cặp phạm trù" />
               <PhilosophyBadge variant="rational" title="Chương 2.3 · Lý luận nhận thức" />
-              <PhilosophyBadge variant="practice" title="Thực tiễn là tiêu chuẩn chân lý" />
+              <PhilosophyBadge variant="practice" title="Thực tiễn giúp kiểm nghiệm" />
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-500 bg-clip-text text-transparent leading-tight">

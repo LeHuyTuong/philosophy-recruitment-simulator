@@ -1,9 +1,17 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Page, type TestInfo } from '@playwright/test';
+
+declare global {
+  interface Window {
+    __hireMeTestSetupCompletedSession?: (options?: {
+      industry?: string;
+      selectedCandidateIds?: string[];
+    }) => void;
+  }
+}
 
 export async function openHome(page: Page) {
   await page.goto('/');
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(5000);
 }
 
 export async function openExperience(page: Page) {
@@ -27,7 +35,7 @@ export async function chooseIndustry(page: Page, name = 'Giáo dục') {
               : 'design';
 
   await page.getByTestId(`industry-card-${industryId}`).click({ force: true });
-  await expect(page.getByTestId('round1-page')).toBeVisible();
+      await expect(page.getByTestId('round1-page')).toBeVisible({ timeout: 30000 });
 }
 
 export async function sortRound1ByProjects(page: Page) {
@@ -54,12 +62,51 @@ export async function submitRound1(page: Page) {
   await expect(page.getByText('Vòng 2: Phỏng vấn 5 ứng viên')).toBeVisible();
 }
 
-export async function completeRound2(page: Page) {
+export async function completeRound2(page: Page, testInfo?: TestInfo) {
+  await page.waitForTimeout(300);
   for (let index = 0; index < 5; index++) {
-    await page.getByTestId('star-rating-5').click();
-    await page.getByRole('button', { name: index === 4 ? /Hoàn tất/ : /Tiếp theo/ }).click();
+    const currentCandidate = page.getByTestId('round2-current-candidate');
+    await expect(currentCandidate).toBeVisible({ timeout: 10000 });
+    const candidateText = await currentCandidate.innerText();
+
+    const ratingButton = currentCandidate.getByTestId('star-rating-5');
+    await expect(ratingButton).toBeVisible({ timeout: 10000 });
+    await ratingButton.click();
+
+    const nextButton = page.getByTestId('next-step');
+    if (await nextButton.isDisabled()) {
+      await testInfo?.attach(`round2-disabled-step-${index + 1}`, {
+        body: Buffer.from(candidateText),
+        contentType: 'text/plain',
+      });
+      await page.screenshot({
+        path: testInfo?.outputPath(`round2-disabled-step-${index + 1}.png`),
+        fullPage: true,
+      });
+    }
+    await expect(nextButton).toBeEnabled({ timeout: 10000 });
+    await nextButton.click();
   }
 
+  await expect(page.getByTestId('reveal-page')).toBeVisible();
+}
+
+export async function setupCompletedSession(
+  page: Page,
+  options: { industry?: 'it' | 'marketing' | 'accounting' | 'business' | 'design' | 'education'; selectedCandidateIds?: string[] } = {},
+) {
+  const industry = options.industry || 'education';
+  await page.addInitScript(({ targetIndustry }) => {
+    window.localStorage.setItem('hireme_session', JSON.stringify({
+      sessionId: `e2e-${Date.now()}`,
+      industry: targetIndustry,
+    }));
+  }, { targetIndustry: industry });
+  await openHome(page);
+  await page.waitForFunction(() => typeof window.__hireMeTestSetupCompletedSession === 'function');
+  await page.evaluate((setupOptions) => {
+    window.__hireMeTestSetupCompletedSession?.(setupOptions);
+  }, { industry, selectedCandidateIds: options.selectedCandidateIds });
   await expect(page.getByTestId('reveal-page')).toBeVisible();
 }
 
@@ -83,8 +130,8 @@ export async function openClassroomPage(page: Page, itemName: string) {
 
 export async function openPresentation(page: Page) {
   await openHome(page);
-  await page.getByTestId('product-nav-presentation-slides').click({ force: true });
-  await expect(page.getByTestId('presentation-slides')).toBeVisible();
+  await page.getByTestId('slide-button').click({ force: true });
+  await expect(page.getByTestId('presentation-modal')).toBeVisible();
 }
 
 export async function openDashboard(page: Page) {

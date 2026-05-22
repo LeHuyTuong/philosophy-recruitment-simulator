@@ -1,7 +1,5 @@
 import { test } from '@playwright/test';
 import {
-  chooseIndustry,
-  completeRound2,
   mockStatsRoute,
   openClassroomPage,
   openExperience,
@@ -9,9 +7,7 @@ import {
   openLearningPage,
   openPresentation,
   scanForForbiddenPhrases,
-  selectRound1Candidates,
-  sortRound1ByProjects,
-  submitRound1,
+  setupCompletedSession,
 } from './helpers';
 
 const forbiddenPhrases = [
@@ -21,7 +17,14 @@ const forbiddenPhrases = [
   'Top ứng viên thực sự PASS theo phân khu',
   'Có lỗi khi đọc DB. Vui lòng kiểm tra kết nối DB.',
   'database unavailable',
+  'Học đường đo Hiện tượng',
+  'Nghề nghiệp đo Bản chất',
+  'Học đường đo nhận thức bằng đúng + đủ — đó là đo HIỆN TƯỢNG',
+  'Nghề nghiệp đo nhận thức bằng hiệu quả — đó là đo BẢN CHẤT',
+  'Thực tiễn → bản chất lộ ra',
 ];
+
+test.setTimeout(60_000);
 
 test('content regression scan covers the major product surfaces', async ({ page }) => {
   await openHome(page);
@@ -49,12 +52,7 @@ test('content regression scan covers the major product surfaces', async ({ page 
   await openLearningPage(page, 'AI Usage');
   await scanForForbiddenPhrases(page, forbiddenPhrases);
 
-  await openExperience(page);
-  await chooseIndustry(page, 'Giáo dục');
-  await sortRound1ByProjects(page);
-  await selectRound1Candidates(page, 5);
-  await submitRound1(page);
-  await completeRound2(page);
+  await setupCompletedSession(page, { industry: 'education' });
   await scanForForbiddenPhrases(page, forbiddenPhrases);
 
   await mockStatsRoute(page, {

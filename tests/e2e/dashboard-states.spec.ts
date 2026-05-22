@@ -27,8 +27,7 @@ test('dashboard shows a sanitized error when DB read fails', async ({ page }) =>
 
   await openDashboard(page);
 
-  await expect(page.getByText('Dữ liệu minh họa').first()).toBeVisible();
-  await expect(page.getByText('Dữ liệu minh họa: DB chưa sẵn sàng hoặc chưa có dữ liệu.')).toBeVisible();
+  await expect(page.getByText('Chưa thể tải dữ liệu lớp học. Vui lòng thử làm mới sau.')).toBeVisible();
   await expect(page.getByText(/database unavailable/i)).toHaveCount(0);
   await expect(page.getByText(/Có lỗi khi đọc DB\. Vui lòng kiểm tra kết nối DB\./i)).toHaveCount(0);
 });

@@ -225,6 +225,11 @@ export default function Dashboard() {
         return;
       }
 
+      if (!data.ok) {
+        setRenderStats(null);
+        return;
+      }
+
       if (process.env.NODE_ENV !== 'production') {
         setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: DB chưa sẵn sàng hoặc chưa có dữ liệu.'));
         setIsDemoFallback(true);
@@ -235,11 +240,6 @@ export default function Dashboard() {
     } catch (err) {
       console.error('Stats fetch error:', err);
       setApiResp({ ok: false, source: 'db', hasData: false, totalSessions: 0, stats: null, error: 'network' });
-      if (process.env.NODE_ENV !== 'production') {
-        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: không thể tải dữ liệu DB thật.'));
-        setIsDemoFallback(true);
-        return;
-      }
       setRenderStats(null);
     } finally {
       setLoading(false);
