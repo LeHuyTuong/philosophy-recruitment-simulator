@@ -31,7 +31,7 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
             <div className="mb-4 flex flex-wrap justify-center gap-2 lg:justify-start">
               <PhilosophyBadge variant="universal" title="Chương 2.2.2 · Cặp phạm trù" />
               <PhilosophyBadge variant="rational" title="Chương 2.3 · Lý luận nhận thức" />
-              <PhilosophyBadge variant="practice" title="Thực tiễn là tiêu chuẩn chân lý" />
+              <PhilosophyBadge variant="practice" title="Thực tiễn giúp kiểm nghiệm" />
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-500 bg-clip-text text-transparent leading-tight">
@@ -41,23 +41,12 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
               Công cụ lớp học giúp sinh viên trải nghiệm lý luận nhận thức qua mô phỏng tuyển dụng.
             </p>
 
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-white/90 p-5 text-left shadow-sm">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Cách sử dụng trong lớp học</p>
-              <ol className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                <li className="rounded-xl bg-slate-50 p-3"><span className="font-semibold text-slate-900">1.</span> Người thuyết trình mở slide.</li>
-                <li className="rounded-xl bg-slate-50 p-3"><span className="font-semibold text-slate-900">2.</span> Sinh viên quét QR và tham gia.</li>
-                <li className="rounded-xl bg-slate-50 p-3"><span className="font-semibold text-slate-900">3.</span> Mỗi người chọn ứng viên qua 3 vòng.</li>
-                <li className="rounded-xl bg-slate-50 p-3"><span className="font-semibold text-slate-900">4.</span> Dashboard tổng hợp kết quả.</li>
-                <li className="rounded-xl bg-slate-50 p-3 sm:col-span-2"><span className="font-semibold text-slate-900">5.</span> Cả lớp thảo luận vì sao nhận thức ban đầu có thể sai nếu chưa qua thực tiễn.</li>
-              </ol>
-            </div>
-
             <div className="mt-6 flex flex-col gap-3 lg:items-start">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onStart}
-                data-testid="primary-cta"
+                data-testid="start-experience"
                 className="px-8 py-3 bg-gradient-to-r from-slate-900 to-slate-700 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-shadow w-full max-w-sm"
               >
                 Bắt đầu trải nghiệm
@@ -98,8 +87,58 @@ export default function Landing({ onStart, onNavigate }: LandingProps) {
         </div>
       </motion.div>
 
-      <footer className="mt-auto pt-8 text-center text-xs text-slate-400 pb-4">
-        Đề tài: Mối quan hệ giữa nhận thức và thực tiễn · Triết học Mác-Lênin
+      {/* 3 khâu nhận thức biện chứng */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        data-testid="landing-three-stages"
+        className="w-full max-w-5xl mx-auto mt-10"
+      >
+        <div className="text-center mb-5">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Ba khâu nhận thức biện chứng</p>
+          <p className="mt-1 text-sm text-slate-600">Trang này không chỉ minh hoạ — bản thân cấu trúc của nó vận hành theo đúng quy luật nhận thức.</p>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-bold">①</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Lý luận</span>
+            </div>
+            <h3 className="text-base font-bold text-slate-900">Nhận thức bắt đầu từ tri thức đã được tổng kết</h3>
+            <p className="mt-2 text-sm text-slate-600">CV, bằng cấp, GPA — tri thức tĩnh, đã được hệ thống hoá. Sinh viên duyệt hồ sơ ở Vòng 1.</p>
+            <p className="mt-3 text-xs italic text-slate-500">&ldquo;Trực quan sinh động → tư duy trừu tượng&rdquo;</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-bold">②</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Thực tiễn</span>
+            </div>
+            <h3 className="text-base font-bold text-slate-900">Thực tiễn là tiêu chuẩn của chân lý</h3>
+            <p className="mt-2 text-sm text-slate-600">Phỏng vấn và thử việc kiểm nghiệm tri thức — tri thức động, phải được kiến tạo qua hành động.</p>
+            <p className="mt-3 text-xs italic text-slate-500">&ldquo;Tư duy trừu tượng → thực tiễn&rdquo;</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-bold">③</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Phản tư</span>
+            </div>
+            <h3 className="text-base font-bold text-slate-900">Nhận thức hoàn thành ở cấp cao hơn</h3>
+            <p className="mt-2 text-sm text-slate-600">Khoảng cách Tri thức – Thực tiễn được đo lường. Vòng xoáy ốc đi lên bắt đầu từ đây.</p>
+            <p className="mt-3 text-xs italic text-slate-500">&ldquo;Thực tiễn → nhận thức ở cấp cao hơn&rdquo;</p>
+          </div>
+        </div>
+      </motion.section>
+
+      <footer className="mt-10 w-full max-w-5xl mx-auto px-4 pb-4 text-center">
+        <blockquote className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm italic text-slate-700">
+          &ldquo;Quan điểm về đời sống, về thực tiễn, phải là quan điểm thứ nhất và cơ bản của lý luận về nhận thức.&rdquo;
+          <span className="mt-1 block not-italic text-xs font-semibold tracking-wider text-slate-500">— V.I. Lênin</span>
+        </blockquote>
+        <p className="mt-3 text-xs text-slate-400">Đề tài: Mối quan hệ giữa nhận thức và thực tiễn · Triết học Mác-Lênin</p>
       </footer>
     </motion.div>
   );

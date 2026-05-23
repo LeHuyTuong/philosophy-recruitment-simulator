@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   BarChart3,
-  Bot,
   ChevronDown,
   ClipboardList,
   Database,
@@ -41,7 +40,6 @@ const iconMap: Record<string, LucideIcon> = {
   history: History,
   schools: LibraryBig,
   criteria: Scale,
-  ai: Bot,
   teacher: GraduationCap,
   export: Download,
   default: ClipboardList,
@@ -60,7 +58,6 @@ const allowedItemIds = new Set([
   'presentation-slides',
   'schools',
   'criteria',
-  'ai-usage',
 ]);
 
 const groupedItems = productNavGroups
@@ -79,7 +76,8 @@ const desktopActions: Array<
   { type: 'direct', label: 'Trải nghiệm', itemId: 'main-experience', groupId: 'experience' },
   { type: 'menu', label: 'Lớp học', groupId: 'classroom' },
   { type: 'direct', label: 'Slide', itemId: 'presentation-slides', groupId: 'presentation' },
-  { type: 'menu', label: 'Học liệu', groupId: 'learning' },
+  { type: 'direct', label: 'Trường phái', itemId: 'schools', groupId: 'learning' },
+  { type: 'direct', label: 'Tiêu chí', itemId: 'criteria', groupId: 'learning' },
   // extensions group intentionally omitted from main navbar (kept out of primary UI)
 ];
 

@@ -71,8 +71,8 @@ export default function Criteria({ criteriaProfile, onNavigate }: CriteriaProps)
               </tr>
               <tr className="border-t">
                 <td className="px-4 py-3 font-medium">Đo cái gì</td>
-                <td className="text-center px-4 py-3"><span className="text-purple-600 font-semibold">HIỆN TƯỢNG</span></td>
-                <td className="text-center px-4 py-3"><span className="text-emerald-600 font-semibold">BẢN CHẤT</span></td>
+                <td className="text-center px-4 py-3"><span className="text-purple-600 font-semibold">Hiện tượng biểu hiện năng lực học thuật</span></td>
+                <td className="text-center px-4 py-3"><span className="text-emerald-600 font-semibold">Kiểm nghiệm năng lực thực tiễn</span></td>
               </tr>
             </tbody>
           </table>
@@ -88,7 +88,7 @@ export default function Criteria({ criteriaProfile, onNavigate }: CriteriaProps)
 
         {/* Signature quote */}
         <QuoteBlock
-          text="Học đường đo nhận thức bằng đúng + đủ — đó là đo HIỆN TƯỢNG. Nghề nghiệp đo nhận thức bằng hiệu quả — đó là đo BẢN CHẤT. Bản chất chỉ lộ ra qua thực tiễn. Đây là lý do GPA cao ≠ thành công."
+          text="Học đường cung cấp những hiện tượng biểu hiện năng lực học thuật như GPA, bài thi, thành tích. Những tín hiệu này có giá trị, nhưng chưa đủ để kết luận toàn diện về năng lực nghề nghiệp. Qua phỏng vấn, bài test và thử việc, năng lực hành động thực tiễn dần được kiểm nghiệm rõ hơn."
           author="Vận dụng cặp phạm trù Bản chất–Hiện tượng"
           source="Giáo trình Triết học Mác-Lênin, 2.2.2"
           variant="marx"

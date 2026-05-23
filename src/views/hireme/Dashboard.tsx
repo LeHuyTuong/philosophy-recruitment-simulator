@@ -208,10 +208,24 @@ export default function Dashboard() {
       setApiResp(data);
       if (data.ok && data.hasData && data.stats) {
         setRenderStats(data.stats);
+        if (data.source === 'demo') {
+          setIsDemoFallback(true);
+        }
+        return;
+      }
+
+      if (data.ok && data.hasData && data.source === 'demo') {
+        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: payload demo từ test hoặc mock.'));
+        setIsDemoFallback(true);
         return;
       }
 
       if (data.ok && !data.hasData) {
+        setRenderStats(null);
+        return;
+      }
+
+      if (!data.ok) {
         setRenderStats(null);
         return;
       }
@@ -226,11 +240,6 @@ export default function Dashboard() {
     } catch (err) {
       console.error('Stats fetch error:', err);
       setApiResp({ ok: false, source: 'db', hasData: false, totalSessions: 0, stats: null, error: 'network' });
-      if (process.env.NODE_ENV !== 'production') {
-        setRenderStats(createDemoDashboardStats('Dữ liệu minh họa: không thể tải dữ liệu DB thật.'));
-        setIsDemoFallback(true);
-        return;
-      }
       setRenderStats(null);
     } finally {
       setLoading(false);

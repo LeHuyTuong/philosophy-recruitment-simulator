@@ -29,10 +29,10 @@ const schools = [
   {
     name: 'Duy vật chất phác',
     icon: '🔬',
-    thinker: 'Trung tính/tiền-biện chứng',
-    view: 'Nhấn mạnh vật chất hoặc các dữ kiện hiện thực một cách trực quan và đơn giản.',
-    hire: 'Ví dụ tuyển dụng: chỉ dựa vào một chỉ số như số dự án hoặc số tháng kinh nghiệm.',
-    mistake: 'Dễ đơn giản hóa, bỏ qua các khía cạnh liên hệ và phát triển.',
+    thinker: 'Triết học Cổ đại (Thales, Democritus...)',
+    view: 'Đồng nhất vật chất với các dạng vật thể cụ thể, cảm tính; nhận thức mang tính trực quan sinh động nhưng còn mộc mạc, cảm tính.',
+    hire: 'Ví dụ tuyển dụng: Đồng nhất năng lực ứng viên hoàn toàn với một vật thể hữu hình cụ thể như tấm bằng tốt nghiệp loại xuất sắc hoặc một xấp chứng chỉ dày, coi vật thể đó chính là năng lực.',
+    mistake: 'Dễ đồng nhất bản chất năng lực với vật thể biểu hiện bên ngoài.',
     color: 'border-sky-200 bg-sky-50',
     status: 'Chưa toàn diện',
     statusColor: 'text-sky-600',
@@ -41,9 +41,9 @@ const schools = [
     name: 'Duy vật siêu hình',
     icon: '📐',
     thinker: 'Các nhà duy vật thế kỷ XVII–XVIII, chịu ảnh hưởng tư duy cơ giới',
-    view: 'Xuất phát từ thế giới hiện thực, nhưng thường nhìn sự vật tách rời, tĩnh tại; ít thấy sự vận động, mâu thuẫn và phát triển.',
-    hire: 'Cộng điểm GPA + số tháng thực tập + điểm test rồi kết luận cứng, ít xét bối cảnh, quá trình tiến bộ và khả năng thay đổi.',
-    mistake: 'Dễ biến dữ liệu thành kết luận máy móc, bỏ qua sự phát triển của ứng viên.',
+    view: 'Thừa nhận thế giới khách quan, nhưng nhìn sự vật trong trạng thái cô lập, tĩnh tại, máy móc; xem sự phát triển chủ yếu như sự tăng giảm thuần túy về mặt số lượng.',
+    hire: 'Ví dụ tuyển dụng: Cộng điểm một cách cơ giới như GPA + số tháng thực tập + điểm test thành một tổng số rồi kết luận cứng; coi năng lực là một hằng số tĩnh tại, bỏ qua bối cảnh và khả năng phát triển của ứng viên.',
+    mistake: 'Biến dữ liệu thành kết luận máy móc, xem năng lực con người như một đại lượng cố định, ít chú ý đến sự vận động và phát triển.',
     color: 'border-slate-200 bg-slate-50',
     status: 'Chưa toàn diện',
     statusColor: 'text-slate-600',
@@ -112,6 +112,7 @@ export default function Schools() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="schools-page"
       className="min-h-screen px-4 py-5 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-4xl mx-auto">
@@ -132,6 +133,8 @@ export default function Schools() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: i * 0.08 }}
+              data-testid="philosophy-card"
+              data-school-name={school.name}
               className={`rounded-xl border-2 p-5 ${school.color} ${
                 school.correct ? 'md:col-span-2 max-w-lg mx-auto w-full' : ''
               }`}

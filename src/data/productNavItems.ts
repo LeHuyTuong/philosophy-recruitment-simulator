@@ -12,7 +12,6 @@ export type ProductNavItemId =
   | 'session-history'
   | 'schools'
   | 'criteria'
-  | 'ai-usage'
   | 'teacher-mode'
   | 'export-report';
 
@@ -135,15 +134,6 @@ export const productNavItems: ProductNavItem[] = [
     icon: 'criteria',
     targetPage: 'criteria',
     description: 'Mở màn Criteria hiện tại.',
-  },
-  {
-    id: 'ai-usage',
-    group: 'learning',
-    label: 'AI Usage',
-    status: 'live',
-    icon: 'ai',
-    targetPage: 'ai-usage',
-    description: 'Mở trang minh bạch sử dụng AI.',
   },
   {
     id: 'teacher-mode',

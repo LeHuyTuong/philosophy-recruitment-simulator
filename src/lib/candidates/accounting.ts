@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "acc_c03",
     name: "Trịnh Minh Châu",
-    gpa: 3.85,
-    internshipMonths: 10,
-    projects: 3,
-    skills: ["Financial Analysis", "Excel Advanced", "Teamwork"],
-    note: "Thực tập EY, đạt vị trí top intern",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.48,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Excel cơ bản", "Tính toán"],
+    note: "Học lý thuyết kế toán, chưa làm sổ sách thực tế",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Vượt kỳ vọng",
+      verdict: "Chưa làm được việc độc lập",
       bullets: [
-        "Phân tích variance cho 5 cost center, identify saving opportunity 15%",
-        "Build financial model DCF cho project M&A client",
-        "Train được 2 intern mới trong team"
+        "Hiểu nguyên tắc kế toán nhưng không biết phần mềm MISA hay Fast",
+        "Nhập liệu chậm và hay nhầm, cần kiểm tra lại từng bút toán",
+        "Chưa từng lập báo cáo tài chính thực tế"
       ]
     },
     interviewAnswer: {
-      question: 3,
-      style: "concrete",
+      question: 2,
+      style: "shallow",
       text: "Công ty chuyển sang chuẩn IFRS 17 cho bảo hiểm, em chưa biết. Em đăng ký course trên ACCA website, study 3 buổi tối, rồi practice trên dummy data. Sau đó em guide cả team 5 người qua transition, tạo mapping template từ VAS sang IFRS 17. Manager praise em vì proactive."
     }
   },
   {
     id: "acc_c04",
     name: "Lương Quốc Bảo",
-    gpa: 3.68,
-    internshipMonths: 6,
-    projects: 2,
-    skills: ["Tax", "Excel", "Communication"],
-    note: "Intern KPMG tax department",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.55,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Excel", "Word"],
+    note: "Thực tập văn phòng 1 tháng, chưa tiếp xúc nghiệp vụ kế toán",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Chính xác + nhanh",
+      verdict: "Cần đào tạo từ đầu",
       bullets: [
-        "Khai báo thuế TNDN cho 4 công ty đúng deadline",
-        "Tối ưu deductible expenses giúp client tiết kiệm 300 triệu",
-        "Giao tiếp tốt với cơ quan thuế khi giải trình"
+        "Chỉ biết Excel cơ bản, chưa biết hàm tài chính hay pivot table",
+        "Thực tập ở vị trí văn thư, không liên quan kế toán",
+        "Mất nhiều thời gian training mới có thể làm được công việc thực"
       ]
     },
     interviewAnswer: {
       question: 1,
-      style: "concrete",
+      style: "shallow",
       text: "Senior muốn apply aggressive tax position mà em thấy rủi ro. Em research 3 precedents từ Thông tư và Circular, trình bày risk-reward cho manager. Manager agree chọn middle ground: apply position nhưng prepare defensive file sẵn. 6 tháng sau tax authority questioned, company có document sẵn nên không bị penalty."
     }
   },

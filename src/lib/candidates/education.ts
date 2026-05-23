@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "edu_c03",
     name: "Phạm Thị Thuỳ Linh",
-    gpa: 3.92,
-    internshipMonths: 10,
-    projects: 4,
-    skills: ["Special Education", "Differentiated Instruction", "Patience"],
-    note: "Tình nguyện dạy trẻ tự kỷ 1 năm",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.46,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Lý thuyết sư phạm", "Word"],
+    note: "Học sư phạm lý thuyết, chưa từng đứng lớp dạy thực",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Thấu hiểu học sinh",
+      verdict: "Thiếu kinh nghiệm thực dạy",
       bullets: [
-        "Thiết kế IEP (Individual Education Plan) cho 5 học sinh đặc biệt",
-        "Áp dụng visual schedule giảm anxiety cho học sinh ADHD",
-        "Phụ huynh feedback: 'con tôi tiến bộ rõ rệt từ khi cô dạy'"
+        "Soạn giáo án đúng mẫu nhưng không phù hợp trình độ học sinh thực",
+        "Lần đầu dạy thử bị mất kiểm soát lớp sau 15 phút",
+        "Chưa biết xử lý các tình huống học sinh đặt câu hỏi ngoài giáo án"
       ]
     },
     interviewAnswer: {
-      question: 3,
-      style: "concrete",
+      question: 2,
+      style: "shallow",
       text: "Em tìm hiểu về dạy học phân hóa qua khóa học trên Coursera. Em áp dụng ngay vào lớp: chia nhóm 3 trình độ, mỗi trình độ bài tập khác nhau nhưng cùng mục tiêu học tập. Em dùng danh sách kiểm tra để theo dõi tiến độ từng nhóm. Sau 1 tháng, học sinh yếu tăng 15 điểm trung bình, học sinh giỏi không bị chán vì có hoạt động mở rộng."
     }
   },
   {
     id: "edu_c04",
     name: "Trần Văn Phú",
-    gpa: 3.68,
-    internshipMonths: 6,
-    projects: 2,
-    skills: ["STEM Education", "Project-Based Learning", "Critical Thinking"],
-    note: "Dẫn dắt học sinh dự án khoa học đạt giải tỉnh",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.58,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Office", "Lý thuyết giáo dục"],
+    note: "Thực tập trường 1 tháng dự giờ, chưa tự đứng lớp",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Truyền cảm hứng",
+      verdict: "Chưa đủ kỹ năng thực dạy",
       bullets: [
-        "Thiết kế dự án STEM 'Nước sạch cho trường', học sinh tự build filter",
-        "Dạy critical thinking qua Socratic questioning",
-        "Học sinh tự tin thuyết trình trước 200 người"
+        "Chỉ dự giờ quan sát, chưa có kinh nghiệm tự giảng dạy",
+        "Kỹ năng quản lý lớp học gần như không có",
+        "Giáo án soạn được nhưng thiếu hoạt động tương tác"
       ]
     },
     interviewAnswer: {
       question: 1,
-      style: "concrete",
+      style: "shallow",
       text: "Em và giáo viên bộ môn khác tranh nhau thời gian hoạt động ngoại khóa. Em đề xuất gộp: giáo viên Toán dạy phần tính toán bộ lọc, em dạy phần thuyết trình và viết báo cáo. Kết quả: học sinh học được cả 2 kỹ năng, tiết kiệm thời gian, và dự án đạt giải nhì cấp tỉnh. Sau đó trường áp dụng mô hình này cho tất cả dự án STEM."
     }
   },

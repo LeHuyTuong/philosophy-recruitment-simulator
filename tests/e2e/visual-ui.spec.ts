@@ -5,7 +5,7 @@ test.describe('Visual UI regression guards', () => {
     await page.goto('/');
 
     await expect(page.getByTestId('landing-hero')).toBeVisible();
-    await expect(page.getByTestId('primary-cta')).toBeVisible();
+    await expect(page.getByTestId('start-experience')).toBeVisible();
 
     const cssState = await page.evaluate(() => {
       const bodyStyle = window.getComputedStyle(document.body);
@@ -13,7 +13,7 @@ test.describe('Visual UI regression guards', () => {
       const hero = document.querySelector('[data-testid="landing-hero"]') as HTMLElement | null;
       const homeStyle = home ? window.getComputedStyle(home) : null;
       const heroStyle = hero ? window.getComputedStyle(hero) : null;
-      const cta = document.querySelector('[data-testid="primary-cta"]') as HTMLElement | null;
+      const cta = document.querySelector('[data-testid="start-experience"]') as HTMLElement | null;
       const ctaStyle = cta ? window.getComputedStyle(cta) : null;
 
       return {
@@ -117,7 +117,7 @@ test.describe('Visual UI regression guards', () => {
     await page.goto('/');
 
     const hero = page.getByTestId('landing-hero');
-    const cta = page.getByTestId('primary-cta');
+    const cta = page.getByTestId('start-experience');
     await expect(hero).toBeVisible();
     await expect(page.getByRole('heading', { name: 'HireMe Philosophy Lab' })).toBeVisible();
     await expect(cta).toBeVisible();
@@ -155,7 +155,7 @@ test.describe('Visual UI regression guards', () => {
     await expect(page.getByTestId('dashboard-page')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Dashboard lớp' })).toBeVisible();
     await expect(page.getByText('Tổng hợp dữ liệu thật từ các lượt chơi đã hoàn thành.')).toBeVisible();
-    await expect(page.getByText(/Chưa có lượt chơi nào được ghi nhận|Dữ liệu minh họa|Chưa thể tải dữ liệu lớp học/i)).toBeVisible();
+    await expect(page.getByText(/Chưa có lượt chơi nào được ghi nhận|Dữ liệu minh họa|Chưa thể tải dữ liệu lớp học/i).first()).toBeVisible();
     await expect(page.getByText(/database unavailable/i)).toHaveCount(0);
     await expect(page.getByText(/Dữ liệu giả lập|mô phỏng|DB chưa sẵn sàng/i)).toHaveCount(0);
   });

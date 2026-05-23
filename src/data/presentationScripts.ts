@@ -135,7 +135,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     purpose:
       "Tổng hợp toàn bộ dữ kiện và chẩn đoán tiêu chí tuyển chọn của người chơi: họ ưu tiên GPA, kinh nghiệm, hay cân bằng?",
     philosophy:
-      "Bản chất không lộ ra ngay từ hiện tượng ban đầu, mà dần bộc lộ qua quá trình thực tiễn (Cặp phạm trù Bản chất – Hiện tượng). Quá trình nhận thức đi từ trực quan sinh động → tư duy trừu tượng → thực tiễn.",
+      "Bản chất không lộ ra ngay từ hiện tượng ban đầu, mà dần bộc lộ qua quá trình thực tiễn (Cặp phạm trù Bản chất – Hiện tượng). Quá trình nhận thức đi từ trực quan sinh động → tư duy trừu tượng → thực tiễn. Quy luật Lượng – Chất cũng xuất hiện: tích lũy kiến thức, luyện tập và kỹ năng có thể tạo bước chuyển về chất khi được kiểm nghiệm trong công việc.",
     talkTrack:
       "Ở màn kết quả, app không kết luận học giỏi là vô dụng. Ngược lại, học giỏi là một lợi thế. Nhưng GPA chỉ là một tín hiệu ban đầu. Người có khả năng thành công cao hơn là người kết hợp được nền tảng học thuật, kinh nghiệm thực tế, tư duy giải quyết vấn đề và khả năng tạo kết quả thật. Đây chính là phép biện chứng: lý luận phải đi đôi với thực tiễn.",
     productValue:
@@ -145,7 +145,7 @@ export const presentationScripts: Record<string, ScreenScript> = {
     screenNarration: {
       title: "Kết quả — Bản chất bộc lộ",
       headline: "Bản chất không lộ ngay từ hiện tượng, mà dần bộc lộ qua thực tiễn.",
-      body: "Sau ba vòng, app tổng hợp toàn bộ dữ liệu và chẩn đoán tiêu chí tuyển chọn của bạn: bạn ưu tiên GPA, kinh nghiệm, hay cân bằng? Kết quả thực tế có khớp với đánh giá ban đầu không? Đây chính là bài học về quá trình nhận thức: từ trực quan sinh động (CV) qua tư duy trừu tượng (phỏng vấn) đến thực tiễn (thử việc), bản chất dần bộc lộ.",
+      body: "Sau ba vòng, app tổng hợp toàn bộ dữ liệu và chẩn đoán tiêu chí tuyển chọn của bạn: bạn ưu tiên GPA, kinh nghiệm, hay cân bằng? Kết quả thực tế có khớp với đánh giá ban đầu không? Đây chính là bài học về quá trình nhận thức: từ trực quan sinh động (CV) qua tư duy trừu tượng (phỏng vấn) đến thực tiễn (thử việc), bản chất dần bộc lộ. Tích lũy kiến thức và kỹ năng là biến đổi về lượng; khi được kiểm nghiệm qua công việc thực tế, năng lực có thể tạo bước chuyển về chất.",
       philosophyLink:
         "Bản chất – Hiện tượng (Chương 2.2.2): bản chất không hiện ra ngay từ hiện tượng ban đầu, mà dần bộc lộ qua quá trình thực tiễn.",
       action: "Xem chẩn đoán tiêu chí của bạn. So sánh lựa chọn ban đầu với kết quả thực tế — bạn rút ra bài học gì?",

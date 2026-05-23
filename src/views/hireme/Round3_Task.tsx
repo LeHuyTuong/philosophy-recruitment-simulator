@@ -89,8 +89,8 @@ export default function Round3_Task({ sessionId, industry, shortlist, onComplete
         <div className="mb-4">
           <PhilosophyBadge
             variant="practice"
-            title="GIAI ĐOẠN 3 · THỰC TIỄN — TIÊU CHUẨN CỦA CHÂN LÝ"
-            subtitle="📚 Bản chất lộ ra · Khả năng → Hiện thực"
+            title="GIAI ĐOẠN 3 · THỰC TIỄN GIÚP KIỂM NGHIỆM"
+            subtitle="📚 Bản chất dần bộc lộ · Khả năng → Hiện thực"
           />
         </div>
 

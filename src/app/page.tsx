@@ -26,7 +26,6 @@ import Schools from '@/views/hireme/Schools';
 import Criteria from '@/views/hireme/Criteria';
 import Dashboard from '@/views/hireme/Dashboard';
 import FinalPoll from '@/views/hireme/FinalPoll';
-import AIUsage from '@/views/hireme/AIUsage';
 import PresentationSlides from '@/components/hireme/PresentationSlides';
 
 interface Round1Candidate {
@@ -57,6 +56,15 @@ interface TrialCandidate {
 }
 
 type PreviewModalId = Extract<ProductNavItemId, 'personal-report' | 'candidate-comparison' | 'teacher-mode' | 'export-report'>;
+
+declare global {
+  interface Window {
+    __hireMeTestSetupCompletedSession?: (options?: {
+      industry?: Industry;
+      selectedCandidateIds?: string[];
+    }) => void;
+  }
+}
 
 // Screens that should NOT show the narration block
 const NARRATION_HIDDEN_SCREENS = ['landing'];
@@ -93,13 +101,15 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleStart = useCallback(async () => {
-    try {
-      await createSession();
-      navigate('industry');
-    } catch (error) {
-      console.error('Start error:', error);
-    }
+  const handleStart = useCallback(() => {
+    void (async () => {
+      try {
+        await createSession();
+        navigate('industry');
+      } catch (error) {
+        console.error('Start error:', error);
+      }
+    })();
   }, [createSession, navigate]);
 
   const openPresentationSlides = useCallback(() => {
@@ -126,7 +136,6 @@ export default function Home() {
         break;
       case 'schools':
       case 'criteria':
-      case 'ai-usage':
         if (item.targetPage) navigate(item.targetPage);
         break;
       case 'personal-report':
@@ -138,13 +147,15 @@ export default function Home() {
     }
   }, [lastGamePage, navigate, openPresentationSlides]);
 
-  const handleSelectIndustry = useCallback(async (industryId: string) => {
-    try {
-      await setIndustry(industryId);
-      navigate('round1');
-    } catch (error) {
-      console.error('Industry select error:', error);
-    }
+  const handleSelectIndustry = useCallback((industryId: string) => {
+    void (async () => {
+      try {
+        await setIndustry(industryId);
+        navigate('round1');
+      } catch (error) {
+        console.error('Industry select error:', error);
+      }
+    })();
   }, [setIndustry, navigate]);
 
   const handleRound1Complete = useCallback(async (shortlist: string[], sortUsed: string, filterUsed: string) => {
@@ -233,6 +244,45 @@ export default function Home() {
     }));
     return allTrialCandidates;
   }, [industry, round3Results]);
+
+  useEffect(() => {
+    if (window.location.hostname !== 'localhost') return;
+
+    window.__hireMeTestSetupCompletedSession = (options = {}) => {
+      const targetIndustry = options.industry || 'education';
+      const pool = candidatePool[targetIndustry] || candidatePool.education;
+      const selectedIds = options.selectedCandidateIds?.length
+        ? options.selectedCandidateIds
+        : pool.slice(0, 5).map(candidate => candidate.id);
+      const selectedCandidates = selectedIds
+        .map(id => pool.find(candidate => candidate.id === id))
+        .filter((candidate): candidate is Candidate => Boolean(candidate));
+      const successCount = selectedCandidates.filter(candidate => candidate.outcome === 'success').length;
+
+      setRound1Candidates(selectedCandidates);
+      setRound1Shortlist(selectedCandidates.map(candidate => candidate.id));
+      setCriteriaProfile('mixed');
+      setRound3Results({
+        candidates: selectedCandidates.map(candidate => ({
+          id: candidate.id,
+          name: candidate.name,
+          gpa: candidate.gpa,
+          internshipMonths: candidate.internshipMonths,
+          projects: candidate.projects,
+          skills: candidate.skills,
+          quadrant: candidate.quadrant,
+          outcome: candidate.outcome,
+        })),
+        successCount,
+      });
+      setCurrentPage('reveal');
+      setLastGamePage('reveal');
+    };
+
+    return () => {
+      delete window.__hireMeTestSetupCompletedSession;
+    };
+  }, []);
 
   const selectedRound1Candidates = useMemo(() => {
     if (!industry || round1Shortlist.length === 0) return [];
@@ -412,8 +462,6 @@ export default function Home() {
         return <Dashboard />;
       case 'final-poll':
         return <FinalPoll sessionId={sessionId} onNavigate={navigate} onSubmitted={setFinalPollAnswer} />;
-      case 'ai-usage':
-        return <AIUsage />;
       default:
         return <Landing onStart={handleStart} onNavigate={navigate} />;
     }

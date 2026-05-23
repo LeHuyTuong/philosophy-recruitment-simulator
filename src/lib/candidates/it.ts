@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "it_c03",
     name: "Trần Thu Hà",
-    gpa: 3.92,
-    internshipMonths: 10,
-    projects: 4,
-    skills: ["Java", "Spring", "Leadership"],
-    note: "Leader CLB lập trình",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.45,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Basic HTML", "CSS"],
+    note: "Chưa có project thực, chủ yếu học lý thuyết",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Xuất sắc",
+      verdict: "Chưa sẵn sàng",
       bullets: [
-        "Design RESTful API chuẩn, code review nghiêm cho intern khác",
-        "Tối ưu query database giảm latency từ 800ms xuống 120ms",
-        "Đề xuất workflow CI/CD giúp team deploy nhanh hơn 40%"
+        "Code HTML cơ bản, chưa biết framework nào",
+        "Cần hỗ trợ từng bước, không tự debug được",
+        "Thiếu nền tảng thực hành để làm việc độc lập"
       ]
     },
     interviewAnswer: {
-      question: 3,
-      style: "concrete",
+      question: 1,
+      style: "shallow",
       text: "Em tự học Spring WebFlux qua video Baeldung rồi áp dụng ngay vào project chat real-time của CLB. Đầu tiên code lỗi nhiều, nhưng em debug từng bài rồi blog lại bài học kinh nghiệm trên Medium. Sau đó hướng dẫn 3 bạn junior khác cùng dùng reactive programming."
     }
   },
   {
     id: "it_c04",
     name: "Phạm Đức Long",
-    gpa: 3.65,
-    internshipMonths: 7,
-    projects: 3,
-    skills: ["UI/UX", "Figma", "Frontend"],
-    note: "Có portfolio cá nhân",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.6,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Office", "Canva"],
+    note: "Thực tập 1 tháng ngắn ngày, không liên quan tech",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Hoàn thành tốt",
+      verdict: "Cần học thêm nhiều",
       bullets: [
-        "Giao diện responsive pixel-perfect theo design Figma",
-        "Tối ưu accessibility đạt Lighthouse score 95+",
-        "Làm việc tốt với designer, đề xuất cải tiến UX flow"
+        "Chỉ biết dùng công cụ văn phòng, không có kỹ năng lập trình",
+        "Thực tập ở vị trí admin, không có kinh nghiệm phát triển phần mềm",
+        "Cần training dài hạn mới có thể làm việc được"
       ]
     },
     interviewAnswer: {
-      question: 1,
-      style: "concrete",
+      question: 2,
+      style: "shallow",
       text: "Designer muốn animation phức tạp nhưng deadline gấp. Em đề xuất dùng Framer Motion với preset animation thay vì custom keyframe, đồng thời tạo component reuse cho cả project. Cả hai đều hài lòng vì giao diện đẹp hơn dự kiến mà vẫn kịp deadline."
     }
   },

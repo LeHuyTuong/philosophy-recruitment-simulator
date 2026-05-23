@@ -49,8 +49,8 @@ export function useSession() {
 
   const setIndustry = useCallback(async (industry: string, sessionIdOverride?: string) => {
     const targetSessionId = sessionIdOverride ?? sessionRef.current.sessionId;
+    setSession(prev => ({ ...prev, industry }));
     if (!targetSessionId) {
-      setSession(prev => ({ ...prev, industry }));
       return;
     }
 
@@ -66,8 +66,6 @@ export function useSession() {
       }
     } catch (error) {
       console.error('Set industry API error, using local state:', error);
-    } finally {
-      setSession(prev => ({ ...prev, industry }));
     }
   }, []);
 

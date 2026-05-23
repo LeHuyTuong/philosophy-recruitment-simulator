@@ -64,7 +64,8 @@ export default function FinalPoll({ sessionId, onNavigate, onSubmitted }: FinalP
     try {
       const res = await fetch('/api/stats');
       const data = await res.json();
-      const { finalPoll } = data;
+      const finalPoll = data.stats?.finalPoll as { A: number; B: number; C: number } | undefined;
+      if (!finalPoll) return;
       setPollData([
         { name: 'A. Điểm cao', value: finalPoll.A || 0 },
         { name: 'B. Học + thực hành', value: finalPoll.B || 0 },

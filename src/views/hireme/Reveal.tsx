@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
+import KnowledgePracticeGap from '@/components/hireme/KnowledgePracticeGap';
 
 interface TrialCandidate {
   id: string;
@@ -78,10 +79,11 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
   ];
 
   const journey = [
-    { label: 'Bản chất – Hiện tượng', detail: 'Vòng 1', done: true },
-    { label: 'Khả năng – Hiện thực', detail: 'Vòng 2', done: true },
-    { label: 'Thực tiễn → bản chất lộ ra', detail: 'Vòng 3', done: true },
-    { label: 'Cái chung – Cái riêng', detail: 'Đa ngành', done: true },
+    { label: 'Bản chất – Hiện tượng (Nhận thức cảm tính)', detail: 'Vòng 1 · Duyệt CV', done: true },
+    { label: 'Khả năng – Hiện thực (Nhận thức lý tính)', detail: 'Vòng 2 · Phỏng vấn', done: true },
+    { label: 'Thực tiễn là tiêu chuẩn kiểm nghiệm chân lý', detail: 'Vòng 3 · Thử việc', done: true },
+    { label: 'Lượng – Chất', detail: 'Tích lũy kỹ năng tạo bước chuyển', done: true },
+    { label: 'Biện chứng giữa Cái chung – Cái riêng', detail: 'Ứng dụng đa ngành', done: true },
   ];
 
   return (
@@ -89,6 +91,7 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="reveal-page"
       className="min-h-screen px-4 py-6 pb-24 bg-gradient-to-b from-slate-50 to-white"
     >
       <div className="max-w-3xl mx-auto">
@@ -104,6 +107,9 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           <PhilosophyBadge variant="practice" title="Kết quả · Bản chất dần bộc lộ" />
         </motion.div>
 
+        {/* Knowledge-Practice Gap — định lượng luận điểm triết học */}
+        <KnowledgePracticeGap candidates={candidates} successCount={successCount} />
+
         {/* Criteria verdict */}
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
@@ -115,6 +121,12 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           <p className="text-sm leading-relaxed">{verdict.description}</p>
         </motion.div>
 
+        <div className="mb-6 flex justify-center">
+          <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+            Dữ liệu minh họa
+          </span>
+        </div>
+
         {/* Success by quadrant */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,9 +136,6 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
         >
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-sm mb-3 text-gray-700">Tỷ lệ PASS theo nhóm hồ sơ</h3>
-            {process.env.NODE_ENV === 'development' && (
-              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Dữ liệu minh họa</span>
-            )}
           </div>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(qCounts).map(([q, counts]) => (
@@ -148,13 +157,16 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
+          data-testid="result-selected-candidates"
           className="bg-white rounded-xl border p-4 mb-6"
         >
           <h3 className="font-bold text-sm mb-3 text-gray-700">Kết quả kiểm nghiệm 5 ứng viên bạn đã chọn</h3>
 
           <p className="text-xs text-gray-500 mb-3">
+            <span data-testid="pass-criteria-note">
             PASS được xác định từ vòng kiểm nghiệm thực tiễn, gồm bài test tình huống, phỏng vấn phản biện, sản phẩm/kinh nghiệm thực tế và khả năng học tiếp.
             <br />Quy tắc hiển thị: PASS nếu practicalScore ≥ 70; CẦN XEM XÉT nếu 50 ≤ practicalScore &lt; 70; FAIL nếu practicalScore &lt; 50.
+            </span>
           </p>
 
           <div className="space-y-3">
@@ -174,11 +186,11 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
                     return { score: null as number | null, result: 'CẦN XEM XÉT', reason: 'Dữ liệu kiểm nghiệm chưa đủ.' };
                   }
 
-                  const normMonths = Number.isFinite(months) ? Math.min(36, months) / 36 : 0; // cap at 36 months
-                  const normProjects = Number.isFinite(projects) ? Math.min(10, projects) / 10 : 0; // cap
+                  const normMonths = Number.isFinite(months) ? Math.min(24, months) / 24 : 0;
+                  const normProjects = Number.isFinite(projects) ? Math.min(6, projects) / 6 : 0;
 
                   // weighted sum -> 100 scale: months 40%, projects 40%, skills 20%
-                  const score = Math.round((normMonths * 40 + normProjects * 40 + Math.min(10, skills) / 10 * 20));
+                  const score = Math.round((normMonths * 40 + normProjects * 40 + Math.min(5, skills) / 5 * 20));
                   let result = 'CẦN XEM XÉT';
                   if (score >= 70) result = 'PASS';
                   else if (score < 50) result = 'FAIL';
@@ -194,7 +206,7 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
                 const res = derivePracticalResult(candidate);
 
                 return (
-                  <div key={candidate.id} className="border rounded-lg p-3 flex items-start justify-between">
+                  <div key={candidate.id} data-testid="result-candidate-row" className="border rounded-lg p-3 flex items-start justify-between">
                     <div>
                       <div className="text-sm font-bold text-gray-800">{name}</div>
                       <div className="text-xs text-gray-500">Nhóm: {quadrant}</div>
@@ -268,8 +280,8 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-5 text-white mb-6"
         >
           <p className="text-sm leading-relaxed font-medium">
-            Trong bộ dữ liệu này, nhóm GPA cao + thực hành tốt có tỷ lệ PASS cao hơn. Tuy vậy, nhóm GPA thấp + thực hành cao và hồ sơ ngoại lệ cho thấy không nên đánh giá ứng viên chỉ bằng một chỉ số đơn lẻ.
-            <br />CV/GPA chỉ là hiện tượng ban đầu — phỏng vấn, bài test và thử việc là quá trình kiểm nghiệm để làm rõ năng lực thực tế. Thực tiễn giúp kiểm tra nhận thức; không tuyệt đối hóa một chỉ số.
+            Quy trình mô phỏng phản ánh con đường biện chứng của nhận thức: từ Trực quan sinh động (nhận thức cảm tính ở vòng CV — hiện tượng ban đầu), qua Tư duy trừu tượng (nhận thức lý tính ở vòng phỏng vấn — phân tích khả năng), rồi quay về Thực tiễn (vòng thử việc) để kiểm nghiệm.
+            <br />Theo triết học Mác - Lênin, thực tiễn là tiêu chuẩn để kiểm nghiệm chân lý. GPA, CV hay câu trả lời phỏng vấn đều là những tín hiệu có giá trị, nhưng chưa đủ để khẳng định toàn diện bản chất năng lực nếu chưa được kiểm tra trong hoạt động thực tế.
           </p>
         </motion.div>
 

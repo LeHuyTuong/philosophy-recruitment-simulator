@@ -8,9 +8,10 @@ export default function AIUsage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-testid="ai-usage-page"
       className="min-h-screen px-4 py-5 pb-20 md:pb-8 bg-gradient-to-b from-slate-50 to-white"
     >
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <div className="text-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Minh bạch sử dụng AI</h1>
         </div>

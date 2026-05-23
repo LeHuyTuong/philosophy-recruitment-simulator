@@ -12,7 +12,7 @@ interface PresentationSlidesProps {
 
 function SlideBody({ slide }: { slide: PresentationSlide }) {
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] items-start">
+    <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-start">
       <div className="space-y-5">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
@@ -53,14 +53,14 @@ function SlideBody({ slide }: { slide: PresentationSlide }) {
         {/* Optional helper boxes: app connection, reflection questions, takeaways */}
         <div className="grid grid-cols-1 gap-3">
           {slide.appConnection ? (
-            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+            <div className="rounded-2xl bg-white border border-slate-200 p-3" data-testid="slide-support-box">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Liên hệ với app</p>
               <p className="mt-2 text-sm text-slate-600 leading-relaxed">{slide.appConnection}</p>
             </div>
           ) : null}
 
           {slide.reflectionQuestion ? (
-            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+            <div className="rounded-2xl bg-white border border-slate-200 p-3" data-testid="slide-support-box">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Câu hỏi phản tư</p>
               <ul className="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-4 space-y-1">
                 {slide.reflectionQuestion.map((q) => (
@@ -71,7 +71,7 @@ function SlideBody({ slide }: { slide: PresentationSlide }) {
           ) : null}
 
           {slide.takeaway ? (
-            <div className="rounded-2xl bg-white border border-slate-200 p-3">
+            <div className="rounded-2xl bg-white border border-slate-200 p-3" data-testid="slide-support-box">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Ý chính cần nhớ</p>
               <ul className="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-4 space-y-1">
                 {slide.takeaway.map((t) => (
@@ -153,7 +153,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
   };
 
   return (
-    <div className="fixed inset-0 z-[90]" data-testid="presentation-slides">
+    <div className="fixed inset-0 z-[90]" data-testid="presentation-modal">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -164,6 +164,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
 
       <div className="relative z-[91] flex min-h-full items-center justify-center p-3 sm:p-4 lg:p-6">
         <motion.section
+          data-testid="presentation-slides"
           initial={{ opacity: 0, y: 18, scale: 0.985 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 18, scale: 0.985 }}
@@ -194,7 +195,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
             </div>
           </div>
 
-          <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-4 sm:px-6 sm:pb-6 lg:px-8 lg:pb-8">
+          <div className="flex min-h-0 flex-1 flex-col px-4 pb-6 pt-4 sm:px-6 sm:pb-6 lg:px-8 lg:pb-8">
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm font-semibold text-slate-700 sm:hidden">
                 Slide {currentIndex + 1}/{presentationSlides.length}
@@ -218,6 +219,7 @@ export default function PresentationSlides({ isOpen, onClose }: PresentationSlid
                   exit="exit"
                   transition={{ duration: 0.22, ease: 'easeOut' }}
                   className="h-full overflow-y-auto pr-1"
+                  data-testid="presentation-active-slide"
                 >
                   <SlideBody slide={currentSlide} />
                 </motion.div>

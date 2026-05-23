@@ -11,12 +11,12 @@ export default defineConfig({
   fullyParallel: false,
   reporter: [['list']],
   use: {
-    baseURL: `http://127.0.0.1:${port}`,
+    baseURL: `http://localhost:${port}`,
     trace: 'retain-on-failure',
   },
   webServer: {
-    command: `npm run dev -- --hostname 127.0.0.1`,
-    url: `http://127.0.0.1:${port}`,
+    command: `npm run dev -- --hostname localhost`,
+    url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
