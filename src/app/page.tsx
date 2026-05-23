@@ -26,7 +26,6 @@ import Schools from '@/views/hireme/Schools';
 import Criteria from '@/views/hireme/Criteria';
 import Dashboard from '@/views/hireme/Dashboard';
 import FinalPoll from '@/views/hireme/FinalPoll';
-import AIUsage from '@/views/hireme/AIUsage';
 import PresentationSlides from '@/components/hireme/PresentationSlides';
 
 interface Round1Candidate {
@@ -137,7 +136,6 @@ export default function Home() {
         break;
       case 'schools':
       case 'criteria':
-      case 'ai-usage':
         if (item.targetPage) navigate(item.targetPage);
         break;
       case 'personal-report':
@@ -464,8 +462,6 @@ export default function Home() {
         return <Dashboard />;
       case 'final-poll':
         return <FinalPoll sessionId={sessionId} onNavigate={navigate} onSubmitted={setFinalPollAnswer} />;
-      case 'ai-usage':
-        return <AIUsage />;
       default:
         return <Landing onStart={handleStart} onNavigate={navigate} />;
     }

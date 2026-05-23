@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "biz_c03",
     name: "Lê Hoàng Nam",
-    gpa: 3.88,
-    internshipMonths: 10,
-    projects: 4,
-    skills: ["Business Development", "Market Entry", "Strategic Planning"],
-    note: "Thực tập sinh tại Vingroup team chiến lược",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.44,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Lý thuyết kinh doanh", "PowerPoint"],
+    note: "Học nhiều lý thuyết, chưa có trải nghiệm kinh doanh thực tế",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Tư duy chiến lược",
+      verdict: "Lý thuyết nhiều, thực tế ít",
       bullets: [
-        "Phân tích market entry cho 2 tỉnh mới, đề xuất được phê duyệt",
-        "Xây dựng mối quan hệ với 15 nhà phân phối trong 1 tháng",
-        "Đào tạo được 3 sales rep mới về bán hàng tư vấn"
+        "Phân tích SWOT đúng mẫu nhưng không áp dụng được vào bối cảnh cụ thể",
+        "Không biết cách làm việc với khách hàng thực tế",
+        "Kế hoạch kinh doanh thiếu thực tiễn, nhiều ý chung chung"
       ]
     },
     interviewAnswer: {
       question: 3,
-      style: "concrete",
+      style: "shallow",
       text: "Khi công ty áp dụng SPIN selling, em chưa biết mô hình này. Em đọc sách của Neil Rackham trong 3 ngày, xác định 5 câu hỏi tình huống + 3 câu hỏi vấn đề cho sản phẩm của mình. Tuần sau áp dụng vào pitch cho khách B2B, ký kết deal 500 triệu. Em chia sẻ kịch bản với cả team sales."
     }
   },
   {
     id: "biz_c04",
     name: "Phạm Thị Ngọc Anh",
-    gpa: 3.65,
-    internshipMonths: 6,
-    projects: 2,
-    skills: ["Retail Sales", "Customer Service", "Merchandising"],
-    note: "Quản lý cửa hàng demo trong trường",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.62,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Giao tiếp", "Office"],
+    note: "Thực tập hành chính 1 tháng, chưa có kinh nghiệm business thực",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Hiểu khách hàng",
+      verdict: "Chưa phù hợp vị trí",
       bullets: [
-        "Tăng revenue cửa hàng demo 60% trong 1 học kỳ",
-        "Giảm tỷ lệ khiếu nại khách hàng từ 5% xuống 0.5%",
-        "Thiết lập chương trình khách hàng thân thiết thu hút 200+ thành viên mới"
+        "Giao tiếp ổn nhưng không có kiến thức chuyên môn business cụ thể",
+        "Không biết phân tích số liệu hay làm financial model",
+        "Chưa có case study thực tế nào để tham chiếu"
       ]
     },
     interviewAnswer: {
-      question: 1,
-      style: "concrete",
+      question: 2,
+      style: "shallow",
       text: "Marketing chạy khuyến mãi mà sales không được báo trước, khách đến hỏi em không biết. Em lập tức gọi marketing, yêu cầu gửi chi tiết khuyến mãi trong group Zalo chung. Em cũng đề xuất tạo quy trình chuẩn: marketing gửi bản tóm tắt khuyến mãi 48h trước phát động cho sales. Sau đó không còn bị bất ngờ nữa."
     }
   },

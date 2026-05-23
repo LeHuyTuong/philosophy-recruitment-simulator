@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import PhilosophyBadge from '@/components/hireme/PhilosophyBadge';
+import KnowledgePracticeGap from '@/components/hireme/KnowledgePracticeGap';
 
 interface TrialCandidate {
   id: string;
@@ -105,6 +106,9 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           </h1>
           <PhilosophyBadge variant="practice" title="Kết quả · Bản chất dần bộc lộ" />
         </motion.div>
+
+        {/* Knowledge-Practice Gap — định lượng luận điểm triết học */}
+        <KnowledgePracticeGap candidates={candidates} successCount={successCount} />
 
         {/* Criteria verdict */}
         <motion.div

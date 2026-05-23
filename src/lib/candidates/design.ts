@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "des_c03",
     name: "Lê Quang Vinh",
-    gpa: 3.90,
-    internshipMonths: 10,
-    projects: 5,
-    skills: ["Product Design", "Prototyping", "User Research"],
-    note: "Intern tại 2 design agency top",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.5,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Photoshop cơ bản", "Canva"],
+    note: "Học thiết kế nhưng chưa làm dự án cho khách hàng thực",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "UX chuyên sâu",
+      verdict: "Portfolio quá mỏng",
       bullets: [
-        "Conduct user interview 20 người, tạo persona và journey map chi tiết",
-        "Prototype high-fidelity trong Figma với micro-interaction",
-        "Design system align với WCAG 2.1 accessibility standards"
+        "Chỉ có bài tập trường, không có dự án thực tế nào",
+        "Thiếu tư duy UX, thiết kế theo cảm tính không có research",
+        "Chưa biết quy trình handoff cho developer"
       ]
     },
     interviewAnswer: {
-      question: 3,
-      style: "concrete",
+      question: 1,
+      style: "shallow",
       text: "Khi variable fonts trở nên phổ biến, em tự nghiên cứu trên Google Fonts Lab, test 10 font families trên real project. Em tạo typography scale system dựa trên modular scale 1.25, apply vào design system. PM và dev đều impressed vì consistency cải thiện 40%, dev tiết kiệm thời gian implement."
     }
   },
   {
     id: "des_c04",
     name: "Phạm Thị Bích Thủy",
-    gpa: 3.68,
-    internshipMonths: 6,
-    projects: 3,
-    skills: ["Motion Design", "After Effects", "Visual Storytelling"],
-    note: "Có 50K follower trên Dribbble",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.65,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Canva", "Photoshop cơ bản"],
+    note: "Thực tập 1 tháng làm banner mạng xã hội, chưa có portfolio chuyên nghiệp",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Đa năng sáng tạo",
+      verdict: "Cần phát triển thêm",
       bullets: [
-        "Tạo motion graphics cho marketing campaign tăng CTR 35%",
-        "Design landing page A/B test version B thắng 22% conversion",
-        "Làm việc tốt với dev team, cung cấp asset đúng spec"
+        "Thiết kế đẹp theo cảm nhận cá nhân nhưng không đáp ứng brief khách hàng",
+        "Chưa biết Figma hay Adobe XD cho UI/UX",
+        "Thiếu kỹ năng trình bày và bảo vệ ý tưởng thiết kế"
       ]
     },
     interviewAnswer: {
-      question: 1,
-      style: "concrete",
+      question: 3,
+      style: "shallow",
       text: "PM muốn thay toàn bộ design em đã làm 2 tuần vì 'cảm thấy không đúng'. Em không phản đối ngay mà schedule meeting: ask PM chỉ cụ thể phần nào không OK, suggest fix từng phần thay vì redo all. Kết quả chỉ cần adjust 20% design. Em cũng đề xuất design review checkpoint mỗi 3 ngày để tránh tình huống lặp lại."
     }
   },

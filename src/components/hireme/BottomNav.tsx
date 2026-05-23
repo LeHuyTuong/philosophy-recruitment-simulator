@@ -9,7 +9,6 @@ const navItems = [
   { page: 'dashboard', label: 'Dashboard', icon: '📊' },
   { page: 'schools', label: 'Trường phái', icon: '🏛️' },
   { page: 'criteria', label: 'Tiêu chí', icon: '⚖️' },
-  { page: 'ai-usage', label: 'AI Usage', icon: '🤖' },
 ];
 
 export default function BottomNav({ onNavigate, currentPage }: BottomNavProps) {

@@ -53,48 +53,48 @@ export const candidates: Candidate[] = [
   {
     id: "mkt_c03",
     name: "Vũ Mai Anh",
-    gpa: 3.88,
-    internshipMonths: 10,
-    projects: 4,
-    skills: ["Google Ads", "Analytics", "Brand Strategy"],
-    note: "Intern tại 2 agency top",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.42,
+    internshipMonths: 0,
+    projects: 0,
+    skills: ["Word", "PowerPoint"],
+    note: "Học lý thuyết marketing ổn nhưng chưa từng triển khai chiến dịch thực",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Toàn diện",
+      verdict: "Chưa đủ thực chiến",
       bullets: [
-        "Quản lý Google Ads budget 100 triệu/tháng, CPA giảm 25%",
-        "Build brand guideline mới cho client F&B",
-        "Trình bày report rõ ràng cho cả tech và non-tech audience"
+        "Phân tích thị trường chỉ theo mẫu sách, thiếu dữ liệu thực",
+        "Chưa biết dùng Meta Ads hay Google Analytics",
+        "Nội dung viết ra không phù hợp tone of voice khách hàng"
       ]
     },
     interviewAnswer: {
-      question: 3,
-      style: "concrete",
+      question: 1,
+      style: "shallow",
       text: "Khi TikTok Ads mới ra Việt Nam, em tự chạy thử nghiệm 500K/ngày trong 2 tuần, kiểm tra 30 creatives khác nhau. Em phát hiện video dạng kể chuyện dài 30s hiệu quả tốt nhất ở nhóm đối tượng 25-34. Em viết bài nghiên cứu tình huống, trình bày cho giám đốc, sau đó áp dụng cho 3 khách hàng lớn."
     }
   },
   {
     id: "mkt_c04",
     name: "Lê Thị Hồng Nhung",
-    gpa: 3.65,
-    internshipMonths: 6,
-    projects: 2,
-    skills: ["Content Marketing", "Social Media", "Canva Pro"],
-    note: "Quản lý fanpage 50K follower lúc sinh viên",
-    quadrant: "Q1",
-    outcome: "success",
+    gpa: 2.58,
+    internshipMonths: 1,
+    projects: 0,
+    skills: ["Canva basic", "Facebook cá nhân"],
+    note: "Thực tập 1 tháng ở vị trí hỗ trợ, không có portfolio",
+    quadrant: "Q4",
+    outcome: "fail",
     trialResult: {
-      verdict: "Hoàn thành tốt",
+      verdict: "Thiếu kinh nghiệm thực tế",
       bullets: [
-        "Tăng engagement rate fanpage từ 2% lên 5.8% trong 1 tháng",
-        "Sản xuất 20 reel/video ngắn đạt view trung bình 10K",
-        "Nắm bắt trend nhanh, content luôn timely và relevant"
+        "Biết dùng Canva để tạo banner cơ bản nhưng thiếu chiều sâu",
+        "Chưa chạy chiến dịch quảng cáo nào có ngân sách thực",
+        "Không đo lường được hiệu quả content đã tạo ra"
       ]
     },
     interviewAnswer: {
-      question: 1,
-      style: "concrete",
+      question: 3,
+      style: "shallow",
       text: "Nhà thiết kế và em bất đồng về hình ảnh content. Em đề xuất làm 2 phiên bản: 1 theo ý nhà thiết kế, 1 theo nhận định dữ liệu khán giả thích gì. Đăng cả hai, theo dõi 48h. Phiên bản dựa trên dữ liệu thắng 3x engagement. Từ đó nhà thiết kế tự nguyện hỏi em trước khi thiết kế."
     }
   },
