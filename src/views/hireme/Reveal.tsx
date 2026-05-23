@@ -54,7 +54,7 @@ const quadrantLabels: Record<string, string> = {
   Q2: 'GPA cao + Thực tập thấp',
   Q3: 'GPA thấp + Thực tập cao',
   Q4: 'GPA thấp + Thực tập thấp',
-  WILD: 'Hồ sơ ngoại lệ',
+  WILD: 'Đặc biệt (ngoài 4 nhóm)',
 };
 
 const successByQuadrant = (candidates: TrialCandidate[]) => {
@@ -149,6 +149,7 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
           </div>
           <p className="text-xs text-gray-500 mt-2 italic">
             Bảng này thống kê toàn bộ bộ ứng viên trong lượt chơi, không chỉ 5 ứng viên bạn đã chọn.
+            Nhóm <strong>Đặc biệt</strong> gồm ứng viên có tín hiệu không điển hình: sản phẩm nổi bật, tự học, kinh nghiệm không chính quy.
           </p>
         </motion.div>
 
@@ -284,10 +285,6 @@ export default function Reveal({ criteriaProfile, successCount, candidates, allC
             <br />Theo triết học Mác - Lênin, thực tiễn là tiêu chuẩn để kiểm nghiệm chân lý. GPA, CV hay câu trả lời phỏng vấn đều là những tín hiệu có giá trị, nhưng chưa đủ để khẳng định toàn diện bản chất năng lực nếu chưa được kiểm tra trong hoạt động thực tế.
           </p>
         </motion.div>
-
-        <div className="text-xs text-gray-500 mb-6">
-          <strong>Hồ sơ ngoại lệ:</strong> Hồ sơ ngoại lệ là các ứng viên không thuộc rõ 4 nhóm GPA/thực tập chính, nhưng có tín hiệu đặc thù như sản phẩm nổi bật, năng lực tự học, kinh nghiệm không chính quy hoặc dữ liệu chưa đầy đủ.
-        </div>
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

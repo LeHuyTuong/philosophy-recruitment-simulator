@@ -92,6 +92,10 @@ export default function Round2_Interview({ candidates, onComplete }: Round2Props
 
         <h2 className="text-xl font-bold text-gray-800 mb-2">Vòng 2: Phỏng vấn 5 ứng viên</h2>
 
+        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 mb-4 text-sm text-amber-800">
+          ⚠️ <strong>Lưu ý:</strong> Bạn chỉ nghe những gì họ <em>nói</em> — không thể kiểm chứng họ có thực sự làm được không.
+        </div>
+
         {/* Stepper */}
         <div className="flex items-center gap-2 mb-6">
           {candidates.map((c, i) => (
